@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Alinshans&#39;s Blog</title>
+  <title>Alinshans&#39;s world</title>
   <subtitle>Build a world of your own love</subtitle>
   <link href="/atom.xml" rel="self"/>
   
@@ -9,7 +9,7 @@
   <id>http://yoursite.com/</id>
   
   <author>
-    <name>Alinshans</name>
+    <name>刘俊延</name>
     
   </author>
   
