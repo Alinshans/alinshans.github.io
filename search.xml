@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2017%2F05%2F15%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+    <title><![CDATA[Hello, my world]]></title>
+    <url>%2F2017%2F05%2F17%2FHello-my-world%2F</url>
+    <content type="text"><![CDATA[前言原本在博客园和Github上有写一些随笔和笔记，不过博客园的编辑真的好难看，还不如 Markdown 格式的好看，所以就搭了一个新的博客，会陆续把一些以前写的搬到这里，以及新随笔和笔记都会在这里首发。 Hello, my world大概每个人接触编程后，写的第一个程序都是 Hello world 。我们能轻松的用几行代码，就在一个黑框框或者更漂亮的界面上输出一个 Hello world，多亏了我们是站在了许多巨人的肩膀上。多希望有一天，我可以在自己创造的世界里，说一声 Hello, my world! 启程以上所说的”自己创造的世界”，其实说的是自己创造自己喜欢的环境，可以是一个系统，可以是一种语言，可以是一个框架，甚至可以是一种语法。只要能让自己用得开心，想怎么改就怎么改，想怎么运行就怎么运行。当然，不可能从零开始，也不可能去重写所有的东西。这一个过程应该是自顶向下的，从能最直接接触到的东西开始，有不顺手的地方，那就给它包装，或者重写，直到自己顺手了，开心了为止。]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
   </entry>
 </search>

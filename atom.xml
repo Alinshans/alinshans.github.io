@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-05-15T04:14:01.872Z</updated>
+  <updated>2017-05-17T05:56:50.718Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,28 +16,24 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2017/05/15/hello-world/"/>
-    <id>http://yoursite.com/2017/05/15/hello-world/</id>
-    <published>2017-05-15T04:14:01.872Z</published>
-    <updated>2017-05-15T04:14:01.872Z</updated>
+    <title>Hello, my world</title>
+    <link href="http://yoursite.com/2017/05/17/Hello-my-world/"/>
+    <id>http://yoursite.com/2017/05/17/Hello-my-world/</id>
+    <published>2017-05-17T05:20:35.000Z</published>
+    <updated>2017-05-17T05:56:50.718Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>原本在博客园和Github上有写一些随笔和笔记，不过博客园的编辑真的好难看，还不如 Markdown 格式的好看，所以就搭了一个新的博客，会陆续把一些以前写的搬到这里，以及新随笔和笔记都会在这里首发。</p>
+<h2 id="Hello-my-world"><a href="#Hello-my-world" class="headerlink" title="Hello, my world"></a>Hello, my world</h2><p>大概每个人接触编程后，写的第一个程序都是 Hello world 。我们能轻松的用几行代码，就在一个黑框框或者更漂亮的界面上输出一个 Hello world，多亏了我们是站在了许多巨人的肩膀上。多希望有一天，我可以在自己创造的世界里，说一声 Hello, my world!</p>
+<h2 id="启程"><a href="#启程" class="headerlink" title="启程"></a>启程</h2><p>以上所说的”自己创造的世界”，其实说的是自己创造自己喜欢的环境，可以是一个系统，可以是一种语言，可以是一个框架，甚至可以是一种语法。只要能让自己用得开心，想怎么改就怎么改，想怎么运行就怎么运行。当然，不可能从零开始，也不可能去重写所有的东西。这一个过程应该是自顶向下的，从能最直接接触到的东西开始，有不顺手的地方，那就给它包装，或者重写，直到自己顺手了，开心了为止。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;原本在博客园和Github上有写一些随笔和笔记，不过博客园的编辑真的好难看，还不如 Markdown 格式的好看，所以就搭了一个新的博客，会
     
     </summary>
+    
+      <category term="其他" scheme="http://yoursite.com/categories/%E5%85%B6%E4%BB%96/"/>
     
     
   </entry>
