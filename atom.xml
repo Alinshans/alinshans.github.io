@@ -4,9 +4,9 @@
   <subtitle>Build a world of your own love</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
-  <updated>2017-05-17T05:56:50.718Z</updated>
-  <id>http://yoursite.com/</id>
+  <link href="http://alinshans.github.io/"/>
+  <updated>2017-05-22T03:27:14.642Z</updated>
+  <id>http://alinshans.github.io/</id>
   
   <author>
     <name>刘俊延</name>
@@ -16,9 +16,88 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>C++之那些年踩过的坑(一)</title>
+    <link href="http://alinshans.github.io/2017/05/22/C-%E4%B9%8B%E9%82%A3%E4%BA%9B%E5%B9%B4%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91-%E4%B8%80/"/>
+    <id>http://alinshans.github.io/2017/05/22/C-之那些年踩过的坑-一/</id>
+    <published>2017-05-22T01:53:51.000Z</published>
+    <updated>2017-05-22T03:27:14.642Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p><em>注：本文来自于我的一篇博客 <a href="http://www.cnblogs.com/GodA/p/6501505.html" target="_blank" rel="external">http://www.cnblogs.com/GodA/p/6501505.html</a> ，修改而成。</em></p>
+</blockquote>
+<p>这一篇聊聊关于C++中的名称空间（namespace）。</p>
+<h3 id="一、避免在全局范围内使用-using-namespace-xxx"><a href="#一、避免在全局范围内使用-using-namespace-xxx" class="headerlink" title="一、避免在全局范围内使用 using namespace xxx"></a>一、避免在全局范围内使用 using namespace xxx</h3><p>注意这个标题中的限定词，<strong>避免</strong>在<strong>全局范围内</strong>使用。之前很喜欢写代码开头就写上 <code>using namespace std</code>，因为可以省很多事，比写什么 <code>cout</code>，<code>endl</code> 方便多了。后来我在写 <a href="https://github.com/Alinshans/MyTinySTL" target="_blank" rel="external">MyTinySTL</a> 这个项目时，最后写测试，为了方便，就用了 <code>using namespace std</code>，写的时候是挺爽的，一运行就炸了。错误长的惨不忍睹，一大堆的名称冲突。当你使用了 <code>using namespace std</code> 的时候，就把 <code>std</code> 这个名称空间内的内容直接引用到了当前空间，如果跟当前空间的函数、类等重名了，那么编译就不通过了，这个就叫<code>名称污染</code>。比如：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> your</div><div class="line">&#123;</div><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">vector</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">  <span class="built_in">vector</span>() = <span class="keyword">default</span>;</div><div class="line">  ~<span class="built_in">vector</span>() = <span class="keyword">default</span>;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">  T* data;</div><div class="line">&#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> your;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">  <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>你编译它，就会得到类似不明确的符号 vector 啊，may be <code>std::vector</code> or <code>your::vector</code> 啊之类的。当然了，这太明显了，谁都会看出来。问题就在于，我们不能把问题是否发生，寄托于我们是否能够看出来。当代码多了，文件多了，几十个几百个，上万行十万行，你确定你还记得你在哪个头文件 using 了什么东西？然后在一层一层 include 的情况下，莫名其妙的就炸掉了。所以，还是从根源上杜绝问题比较好。</p>
+<p>刚刚说的是 namespace std，但对于其它的 namespace 而言，也是一样的。如果是你自己写的，你都尚未能保证你能避开所有重复的命名，除非你自己写个玩具中的 demo，如果是别人写的，那就更加不可控了。</p>
+<p>其实解决办法有很多的，或者说是预防措施，又或者说，其实是一个良好的编程习惯。比起直接在全局使用 <code>using namespace xxx</code> 好一点的做法是：<strong>在局部声明并且只声明需要的那个部分</strong>。比如如果在某个作用域内经常要使用 <code>std::cout</code>，<code>std::endl</code> 等，你可以这样做：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</div><div class="line">  <span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">  </div><div class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"1+1="</span> &lt;&lt; <span class="number">1</span> + <span class="number">1</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"1+2="</span> &lt;&lt; <span class="number">1</span> + <span class="number">2</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"1+3="</span> &lt;&lt; <span class="number">1</span> + <span class="number">3</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当然最好的还是在你要使用的东西前显示指定出它归属的名称空间，一来可以更清晰的知道它是来自哪里的库，二来这样写几乎放多久都不会有错。习惯成自然，养成了这个习惯，你就根本不会去想到有 <code>using namespace xxx</code> 这种东西了。</p>
+<h3 id="二、Best-Practices"><a href="#二、Best-Practices" class="headerlink" title="二、Best Practices"></a>二、Best Practices</h3><p>在 <a href="https://www.amazon.com/dp/0321113586/?tag=stackoverfl08-20" target="_blank" rel="external">C++ Coding Standards</a> 里，有这样一段话：</p>
+<blockquote>
+<p><strong>Summary</strong><br>Namespace usings are for your convenience, not for you to inflict on others: Never write a using declaration or a using directive before an #include directive.<br>Corollary: In header files, don’t write namespace-level using directives or using declarations; instead, explicitly namespace-qualify all names. (The second rule follows from the first, because headers can never know what other header #includes might appear after them.)<br><strong>Discussion</strong><br>In short: You can and should use namespace using declarations and directives liberally in your implementation files after #include directives and feel good about it. Despite repeated assertions to the contrary, namespace using declarations and directives are not evil and they do not defeat the purpose of namespaces. Rather, they are what make namespaces usable.</p>
+</blockquote>
+<p>在 <a href="http://www.umich.edu/~eecs381/handouts/C++_Coding_Standards.pdf" target="_blank" rel="external">C++ Coding Standards for EECS 381</a>中 P32 有一段话：</p>
+<blockquote>
+<ul>
+<li>Follow guidelines for namespace <code>using</code> statements.<ul>
+<li>Namespace declarations and directives.<ul>
+<li>No namespace using declarations or directives are allowed at the top level of a header file.<ul>
+<li>OK if scoped within an inline or member function body or a class declaration.</li>
+</ul>
+</li>
+<li>In <code>.cpp</code> files,<ul>
+<li>Place using statements only after all <code>#includes</code>.</li>
+<li>Prefer using declarations of specific Standard Library functions or classes to using namespace<br>directives.</li>
+<li>Especially in this course, prefer using declarations or directives to explicitly qualifying Standard<br>Library names with <code>std::</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>在 <a href="https://google.github.io/styleguide/cppguide.html#Namespaces" target="_blank" rel="external">Google C++ Style Guide</a> 中有一条：</p>
+<blockquote>
+<p>You may not use a using-directive to make all names from a namespace available.</p>
+</blockquote>
+<p>看了这几段，就胜过我千言万语了。</p>
+<h3 id="三、关于匿名-namespace"><a href="#三、关于匿名-namespace" class="headerlink" title="三、关于匿名 namespace"></a>三、关于匿名 namespace</h3><p>关于 unnamed namespace，<a href="http://en.cppreference.com/w/cpp/language/namespace" target="_blank" rel="external">cppreference</a> 如是说到：</p>
+<blockquote>
+<p>Unnamed namespaces as well as all namespaces declared directly or indirectly within an unnamed namespace have internal linkage, which means that any name that is declared within an unnamed namespace has internal linkage. </p>
+</blockquote>
+<p>也就是说，现在，在匿名空间里的成员，具有内部链接，跟 static 没啥区别了。不过依然要注意，在同一层次中，可以有多个匿名空间，不过这些匿名空间会被整合成一个，所以不能像这样写，会报重定义：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">namespace</span></div><div class="line">&#123;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> </span>&#123; <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"1"</span> &lt;&lt; <span class="string">"\n"</span>; &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">namespace</span></div><div class="line">&#123;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> </span>&#123; <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2"</span> &lt;&lt; <span class="string">"\n"</span>; &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">  foo();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当然在不同空间内的匿名空间，当然就是不同的啦，下面这样就可以通过了：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">namespace</span></div><div class="line">&#123;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> </span>&#123; <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"1"</span> &lt;&lt; <span class="string">"\n"</span>; &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">namespace</span> n1</div><div class="line">&#123;</div><div class="line"><span class="keyword">namespace</span></div><div class="line">&#123;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> </span>&#123; <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"2"</span> &lt;&lt; <span class="string">"\n"</span>; &#125;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">  foo();</div><div class="line">  n1::foo();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在 <a href="https://google.github.io/styleguide/cppguide.html#Unnamed_Namespaces_and_Static_Variables" target="_blank" rel="external">Google C++ Style Guide</a> 中是这样说 unnamed namesapce 的：</p>
+<blockquote>
+<p>When definitions in a <code>.cc</code> file do not need to be referenced outside that file, place them in an unnamed namespace or declare them <code>static</code>. Do not use either of these constructs in <code>.h</code> files.<br><strong>Definition</strong><br>All declarations can be given internal linkage by placing them in unnamed namespaces, and functions and variables can be given internal linkage by declaring them <code>static</code>. This means that anything you’re declaring can’t be accessed from another file. If a different file declares something with the same name, then the two entities are completely independent.<br><strong>Decision</strong><br>Use of internal linkage in <code>.cc</code> files is encouraged for all code that does not need to be referenced elsewhere. Do not use internal linkage in <code>.h</code> files.</p>
+</blockquote>
+<p>他们鼓励在实现文件中，把那些不需要外部引用的东西放进匿名空间中。陈硕大大在他的 <a href="https://cloud.github.com/downloads/chenshuo/documents/CppPractice.pdf" target="_blank" rel="external">CppPractice</a> 中，第一个提到的就是慎用匿名空间。我觉得，对于他说的不利之处，现在来看，主要还是是第一点。因为匿名namespace里的东西是匿名的，所以万一以后有一天想引用它了，也说不准。其实还是用个具体名称，也不麻烦。对于那些实现细节，或者不希望暴露的，我还是喜欢扔进一个 <code>namespace details{}</code> 或者什么 <code>namespace impl {}</code> 里。</p>
+<h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><p>总结就两点：</p>
+<ul>
+<li><strong>不要使用 <code>using namespace xxx</code>，使用 <code>xxx::yyy</code></strong></li>
+<li><strong>使用具名 namespace</strong></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;注：本文来自于我的一篇博客 &lt;a href=&quot;http://www.cnblogs.com/GodA/p/6501505.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com
+    
+    </summary>
+    
+      <category term="C++之那些年踩过的坑" scheme="http://alinshans.github.io/categories/C-%E4%B9%8B%E9%82%A3%E4%BA%9B%E5%B9%B4%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/"/>
+    
+    
+      <category term="C++" scheme="http://alinshans.github.io/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Hello, my world</title>
-    <link href="http://yoursite.com/2017/05/17/Hello-my-world/"/>
-    <id>http://yoursite.com/2017/05/17/Hello-my-world/</id>
+    <link href="http://alinshans.github.io/2017/05/17/Hello-my-world/"/>
+    <id>http://alinshans.github.io/2017/05/17/Hello-my-world/</id>
     <published>2017-05-17T05:20:35.000Z</published>
     <updated>2017-05-17T05:56:50.718Z</updated>
     
@@ -33,7 +112,7 @@
     
     </summary>
     
-      <category term="其他" scheme="http://yoursite.com/categories/%E5%85%B6%E4%BB%96/"/>
+      <category term="其他" scheme="http://alinshans.github.io/categories/%E5%85%B6%E4%BB%96/"/>
     
     
   </entry>
