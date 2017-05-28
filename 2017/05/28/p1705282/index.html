@@ -84,7 +84,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hello world" />
+  <meta name="keywords" content="C++," />
 
 
 
@@ -102,16 +102,17 @@
 
 
 
-<meta name="description" content="为爱的人，创造Ta爱的世界">
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://alinshans.github.io/tags/index.html">
+<meta name="description" content="注：本文来自于我的一篇博客 http://www.cnblogs.com/GodA/p/6639526.html ，修改而成。  这篇内容呀，其实是接上一篇的结尾提出的一个小问题而写的，如果你还没有看过那么你可以先看一下。 真相在上一篇的最后，我提到一个问题：代码优化。并留下了一个小小的测试：无符号数和有符号数的性能比较。不知道有没有童鞋去实验一下呢？那我们一起来做一个简单的实验：1234567">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++之那些年踩过的坑（附录一）">
+<meta property="og:url" content="http://alinshans.github.io/2017/05/28/p1705282/index.html">
 <meta property="og:site_name" content="Alinshans&#39;s world">
-<meta property="og:description" content="为爱的人，创造Ta爱的世界">
-<meta property="og:updated_time" content="2017-05-23T09:45:54.971Z">
+<meta property="og:description" content="注：本文来自于我的一篇博客 http://www.cnblogs.com/GodA/p/6639526.html ，修改而成。  这篇内容呀，其实是接上一篇的结尾提出的一个小问题而写的，如果你还没有看过那么你可以先看一下。 真相在上一篇的最后，我提到一个问题：代码优化。并留下了一个小小的测试：无符号数和有符号数的性能比较。不知道有没有童鞋去实验一下呢？那我们一起来做一个简单的实验：1234567">
+<meta property="og:updated_time" content="2017-05-28T03:37:37.727Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签">
-<meta name="twitter:description" content="为爱的人，创造Ta爱的世界">
+<meta name="twitter:title" content="C++之那些年踩过的坑（附录一）">
+<meta name="twitter:description" content="注：本文来自于我的一篇博客 http://www.cnblogs.com/GodA/p/6639526.html ，修改而成。  这篇内容呀，其实是接上一篇的结尾提出的一个小问题而写的，如果你还没有看过那么你可以先看一下。 真相在上一篇的最后，我提到一个问题：代码优化。并留下了一个小小的测试：无符号数和有符号数的性能比较。不知道有没有童鞋去实验一下呢？那我们一起来做一个简单的实验：1234567">
 
 
 
@@ -139,13 +140,13 @@
 
 
 
-  <link rel="canonical" href="http://alinshans.github.io/tags/"/>
+  <link rel="canonical" href="http://alinshans.github.io/2017/05/28/p1705282/"/>
 
 
 
 
 
-  <title>标签 | Alinshans's world</title>
+  <title>C++之那些年踩过的坑（附录一） | Alinshans's world</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -171,7 +172,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
 <a href="https://github.com/Alinshans"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
@@ -322,25 +323,291 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline">标签</h1>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://alinshans.github.io/2017/05/28/p1705282/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="刘俊延">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alinshans's world">
+    </span>
 
     
-    
-      <div class="tag-cloud">
-        <div class="tag-cloud-title">
-            目前共计 1 个标签
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++之那些年踩过的坑（附录一）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-28T10:53:04+08:00">
+                2017-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-之那些年踩过的坑/" itemprop="url" rel="index">
+                    <span itemprop="name">C++之那些年踩过的坑</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/28/p1705282/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/05/28/p1705282/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/05/28/p1705282/" class="leancloud_visitors" data-flag-title="C++之那些年踩过的坑（附录一）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
         </div>
-        <div class="tag-cloud-tags">
-          <a href="/tags/C/" style="font-size: 12px; color: #ccc">C++</a>
-        </div>
-      </div>
+      </header>
     
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><em>注：本文来自于我的一篇博客 <a href="http://www.cnblogs.com/GodA/p/6639526.html" target="_blank" rel="external">http://www.cnblogs.com/GodA/p/6639526.html</a> ，修改而成。</em></p>
+</blockquote>
+<p>这篇内容呀，其实是接<a href="http://www.cnblogs.com/GodA/p/6569254.html" target="_blank" rel="external">上一篇</a>的结尾提出的一个小问题而写的，如果你还没有看过那么你可以先看一下。</p>
+<h2 id="真相"><a href="#真相" class="headerlink" title="真相"></a>真相</h2><p>在上一篇的最后，我提到一个问题：代码优化。并留下了一个小小的测试：无符号数和有符号数的性能比较。不知道有没有童鞋去实验一下呢？那我们一起来做一个简单的实验：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">  <span class="comment">/*unsigned */</span><span class="keyword">int</span> a = <span class="number">123456789</span>;</div><div class="line">  <span class="keyword">auto</span> t1 = <span class="built_in">std</span>::chrono::system_clock::now();</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; ++i)</div><div class="line">  &#123;</div><div class="line">    a += <span class="number">3</span>;</div><div class="line">    a -= <span class="number">5</span>;</div><div class="line">    a *= <span class="number">11</span>;</div><div class="line">    a /= <span class="number">7</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">auto</span> t2 = <span class="built_in">std</span>::chrono::system_clock::now();</div><div class="line">  <span class="keyword">auto</span> runtime = <span class="built_in">std</span>::chrono::duration_cast&lt;<span class="built_in">std</span>::chrono::nanoseconds&gt;(t2 - t1);</div><div class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"a = "</span> &lt;&lt; a &lt;&lt; <span class="string">"\n"</span>;</div><div class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; runtime.count() &lt;&lt; <span class="string">"ns"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在上述代码在 VS 的 <code>Debug</code> 模式下运行，稳定后运行时间在 210000ns 左右，然后把注释去掉，再次运行，稳定后运行时间也是 210000ns 左右。在我在电脑上，计算有符号类型和无符号类型几乎是没有差别的，我相信在绝大多数的电脑上也是相同的结果。</p>
+<p>类似的问题还有：浮点数的计算比整型数慢？对于这个问题，可以看一下这个问题：<a href="https://www.zhihu.com/question/26494062" target="_blank" rel="external">https://www.zhihu.com/question/26494062</a> 。里面提供大量实验数据供参考。</p>
+<p>无论如何，实际情况下就是，在当代，计算无符号数和有符号数的效率，甚至是计算浮点数和整数的效率，差异并不大。</p>
+<p>我想说明什么呢？首先我要声明：我不是反对代码优化。而是对于有很多流传广泛的所谓的优化技巧，我觉得我们应该应该抱着学习探索的心态，而不是一味地追求一些没有什么意义的东西。有些优化，确实很精妙。但很多所谓的技巧，看起来的意思就是：做编译器的那群人都是傻逼。想优化我们的程序，这是正常的、应该的想法，但我们应该用科学的方法，而不是听了一些奇淫技巧，却不知道实际发生了什么。</p>
+<p>其实很简单，探究性能瓶颈靠 <code>profiling</code>，探究代码背后的不为人知的故事看 <code>assembly</code>。我们先讲后面一个。</p>
+<h2 id="利用-assembly-探究代码"><a href="#利用-assembly-探究代码" class="headerlink" title="利用 assembly 探究代码"></a>利用 <code>assembly</code> 探究代码</h2><p>怎么得到反汇编代码，我在 <a href="https://alinshans.github.io/2017/05/23/p1705231/">这一篇</a> 当中有提到。比如我们研究有符号数和无符号数，先写一个程序：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">  <span class="comment">/*unsigned */</span><span class="keyword">int</span> a = <span class="number">123456789</span>;</div><div class="line">  a = a / <span class="number">13</span>;</div><div class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; a;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后在 VS 下查看反汇编：<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">/*unsigned */<span class="keyword">int</span> a = <span class="number">123456789</span><span class="comment">;</span></div><div class="line">00B4104E  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [a],<span class="number">75BCD15h</span>  </div><div class="line">  a = a / <span class="number">13</span><span class="comment">;</span></div><div class="line">00B41055  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [a]  </div><div class="line">00B41058  <span class="keyword">cdq</span>  </div><div class="line">00B41059  <span class="keyword">mov</span>         <span class="built_in">ecx</span>,<span class="number">0Dh</span>  </div><div class="line">00B4105E  <span class="keyword">idiv</span>        <span class="built_in">eax</span>,<span class="built_in">ecx</span>  </div><div class="line">00B41060  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [a],<span class="built_in">eax</span></div></pre></td></tr></table></figure></p>
+<p>把注释去掉再看：<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">unsigned <span class="keyword">int</span> a = <span class="number">123456789</span><span class="comment">;</span></div><div class="line">00C3104E  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [a],<span class="number">75BCD15h</span>  </div><div class="line">  a = a / <span class="number">13</span><span class="comment">;</span></div><div class="line">00C31055  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [a]  </div><div class="line">00C31058  <span class="keyword">xor</span>         <span class="built_in">edx</span>,<span class="built_in">edx</span>  </div><div class="line">00C3105A  <span class="keyword">mov</span>         <span class="built_in">ecx</span>,<span class="number">0Dh</span>  </div><div class="line">00C3105F  <span class="keyword">div</span>         <span class="built_in">eax</span>,<span class="built_in">ecx</span>  </div><div class="line">00C31061  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [a],<span class="built_in">eax</span></div></pre></td></tr></table></figure></p>
+<p>几乎是一模一样的，最大的差别就是有符号数使用 idiv指令（带符号除法），无符号数使用 div指令（不带符号除法），而这两种指令，CPU 周期都是一样的。<a href="http://www.agner.org/optimize/instruction_tables.pdf" target="_blank" rel="external">http://www.agner.org/optimize/instruction_tables.pdf</a></p>
+<p>当然我不是说不用无符号数，而是说我们用什么要看场合，而不是你觉得用了性能更好，除非是被大众认可的或者你经过严谨的测试的。像对于某些书籍或者什么地方说，只要确定范围不为负数的，就用无符号类型，我是不认可的。如果你讲范围，那如果一个有符号类型不够用，那么通常它对应的无符号类型(相同的 bits)也不够用。比如你 <code>std::int32_t</code> 不够用，就应该用 <code>std::int64_t</code>，如果还不够，考虑写个 <a href="https://github.com/Alinshans/redbud/blob/master/redbud/bignumber.h" target="_blank" rel="external">BigInteger类</a> 吧。不过对于无符号和有符号类型，它们之间的性能在当代确实是几乎没有什么差别。那具体什么场合用什么呢？这个也不一定，比如一般来说：</p>
+<ul>
+<li>对于位储存、位运算、模运算等，使用无符号类型</li>
+<li>对于一般运算使用有符号类型</li>
+</ul>
+<p>这一篇的目的，当然不只是谈有符号数和无符号数，而是想借题引出一些我的看法：</p>
+<ul>
+<li>过早的优化是万恶之源</li>
+<li>不要试图帮编译器优化</li>
+<li>优化时不要去猜测，想当然得去优化自己“觉得”性能不好的地方</li>
+</ul>
+<p>我们一点一点讲。</p>
+<p>对于一个需求，我们应该先完成功能，若性能达不到要求之后，在确定瓶颈之后再去优化。过早优化，不仅让代码不直接，还容易出 bug，还可能对性能几乎没有影响。而且，我们优化时，应该关注大方向，确定大方向是正确的。比如写一个算法，我们首先应该确保 <code>Big-O</code> 的时间复杂度能达标，可以用 <code>O(n)</code> 的就不用 <code>O(nlogn)</code>，可以用 <code>O(nlogn)</code> 的就不用 <code>O(n²)</code>，而不是先在那里扣 <code>i++</code> 还是 <code>++i</code>。另外，不要想着去帮编译器优化，因为编译器是一堆比你强不知道多少的人写出来的，而对于一般人，想着去帮编译器优化，大部分是无效的，甚至是错的。比如有人学了一点点的 <code>std::move</code>，就老是想着 move move move 去提高性能，举个栗子，容易写出这样的代码：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div><div class="line"><span class="function">T <span class="title">create</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">auto</span> object = <span class="keyword">new</span> T();</div><div class="line">  <span class="keyword">return</span> <span class="built_in">std</span>::move(object);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>确实运行不会错，但是，代码背后做的事情不一定就跟你想的一样，往往跟你想象的还不一样。有些情况编译器可以采用更好的办法，结果因为你那么一搞，迫不得已只能采用次一点的办法。可以看看 <a href="https://www.zhihu.com/question/57048704" target="_blank" rel="external">这个问题</a>，就不赘述了。</p>
+<p>还有比如说用异或来交换两个变量，有人会想，用位运算，不仅不需要创建临时变量，而且位运算一般不是更快嘛！对于这个问题，陈硕大大早有讲到，在 <a href="https://cloud.github.com/downloads/chenshuo/documents/CppPractice.pdf" target="_blank" rel="external">https://cloud.github.com/downloads/chenshuo/documents/CppPractice.pdf</a> 的第 9 章。可以去看一下。</p>
+<p>如果你已经看了上面的链接，那么你也就知道了，你（几乎）不会知道编译器做了什么，编译器可以做的优化超出你的想象（不过有的时候人能明显看出来的优化编译器却做不到，但影响不大），在我的 <a href="https://alinshans.github.io/2017/05/23/p1705231/">系列文章（二）</a> 中也有强调了，不要试图帮助编译器去优化。若你想探究一小段代码背后不为人知的故事，就去看看反汇编！</p>
+<h2 id="利用-profiling-探究瓶颈"><a href="#利用-profiling-探究瓶颈" class="headerlink" title="利用 profiling 探究瓶颈"></a>利用 <code>profiling</code> 探究瓶颈</h2><p>关于这个问题，我想贴上一个链接，是 <a href="https://www.zhihu.com/people/lan-se-52-30/answers" target="_blank" rel="external">蓝色大大</a> 的一个回答：<a href="https://www.zhihu.com/question/56727144/answer/150555866" target="_blank" rel="external">https://www.zhihu.com/question/56727144/answer/150555866</a>。有非常详细清晰的介绍。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>最后我希望我放的链接都有认真看呀！为什么我贴那么多链接呢？因为我说的话没有权威没人信啊！但大牛们说的总有参考价值了吧！</p>
+<p>暂时先写那么多，才学疏浅，如有不当地方还请海涵，感谢指点！</p>
+
+      
+    </div>
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:16px;">----------------------------- 全文完 <i class="fa fa-paw"></i> 感谢您的阅读 -----------------------------</div>
+    
+</div>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>「我知道没有人会点，但万一有人想不开呢」</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat_pay.jpg" alt="刘俊延 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/ali_pay.jpg" alt="刘俊延 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      刘俊延
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://alinshans.github.io/2017/05/28/p1705282/" title="C++之那些年踩过的坑（附录一）">http://alinshans.github.io/2017/05/28/p1705282/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by/4.0/" rel="external nofollow" target="_blank">CC BY 4.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/28/p1705281/" rel="next" title="C++之那些年踩过的坑（三）">
+                <i class="fa fa-chevron-left"></i> C++之那些年踩过的坑（三）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
   </div>
 
 
@@ -349,6 +616,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -368,8 +646,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -475,6 +762,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#真相"><span class="nav-number">1.</span> <span class="nav-text">真相</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用-assembly-探究代码"><span class="nav-number">2.</span> <span class="nav-text">利用 assembly 探究代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用-profiling-探究瓶颈"><span class="nav-number">3.</span> <span class="nav-text">利用 profiling 探究瓶颈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -576,6 +879,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
 
   
 
@@ -593,6 +900,18 @@
       <script id="dsq-count-scr" src="https://alinshans.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://alinshans.github.io/2017/05/28/p1705282/';
+          this.page.identifier = '2017/05/28/p1705282/';
+          this.page.title = 'C++之那些年踩过的坑（附录一）';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://alinshans.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   

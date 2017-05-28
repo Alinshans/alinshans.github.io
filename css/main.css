@@ -1120,6 +1120,16 @@ pre .javascript .function {
   -o-transform: rotate(30deg);
   transform: rotate(30deg);
 }
+.post-body p a {
+  color: #0593d3;
+  border-bottom: none;
+  border-bottom: 1px solid #0593d3;
+}
+.post-body p a:hover {
+  color: #fc6423;
+  border-bottom: none;
+  border-bottom: 1px solid #fc6423;
+}
 .posts-expand {
   padding-top: 40px;
 }
@@ -1579,16 +1589,6 @@ pre .javascript .function {
   display: inline-block;
   margin: 0.8em 2em 0 2em;
 }
-#wechat:hover p {
-  animation: roll 0.1s infinite linear;
-  -webkit-animation: roll 0.1s infinite linear;
-  -moz-animation: roll 0.1s infinite linear;
-}
-#alipay:hover p {
-  animation: roll 0.1s infinite linear;
-  -webkit-animation: roll 0.1s infinite linear;
-  -moz-animation: roll 0.1s infinite linear;
-}
 @-moz-keyframes roll {
   from {
     -webkit-transform: rotateZ(30deg);
@@ -1817,7 +1817,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #8f3e5b;
+  background: #edffff;
 }
 .links-of-blogroll {
   font-size: 13px;
