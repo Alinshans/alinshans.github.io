@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://alinshans.github.io/"/>
-  <updated>2017-05-29T15:52:54.322Z</updated>
+  <updated>2017-05-29T15:54:23.192Z</updated>
   <id>http://alinshans.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://alinshans.github.io/2017/05/29/p1705292/"/>
     <id>http://alinshans.github.io/2017/05/29/p1705292/</id>
     <published>2017-05-29T06:14:53.000Z</published>
-    <updated>2017-05-29T15:52:54.322Z</updated>
+    <updated>2017-05-29T15:54:23.192Z</updated>
     
     <content type="html"><![CDATA[<h2 id="8086-计算机系统模型"><a href="#8086-计算机系统模型" class="headerlink" title="8086 计算机系统模型"></a>8086 计算机系统模型</h2><p><img src="http://i4.buimg.com/594413/a8c2fdc443111b52.gif" alt="8086 System Model"></p>
 <p>通过系统总线，将计算机的各个部分链接在一起。<code>CPU</code> 则是这个体系的核心。</p>
@@ -166,7 +166,7 @@
     <link href="http://alinshans.github.io/2017/05/29/p1705291/"/>
     <id>http://alinshans.github.io/2017/05/29/p1705291/</id>
     <published>2017-05-29T04:23:13.000Z</published>
-    <updated>2017-05-29T15:52:46.634Z</updated>
+    <updated>2017-05-29T15:54:20.406Z</updated>
     
     <content type="html"><![CDATA[<h2 id="为什么要学习汇编"><a href="#为什么要学习汇编" class="headerlink" title="为什么要学习汇编"></a>为什么要学习汇编</h2><p>我觉得，对于一个合格的、资深的程序员来说，学习汇编和理解汇编是必不可少的。这里的汇编不特指某一平台的汇编，但其实核心内容都一样。</p>
 <p>原因如下：</p>
