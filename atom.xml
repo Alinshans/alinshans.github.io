@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://alinshans.github.io/"/>
-  <updated>2017-05-31T01:57:39.692Z</updated>
+  <updated>2017-05-31T07:10:14.141Z</updated>
   <id>http://alinshans.github.io/</id>
   
   <author>
@@ -16,20 +16,248 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>8086汇编：指令系统（下）</title>
+    <link href="http://alinshans.github.io/2017/05/31/p1705311/"/>
+    <id>http://alinshans.github.io/2017/05/31/p1705311/</id>
+    <published>2017-05-31T02:15:47.000Z</published>
+    <updated>2017-05-31T07:10:14.141Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="控制转移指令"><a href="#控制转移指令" class="headerlink" title="控制转移指令"></a>控制转移指令</h2><h3 id="1-jmp（无条件转移）"><a href="#1-jmp（无条件转移）" class="headerlink" title="1. jmp（无条件转移）"></a>1. jmp（无条件转移）</h3><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">jmp label</span>       <span class="comment">; 跳到 label 的地址</span></div><div class="line"><span class="keyword">jmp</span> reg16/mem16 <span class="comment">; 段内转移，ip = reg16/[mem16]</span></div><div class="line"><span class="keyword">jmp</span> mem32       <span class="comment">; 段间转移，cs = mem32高字，ip = mem32低字</span></div></pre></td></tr></table></figure>
+<p>可以加上 <code>short</code>, <code>near</code>, <code>far</code> 等标识符，分别表明是短转移（<code>ip</code>修改范围 -128 ~ 127）、近转移（<code>ip</code>修改范围 -32768 ~ 32767）、远转移（<code>cs</code>:<code>ip</code>都修改）。</p>
+<h3 id="2-jcc（条件转移）"><a href="#2-jcc（条件转移）" class="headerlink" title="2. jcc（条件转移）"></a>2. jcc（条件转移）</h3><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">jcc label</span>  <span class="comment">; 若成立，ip 修改为 label 的偏移地址（-128~127），否则忽略该指令</span></div></pre></td></tr></table></figure>
+<h4 id="简单测试条件的jcc指令"><a href="#简单测试条件的jcc指令" class="headerlink" title="简单测试条件的jcc指令"></a>简单测试条件的<code>jcc</code>指令</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">jcc 指令</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">转移条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">jz/je</td>
+<td style="text-align:center">为零（相等）时转移</td>
+<td style="text-align:center"><code>zf</code> = 1</td>
+</tr>
+<tr>
+<td style="text-align:center">jnz/jne</td>
+<td style="text-align:center">非零（不等）时转移</td>
+<td style="text-align:center"><code>zf</code> = 0</td>
+</tr>
+<tr>
+<td style="text-align:center">jc/jb</td>
+<td style="text-align:center">有进位时转移</td>
+<td style="text-align:center"><code>cf</code> = 1</td>
+</tr>
+<tr>
+<td style="text-align:center">jnc/jnb</td>
+<td style="text-align:center">无进位时转移</td>
+<td style="text-align:center"><code>cf</code> = 0</td>
+</tr>
+<tr>
+<td style="text-align:center">js</td>
+<td style="text-align:center">为负时转移</td>
+<td style="text-align:center"><code>sf</code> = 1</td>
+</tr>
+<tr>
+<td style="text-align:center">jns</td>
+<td style="text-align:center">为正时转移</td>
+<td style="text-align:center"><code>sf</code> = 0</td>
+</tr>
+<tr>
+<td style="text-align:center">jo</td>
+<td style="text-align:center">溢出时转移</td>
+<td style="text-align:center"><code>of</code> = 1</td>
+</tr>
+<tr>
+<td style="text-align:center">jno</td>
+<td style="text-align:center">不溢出时转移</td>
+<td style="text-align:center"><code>of</code> = 0</td>
+</tr>
+<tr>
+<td style="text-align:center">jp/jpe</td>
+<td style="text-align:center">奇偶位为<code>1</code>时转移</td>
+<td style="text-align:center"><code>pf</code> = 1</td>
+</tr>
+<tr>
+<td style="text-align:center">jnp/jpo</td>
+<td style="text-align:center">奇偶位为<code>0</code>时转移</td>
+<td style="text-align:center"><code>pf</code> = 0</td>
+</tr>
+<tr>
+<td style="text-align:center">jcxz</td>
+<td style="text-align:center"><code>cx</code>为<code>0</code>时转移</td>
+<td style="text-align:center"><code>cf</code> = 0</td>
+</tr>
+</tbody>
+</table>
+<h4 id="带符号数比较的jcc指令"><a href="#带符号数比较的jcc指令" class="headerlink" title="带符号数比较的jcc指令"></a>带符号数比较的<code>jcc</code>指令</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">jcc 指令</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">转移条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">jg/jnle</td>
+<td style="text-align:center">大于（不小于等于）时转移</td>
+<td style="text-align:center"><code>sf</code> = <code>of</code> 且 <code>zf</code> = 0</td>
+</tr>
+<tr>
+<td style="text-align:center">jge/jnl</td>
+<td style="text-align:center">大于等于（不小于）时转移</td>
+<td style="text-align:center"><code>sf</code> = <code>pf</code></td>
+</tr>
+<tr>
+<td style="text-align:center">jl/jnge</td>
+<td style="text-align:center">小于（不大于等于）时转移</td>
+<td style="text-align:center"><code>sf</code> ≠ <code>of</code></td>
+</tr>
+<tr>
+<td style="text-align:center">jle/jng</td>
+<td style="text-align:center">小于等于（不大于）时转移</td>
+<td style="text-align:center"><code>sf</code> ≠ <code>of</code> 且 <code>zf</code> ≠ 0</td>
+</tr>
+</tbody>
+</table>
+<h4 id="无符号数比较的jcc指令"><a href="#无符号数比较的jcc指令" class="headerlink" title="无符号数比较的jcc指令"></a>无符号数比较的<code>jcc</code>指令</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">jcc 指令</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">转移条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ja/jnbe</td>
+<td style="text-align:center">高于（不低于等于）时转移</td>
+<td style="text-align:center"><code>cf</code> = 0 且 <code>zf</code> = 0</td>
+</tr>
+<tr>
+<td style="text-align:center">jae/jnb</td>
+<td style="text-align:center">高于等于（不低于）时转移</td>
+<td style="text-align:center"><code>cf</code> = 0</td>
+</tr>
+<tr>
+<td style="text-align:center">jb/jnae</td>
+<td style="text-align:center">低于（不高于等于）时转移</td>
+<td style="text-align:center"><code>cf</code> = 1</td>
+</tr>
+<tr>
+<td style="text-align:center">jbe/jna</td>
+<td style="text-align:center">低于等于（不高于）时转移</td>
+<td style="text-align:center"><code>cf</code> = 1 或 <code>zf</code> = 1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-loop（循环）"><a href="#3-loop（循环）" class="headerlink" title="3. loop（循环）"></a>3. loop（循环）</h3><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">loop label</span>           <span class="comment">; cx=cx-1, 若cx!=0则转到label</span></div><div class="line"><span class="keyword">loopz</span>/<span class="keyword">loope</span> label    <span class="comment">; cx=cx-1，若cx!=0且zf=1则转到label</span></div><div class="line"><span class="keyword">loopnz</span>/<span class="keyword">loopne</span> label  <span class="comment">; cx=cx-1，若cx!=0且zf=0则转到label</span></div></pre></td></tr></table></figure>
+<p>label的相对偏移量必须在-128~127之间</p>
+<h3 id="4-call（调用）-ret（返回）"><a href="#4-call（调用）-ret（返回）" class="headerlink" title="4. call（调用）/ ret（返回）"></a>4. call（调用）/ ret（返回）</h3><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">call label</span>        <span class="comment">; 段内直接调用，ip入栈</span></div><div class="line"><span class="keyword">call</span> reg16/mem16  <span class="comment">; 段内间接调用，ip入栈</span></div><div class="line"><span class="keyword">call</span> mem32        <span class="comment">; 段间间接调用，cs和ip入栈</span></div></pre></td></tr></table></figure>
+<p><code>CPU</code>执行<code>call</code>指令时，分两步操作：</p>
+<ol>
+<li>将<code>ip</code>（16位操作）或<code>cs</code>:<code>ip</code>（32位操作）入栈</li>
+<li>转移</li>
+</ol>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">ret</span>   <span class="comment">; 近转移</span></div><div class="line"><span class="keyword">retf</span>  <span class="comment">; 远转移</span></div></pre></td></tr></table></figure>
+<p><code>CPU</code>执行<code>ret</code>指令时，相当于<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">pop</span> <span class="built_in">ip</span></div></pre></td></tr></table></figure></p>
+<p><code>CPU</code>执行<code>retf</code>指令时，相当于<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">pop</span> <span class="built_in">ip</span></div><div class="line"><span class="keyword">pop</span> <span class="built_in">cs</span></div></pre></td></tr></table></figure></p>
+<p><code>call</code>指令与<code>ret</code>指令必须配合使用。</p>
+<h2 id="标志处理指令"><a href="#标志处理指令" class="headerlink" title="标志处理指令"></a>标志处理指令</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">指令</th>
+<th style="text-align:center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">clc</td>
+<td style="text-align:center"><code>cf</code> = 0</td>
+</tr>
+<tr>
+<td style="text-align:center">stc</td>
+<td style="text-align:center"><code>cf</code> = 1</td>
+</tr>
+<tr>
+<td style="text-align:center">cmc</td>
+<td style="text-align:center"><code>cf</code> = not <code>cf</code></td>
+</tr>
+<tr>
+<td style="text-align:center">cld</td>
+<td style="text-align:center"><code>df</code> = 0</td>
+</tr>
+<tr>
+<td style="text-align:center">std</td>
+<td style="text-align:center"><code>df</code> = 1</td>
+</tr>
+<tr>
+<td style="text-align:center">cli</td>
+<td style="text-align:center"><code>if</code> = 0</td>
+</tr>
+<tr>
+<td style="text-align:center">sti</td>
+<td style="text-align:center"><code>if</code> = 1</td>
+</tr>
+</tbody>
+</table>
+<h2 id="串处理指令"><a href="#串处理指令" class="headerlink" title="串处理指令"></a>串处理指令</h2><p>串操作指令有以下特点：</p>
+<ol>
+<li>用 <code>si</code> 寄存器寻址源操作数，用 <code>di</code> 寄存器寻址目的操作数</li>
+<li>源操作数隐含的段寄存器为 <code>ds</code>，但允许段超越；目的操作数的段寄存器约定为 <code>es</code>，不允许段超越</li>
+<li>每当串操作指令执行后，自动执行源变址或目的变址，当 <code>df</code>=0 时，地址增量为正，否则为负。增量的大小与操作数类型有关，字节为1，字为2，双字为4</li>
+</ol>
+<p><em>※ 这也表明了为什么<code>si</code>是源变址寄存器，<code>di</code>是目的变址寄存器，而<code>ds</code>为数据段，<code>es</code>为附加段。</em></p>
+<h3 id="1-rep（重复串操作直到cx为0）"><a href="#1-rep（重复串操作直到cx为0）" class="headerlink" title="1. rep（重复串操作直到cx为0）"></a>1. rep（重复串操作直到<code>cx</code>为0）</h3><p><code>rep</code>常与 [<code>movs</code>,<code>stos</code>,<code>lods</code>,<code>ins</code>,<code>outs</code>] 指令配合使用。<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">rep</span> string op[movs/stos/lods/ins/outs]</div></pre></td></tr></table></figure></p>
+<p>执行过程如下：</p>
+<ol>
+<li>若<code>cx</code>=0，退出<code>rep</code>，否则往下执行</li>
+<li><code>dec</code> <code>cx</code></li>
+<li>执行 <code>string op</code></li>
+<li>返回 1</li>
+</ol>
+<h3 id="2-movs（串传送）"><a href="#2-movs（串传送）" class="headerlink" title="2. movs（串传送）"></a>2. movs（串传送）</h3><p><code>movs</code>后加上<code>b</code>,<code>w</code>等表示操作类型为<code>字节</code>，<code>字</code>。<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">movsb</span> dst, src  <span class="comment">; 传送字节</span></div><div class="line"><span class="keyword">movsw</span> dst, src  <span class="comment">; 传送字</span></div></pre></td></tr></table></figure></p>
+<p>作用： <code>es</code>:<code>[di]</code> = <code>ds</code>:<code>si</code>，将<code>ds</code>:<code>si</code>所指的串复制<code>cx</code>个字节/字到<code>es</code>:<code>di</code>所指的内存单元中，当<code>df</code>=0时，每次操作后<code>si</code>和<code>di</code>递增<code>size</code>，否则递减<code>size</code>。其中，<code>size</code>等于1（字节）或2（字）。</p>
+<p>例：<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="meta">assume</span> <span class="built_in">cs</span>:code, <span class="built_in">ds</span>:data, <span class="built_in">es</span>:extra</div><div class="line"></div><div class="line">data <span class="meta">segment</span></div><div class="line">  srcstr <span class="built_in">db</span> <span class="string">'hello world!$'</span></div><div class="line">data ends</div><div class="line"></div><div class="line">extra <span class="meta">segment</span></div><div class="line">  dststr <span class="built_in">db</span> <span class="number">13</span> dup(<span class="number">0</span>)</div><div class="line">extra ends</div><div class="line"></div><div class="line">code <span class="meta">segment</span></div><div class="line"><span class="symbol">main:</span></div><div class="line">  <span class="keyword">mov</span> <span class="built_in">ax</span>, data</div><div class="line">  <span class="keyword">mov</span> <span class="built_in">ds</span>, <span class="built_in">ax</span></div><div class="line">  <span class="keyword">mov</span> <span class="built_in">ax</span>, extra</div><div class="line">  <span class="keyword">mov</span> <span class="built_in">es</span>, <span class="built_in">ax</span></div><div class="line">  </div><div class="line">  <span class="keyword">lea</span> <span class="built_in">si</span>, srcstr</div><div class="line">  <span class="keyword">lea</span> <span class="built_in">di</span>, dststr</div><div class="line">  <span class="keyword">mov</span> <span class="built_in">cx</span>, <span class="number">13</span></div><div class="line">  <span class="keyword">cld</span></div><div class="line">  <span class="keyword">rep</span> <span class="keyword">movsb</span></div><div class="line">  </div><div class="line">  <span class="keyword">lea</span> <span class="built_in">dx</span>, dststr</div><div class="line">  <span class="keyword">mov</span> <span class="number">ah</span>, <span class="number">9</span></div><div class="line">  <span class="keyword">int</span> <span class="number">21h</span></div><div class="line">  </div><div class="line">  <span class="keyword">mov</span> <span class="built_in">ax</span>, <span class="number">4c00h</span></div><div class="line">  <span class="keyword">int</span> <span class="number">21h</span></div><div class="line">code ends</div><div class="line">end main</div></pre></td></tr></table></figure></p>
+<h3 id="3-lods（串载入）-stos（串存储）"><a href="#3-lods（串载入）-stos（串存储）" class="headerlink" title="3. lods（串载入）/ stos（串存储）"></a>3. lods（串载入）/ stos（串存储）</h3><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">lodsb</span>  <span class="comment">; 载入字节</span></div><div class="line"><span class="keyword">lodsw</span>  <span class="comment">; 载入字</span></div></pre></td></tr></table></figure>
+<p>作用：将 <code>ds</code>:<code>si</code> 所指串的值复制到 <code>al</code>/<code>ax</code> 中，然后根据<code>df</code>增加或减少<code>si</code>。</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">stosb</span>  <span class="comment">; 存入字节</span></div><div class="line"><span class="keyword">stosw</span>  <span class="comment">; 存入字</span></div></pre></td></tr></table></figure>
+<p>作用：将 <code>al</code>/<code>ax</code> 的值 复制到 <code>es</code>:<code>di</code> 所指的内存单元中，然后根据<code>df</code>增加或减少<code>di</code>。</p>
+<p>例：<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">assume</span> <span class="built_in">cs</span>:code, <span class="built_in">es</span>:extra</div><div class="line"></div><div class="line">extra <span class="meta">segment</span></div><div class="line">  buf <span class="built_in">db</span> <span class="number">10</span> dup(<span class="number">0</span>)</div><div class="line">extra ends</div><div class="line"></div><div class="line">code <span class="meta">segment</span></div><div class="line"><span class="symbol">main:</span></div><div class="line">  <span class="keyword">mov</span> <span class="built_in">ax</span>, extra</div><div class="line">  <span class="keyword">mov</span> <span class="built_in">es</span>, <span class="built_in">ax</span></div><div class="line">  </div><div class="line">  <span class="keyword">mov</span> <span class="built_in">ax</span>, <span class="number">20h</span></div><div class="line">  <span class="keyword">lea</span> <span class="built_in">di</span>, buf</div><div class="line">  <span class="keyword">mov</span> <span class="built_in">cx</span>, <span class="number">10</span></div><div class="line">  <span class="keyword">cld</span></div><div class="line">  <span class="keyword">rep</span> <span class="keyword">stosb</span></div><div class="line">  </div><div class="line">  <span class="keyword">mov</span> <span class="built_in">ax</span>, <span class="number">4c00h</span></div><div class="line">  <span class="keyword">int</span> <span class="number">21h</span></div><div class="line">code ends</div><div class="line">end main</div></pre></td></tr></table></figure></p>
+<h3 id="4-cmps（串比较）"><a href="#4-cmps（串比较）" class="headerlink" title="4. cmps（串比较）"></a>4. cmps（串比较）</h3><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cmpsb</span>  <span class="comment">; 比较源串与目的串的一个字节</span></div><div class="line"><span class="keyword">cmpsw</span>  <span class="comment">; 比较源串与目的串的一个字</span></div></pre></td></tr></table></figure>
+<p>作用：将 <code>ds</code>:<code>si</code> 所指串的值与 <code>es</code>:<code>di</code> 所指串的值进行比较，并根据比较结果（两个值相减）设置标志位，然后，对 <code>si</code> 和 <code>di</code> 做相应的调整。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;控制转移指令&quot;&gt;&lt;a href=&quot;#控制转移指令&quot; class=&quot;headerlink&quot; title=&quot;控制转移指令&quot;&gt;&lt;/a&gt;控制转移指令&lt;/h2&gt;&lt;h3 id=&quot;1-jmp（无条件转移）&quot;&gt;&lt;a href=&quot;#1-jmp（无条件转移）&quot; class=&quot;head
+    
+    </summary>
+    
+      <category term="汇编" scheme="http://alinshans.github.io/categories/%E6%B1%87%E7%BC%96/"/>
+    
+    
+      <category term="汇编" scheme="http://alinshans.github.io/tags/%E6%B1%87%E7%BC%96/"/>
+    
+  </entry>
+  
+  <entry>
     <title>8086汇编：指令系统（上）</title>
     <link href="http://alinshans.github.io/2017/05/30/p1705301/"/>
     <id>http://alinshans.github.io/2017/05/30/p1705301/</id>
     <published>2017-05-30T09:40:04.000Z</published>
-    <updated>2017-05-31T01:57:39.692Z</updated>
+    <updated>2017-05-31T03:40:36.609Z</updated>
     
     <content type="html"><![CDATA[<p>8086汇编常用的指令，从功能上分，一般分为：</p>
 <ul>
 <li>数据传送指令</li>
 <li>算术指令</li>
 <li>逻辑指令</li>
-<li>串处理指令</li>
 <li>控制转移指令</li>
-<li>处理控制与杂项指令</li>
+<li>标志处理指令</li>
+<li>串处理指令</li>
 </ul>
 <p>这些指令书上网上都有很多介绍，我就不会全部详细介绍，只挑一些常用的、需要注意的重点说明。</p>
 <h2 id="数据传送指令"><a href="#数据传送指令" class="headerlink" title="数据传送指令"></a>数据传送指令</h2><h3 id="1-mov（传送）"><a href="#1-mov（传送）" class="headerlink" title="1. mov（传送）"></a>1. mov（传送）</h3><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">mov</span> dst, src</div></pre></td></tr></table></figure>
@@ -124,11 +352,11 @@
 &lt;li&gt;数据传送指令&lt;/li&gt;
 &lt;li&gt;算术指令&lt;/li&gt;
 &lt;li&gt;逻辑指令&lt;/li&gt;
-&lt;li&gt;串处理指令&lt;/li&gt;
 &lt;li&gt;控制转移指令&lt;/li&gt;
-&lt;li&gt;处理控制与杂项指令&lt;/li&gt;
+&lt;li&gt;标志处理指令&lt;/li&gt;
+&lt;li&gt;串处理指令&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;这
+&lt;p&gt;这些指令
     
     </summary>
     

@@ -102,18 +102,18 @@
 
 
 
-<meta name="description" content="8086汇编常用的指令，从功能上分，一般分为：  数据传送指令 算术指令 逻辑指令 串处理指令 控制转移指令 处理控制与杂项指令  这些指令书上网上都有很多介绍，我就不会全部详细介绍，只挑一些常用的、需要注意的重点说明。 数据传送指令1. mov（传送）1mov dst, src 有以下需要注意的地方：  dst 和 src 类型必须匹配，无法确定类型时要显式指定类型。 123456mov ax,">
+<meta name="description" content="8086汇编常用的指令，从功能上分，一般分为：  数据传送指令 算术指令 逻辑指令 控制转移指令 标志处理指令 串处理指令  这些指令书上网上都有很多介绍，我就不会全部详细介绍，只挑一些常用的、需要注意的重点说明。 数据传送指令1. mov（传送）1mov dst, src 有以下需要注意的地方：  dst 和 src 类型必须匹配，无法确定类型时要显式指定类型。 123456mov ax, 1">
 <meta name="keywords" content="汇编">
 <meta property="og:type" content="article">
 <meta property="og:title" content="8086汇编：指令系统（上）">
 <meta property="og:url" content="http://alinshans.github.io/2017/05/30/p1705301/index.html">
 <meta property="og:site_name" content="Alinshans&#39;s world">
-<meta property="og:description" content="8086汇编常用的指令，从功能上分，一般分为：  数据传送指令 算术指令 逻辑指令 串处理指令 控制转移指令 处理控制与杂项指令  这些指令书上网上都有很多介绍，我就不会全部详细介绍，只挑一些常用的、需要注意的重点说明。 数据传送指令1. mov（传送）1mov dst, src 有以下需要注意的地方：  dst 和 src 类型必须匹配，无法确定类型时要显式指定类型。 123456mov ax,">
+<meta property="og:description" content="8086汇编常用的指令，从功能上分，一般分为：  数据传送指令 算术指令 逻辑指令 控制转移指令 标志处理指令 串处理指令  这些指令书上网上都有很多介绍，我就不会全部详细介绍，只挑一些常用的、需要注意的重点说明。 数据传送指令1. mov（传送）1mov dst, src 有以下需要注意的地方：  dst 和 src 类型必须匹配，无法确定类型时要显式指定类型。 123456mov ax, 1">
 <meta property="og:image" content="http://i4.buimg.com/594413/b0fb64f5450412e0.png">
-<meta property="og:updated_time" content="2017-05-31T01:57:39.692Z">
+<meta property="og:updated_time" content="2017-05-31T03:40:36.609Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="8086汇编：指令系统（上）">
-<meta name="twitter:description" content="8086汇编常用的指令，从功能上分，一般分为：  数据传送指令 算术指令 逻辑指令 串处理指令 控制转移指令 处理控制与杂项指令  这些指令书上网上都有很多介绍，我就不会全部详细介绍，只挑一些常用的、需要注意的重点说明。 数据传送指令1. mov（传送）1mov dst, src 有以下需要注意的地方：  dst 和 src 类型必须匹配，无法确定类型时要显式指定类型。 123456mov ax,">
+<meta name="twitter:description" content="8086汇编常用的指令，从功能上分，一般分为：  数据传送指令 算术指令 逻辑指令 控制转移指令 标志处理指令 串处理指令  这些指令书上网上都有很多介绍，我就不会全部详细介绍，只挑一些常用的、需要注意的重点说明。 数据传送指令1. mov（传送）1mov dst, src 有以下需要注意的地方：  dst 和 src 类型必须匹配，无法确定类型时要显式指定类型。 123456mov ax, 1">
 <meta name="twitter:image" content="http://i4.buimg.com/594413/b0fb64f5450412e0.png">
 
 
@@ -447,9 +447,9 @@
 <li>数据传送指令</li>
 <li>算术指令</li>
 <li>逻辑指令</li>
-<li>串处理指令</li>
 <li>控制转移指令</li>
-<li>处理控制与杂项指令</li>
+<li>标志处理指令</li>
+<li>串处理指令</li>
 </ul>
 <p>这些指令书上网上都有很多介绍，我就不会全部详细介绍，只挑一些常用的、需要注意的重点说明。</p>
 <h2 id="数据传送指令"><a href="#数据传送指令" class="headerlink" title="数据传送指令"></a>数据传送指令</h2><h3 id="1-mov（传送）"><a href="#1-mov（传送）" class="headerlink" title="1. mov（传送）"></a>1. mov（传送）</h3><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">mov</span> dst, src</div></pre></td></tr></table></figure>
@@ -633,6 +633,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/05/31/p1705311/" rel="prev" title="8086汇编：指令系统（下）">
+                8086汇编：指令系统（下） <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -733,7 +737,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
