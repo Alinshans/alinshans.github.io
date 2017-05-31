@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://alinshans.github.io/"/>
-  <updated>2017-05-29T15:54:23.192Z</updated>
+  <updated>2017-05-31T01:57:39.692Z</updated>
   <id>http://alinshans.github.io/</id>
   
   <author>
@@ -14,6 +14,130 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>8086汇编：指令系统（上）</title>
+    <link href="http://alinshans.github.io/2017/05/30/p1705301/"/>
+    <id>http://alinshans.github.io/2017/05/30/p1705301/</id>
+    <published>2017-05-30T09:40:04.000Z</published>
+    <updated>2017-05-31T01:57:39.692Z</updated>
+    
+    <content type="html"><![CDATA[<p>8086汇编常用的指令，从功能上分，一般分为：</p>
+<ul>
+<li>数据传送指令</li>
+<li>算术指令</li>
+<li>逻辑指令</li>
+<li>串处理指令</li>
+<li>控制转移指令</li>
+<li>处理控制与杂项指令</li>
+</ul>
+<p>这些指令书上网上都有很多介绍，我就不会全部详细介绍，只挑一些常用的、需要注意的重点说明。</p>
+<h2 id="数据传送指令"><a href="#数据传送指令" class="headerlink" title="数据传送指令"></a>数据传送指令</h2><h3 id="1-mov（传送）"><a href="#1-mov（传送）" class="headerlink" title="1. mov（传送）"></a>1. mov（传送）</h3><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">mov</span> dst, src</div></pre></td></tr></table></figure>
+<p>有以下需要注意的地方：</p>
+<ol>
+<li><p><code>dst</code> 和 <code>src</code> 类型必须匹配，无法确定类型时要显式指定类型。</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">mov</span> <span class="built_in">ax</span>, <span class="number">1</span>               <span class="comment">; 正确！立即数会自动扩展类型</span></div><div class="line"><span class="keyword">mov</span> <span class="built_in">ax</span>, <span class="built_in">bl</span>              <span class="comment">; 错误！类型不匹配</span></div><div class="line"><span class="keyword">mov</span> <span class="built_in">ax</span>, [<span class="number">0</span>]             <span class="comment">; 可以运行，但不是预期结果，原因见 2</span></div><div class="line"><span class="keyword">mov</span> <span class="built_in">ax</span>, <span class="built_in">ds</span>:[<span class="number">0</span>]          <span class="comment">; 正确！ax是字类型，ds:[0]也获取字类型</span></div><div class="line"><span class="keyword">mov</span> <span class="built_in">ds</span>:[<span class="number">0</span>], <span class="number">1</span>           <span class="comment">; 错误！无法确定类型</span></div><div class="line"><span class="keyword">mov</span> <span class="built_in">byte</span> <span class="built_in">ptr</span> <span class="built_in">ds</span>:[<span class="number">0</span>], <span class="number">1</span>  <span class="comment">; 正确！指定了访问的内存单元是一个字节单元</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>形如 <code>mov ax, [0]</code> 这类指令 <code>Debug</code>加载运行 和 <code>masm</code>编译器对它们的解释不同，<code>Debug</code> 将<code>[idata]</code>解释为一个内存单元，<code>idata</code>是内存单元的偏移地址；而编译器将<code>[idata]</code>解释为<code>idata</code>，一个立即数。<br><img src="http://i4.buimg.com/594413/b0fb64f5450412e0.png" alt="Markdown"><br>所以，<strong>在汇编源程序中，要访问一个内存单元，并且 <code>[...]</code> 里面是一个立即数，必须要用以下两种方法</strong>：<br></p>
+<ul>
+<li><p>将偏移地址放进 <code>bx</code> 寄存器（或<code>si</code>,<code>di</code>）中，然后用 <code>[bx]</code> 来访问内存单元。（用 <code>bx</code>, <code>si</code>, <code>di</code> 时，默认段寄存器在 <code>ds</code> 中， 用 <code>bp</code> 时，默认段寄存器在 <code>ss</code> 中）</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">mov</span> <span class="built_in">bx</span>, <span class="number">1</span></div><div class="line"><span class="keyword">mov</span> <span class="built_in">ax</span>, [<span class="built_in">bx</span>]</div></pre></td></tr></table></figure>
+</li>
+<li><p>在 [] 前面显示指定段寄存器。</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">mov</span> <span class="built_in">ax</span>, <span class="built_in">ds</span>:[<span class="number">0</span>]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><code>dst</code> 和 <code>src</code> 不能同时为内存单元和段寄存器。</p>
+</li>
+<li><p>不能将立即数传给段寄存器，<strong>段名也是立即数</strong>，但可以将内存单元数据传给段寄存器。</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">assume</span> <span class="built_in">cs</span>:code, <span class="built_in">ds</span>:data</div><div class="line"></div><div class="line">data <span class="meta">segment</span></div><div class="line">    address <span class="built_in">dw</span> <span class="number">1234h</span></div><div class="line">data ends</div><div class="line"></div><div class="line">code <span class="meta">segment</span></div><div class="line"><span class="symbol">main:</span></div><div class="line">    <span class="keyword">mov</span> <span class="built_in">ds</span>, <span class="number">1234h</span>    <span class="comment">; 错误！不能将立即数传给段寄存器</span></div><div class="line">    <span class="keyword">mov</span> <span class="built_in">ds</span>, data     <span class="comment">; 错误！段名也是一个立即数</span></div><div class="line">    <span class="keyword">mov</span> <span class="built_in">bx</span>, <span class="number">0</span>        </div><div class="line">    <span class="keyword">mov</span> <span class="built_in">ds</span>, [<span class="built_in">bx</span>]     <span class="comment">; 可以</span></div><div class="line">    <span class="keyword">mov</span> <span class="built_in">ds</span>, address  <span class="comment">; 可以，address会被编译成一个地址，同上一条指令类似</span></div><div class="line">    <span class="keyword">mov</span> <span class="built_in">ax</span>, <span class="number">4c00h</span></div><div class="line">    <span class="keyword">int</span> <span class="number">21h</span></div><div class="line">code ends</div><div class="line">end main</div></pre></td></tr></table></figure>
+</li>
+<li><p>目的操作数 <code>dst</code> 不能为立即数或 <code>cs</code>(代码段寄存器)。</p>
+</li>
+<li><code>mov</code> 指令不影响标志位。</li>
+</ol>
+<h3 id="2-push（入栈）-pop（出栈）"><a href="#2-push（入栈）-pop（出栈）" class="headerlink" title="2. push（入栈） / pop（出栈）"></a>2. push（入栈） / pop（出栈）</h3><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">push</span> reg16/segreg/mem16</div><div class="line"><span class="keyword">pop</span> reg16/segreg/mem16</div></pre></td></tr></table></figure>
+<p><code>push</code> 和 <code>pop</code> 的操作数可以是16位寄存器、段寄存器或者字内存单元。注意：<strong>不能 <code>pop</code> 到 <code>cs</code>(代码段寄存器)中</strong>。</p>
+<p>以下操作都是合法的：<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">push</span> <span class="built_in">ax</span></div><div class="line"><span class="keyword">push</span> <span class="built_in">ds</span></div><div class="line"><span class="keyword">push</span> <span class="built_in">word</span> <span class="built_in">ptr</span> <span class="built_in">ds</span>:[<span class="number">0</span>]</div><div class="line"><span class="keyword">pop</span> <span class="built_in">word</span> <span class="built_in">ptr</span> <span class="built_in">ds</span>:[<span class="number">0</span>]</div><div class="line"><span class="keyword">pop</span> <span class="built_in">ds</span></div><div class="line"><span class="keyword">pop</span> <span class="built_in">ax</span></div></pre></td></tr></table></figure></p>
+<h3 id="3-xchg（交换）"><a href="#3-xchg（交换）" class="headerlink" title="3. xchg（交换）"></a>3. xchg（交换）</h3><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">xchg</span> object1, object2</div></pre></td></tr></table></figure>
+<p>交换8/16位寄存器/内存单元的值。</p>
+<p><strong>注意：</strong></p>
+<ol>
+<li>类型必须匹配。</li>
+<li>交换数<strong>必须是</strong>通用寄存器（<code>AX</code>,<code>BX</code>,<code>CX</code>,<code>DX</code>,<code>SI</code>,<code>DI</code>）或内存单元。</li>
+<li>两个交换数不能同时为内存单元。<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">xchg</span> <span class="built_in">al</span>, <span class="built_in">dl</span>                            <span class="comment">; 可以</span></div><div class="line"><span class="keyword">xchg</span> <span class="built_in">ax</span>, <span class="built_in">bx</span>                            <span class="comment">; 可以</span></div><div class="line"><span class="keyword">xchg</span> <span class="built_in">ax</span>, <span class="built_in">word</span> <span class="built_in">ptr</span> <span class="built_in">ds</span>:[<span class="number">0</span>]               <span class="comment">; 可以</span></div><div class="line"><span class="keyword">xchg</span> [<span class="built_in">bx</span>], <span class="built_in">ax</span>                          <span class="comment">; 可以</span></div><div class="line"><span class="keyword">xchg</span> <span class="built_in">al</span>, <span class="built_in">bx</span>                            <span class="comment">; 错误！类型不匹配</span></div><div class="line"><span class="keyword">xchg</span> <span class="built_in">ax</span>, <span class="built_in">ds</span>                            <span class="comment">; 错误！交换数不能为段寄存器</span></div><div class="line"><span class="keyword">xchg</span> <span class="built_in">ds</span>, <span class="built_in">ax</span>                            <span class="comment">; 错误！交换数不能为段寄存器</span></div><div class="line"><span class="keyword">xchg</span> <span class="built_in">byte</span> <span class="built_in">ptr</span> <span class="built_in">ds</span>:[<span class="number">0</span>], <span class="built_in">byte</span> <span class="built_in">ptr</span> <span class="built_in">ds</span>:[<span class="number">1</span>]  <span class="comment">; 错误！两个都是内存单元</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="4-lea（传入有效地址-Load-Effective-Address）"><a href="#4-lea（传入有效地址-Load-Effective-Address）" class="headerlink" title="4. lea（传入有效地址 Load Effective Address）"></a>4. lea（传入有效地址 Load Effective Address）</h3><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">lea</span> reg16 mem</div></pre></td></tr></table></figure>
+<p><strong>注意：</strong></p>
+<ol>
+<li>目的操作数必须为16位通用寄存器，不能是段寄存器</li>
+<li>传入寄存器的是有效地址，而不是内容</li>
+</ol>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">lea</span> <span class="built_in">dx</span>, <span class="built_in">ds</span>:[<span class="number">0</span>]  <span class="comment">; 可以</span></div><div class="line"><span class="keyword">lea</span> <span class="built_in">dx</span>, msg     <span class="comment">; 可以，类似于上一条指令</span></div><div class="line"><span class="keyword">lea</span> <span class="built_in">dl</span>, <span class="built_in">ds</span>:[<span class="number">0</span>]  <span class="comment">; 错误！必须为16位通用寄存器</span></div><div class="line"><span class="keyword">lea</span> <span class="built_in">ds</span>, <span class="built_in">ds</span>:[<span class="number">0</span>]  <span class="comment">; 错误！不能为段寄存器</span></div></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">lea</span> <span class="built_in">dx</span>, <span class="built_in">ds</span>:[<span class="number">0</span>]</div></pre></td></tr></table></figure>
+<p><code>dx</code>中保存了<code>ds:[0]</code>的偏移地址，若想得到<code>ds:[0]</code>的值，要用：<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">mov</span> <span class="built_in">dx</span>, <span class="built_in">ds</span>:[<span class="number">0</span>]</div></pre></td></tr></table></figure></p>
+<p>以下两条指令功能相同：<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">lea</span> <span class="built_in">dx</span>, msg</div><div class="line"><span class="keyword">mov</span> <span class="built_in">dx</span>, offset msg</div></pre></td></tr></table></figure></p>
+<h2 id="算术指令"><a href="#算术指令" class="headerlink" title="算术指令"></a>算术指令</h2><h3 id="加法指令"><a href="#加法指令" class="headerlink" title="加法指令"></a>加法指令</h3><h4 id="1-add（加法）"><a href="#1-add（加法）" class="headerlink" title="1. add（加法）"></a>1. add（加法）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">add</span> reg/mem, reg/mem/idata</div></pre></td></tr></table></figure>
+<p>作用：<code>dst</code> = <code>dst</code> + <code>src</code><br><strong>注意：1） 两个操作数类型要匹配。 2）操作数不能同为内存单元。</strong></p>
+<h4 id="2-adc（带进位加法）"><a href="#2-adc（带进位加法）" class="headerlink" title="2. adc（带进位加法）"></a>2. adc（带进位加法）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">adc</span> reg/mem, reg/mem/idata</div></pre></td></tr></table></figure>
+<p>作用：<code>dst</code> = <code>dst</code> + <code>src</code> + <code>cf</code><br><strong>注意：同 <code>add</code>。</strong></p>
+<h4 id="3-inc（自增一）"><a href="#3-inc（自增一）" class="headerlink" title="3. inc（自增一）"></a>3. inc（自增一）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">inc</span> reg/mem</div></pre></td></tr></table></figure>
+<h3 id="减法指令"><a href="#减法指令" class="headerlink" title="减法指令"></a>减法指令</h3><h4 id="1-sub（减法）"><a href="#1-sub（减法）" class="headerlink" title="1. sub（减法）"></a>1. sub（减法）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">sub</span> reg/mem, reg/mem/idata</div></pre></td></tr></table></figure>
+<p>作用：<code>dst</code> = <code>dst</code> - <code>src</code><br><strong>注意：同 <code>add</code>。</strong></p>
+<h4 id="2-sbb（带借位减法）"><a href="#2-sbb（带借位减法）" class="headerlink" title="2. sbb（带借位减法）"></a>2. sbb（带借位减法）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">sbb</span> reg/mem, reg/mem/idata</div></pre></td></tr></table></figure>
+<p>作用：<code>dst</code> = <code>dst</code> - <code>src</code> - <code>cf</code><br><strong>注意：同 <code>add</code>。</strong></p>
+<h4 id="3-dec（自减一）"><a href="#3-dec（自减一）" class="headerlink" title="3. dec（自减一）"></a>3. dec（自减一）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">dec</span> reg/mem</div></pre></td></tr></table></figure>
+<h4 id="4-neg（求补）"><a href="#4-neg（求补）" class="headerlink" title="4. neg（求补）"></a>4. neg（求补）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">neg</span> reg/mem</div></pre></td></tr></table></figure>
+<p>作用：<code>dst</code> = 0 - <code>dst</code> （即求相反数）</p>
+<h4 id="5-cmp（比较）"><a href="#5-cmp（比较）" class="headerlink" title="5. cmp（比较）"></a>5. cmp（比较）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cmp</span> reg/mem, reg/mem/idata</div></pre></td></tr></table></figure>
+<p>作用：根据 <code>dst</code> - <code>src</code> 的结果去影响标志位。<br><strong>注意：同 <code>add</code>。</strong></p>
+<h3 id="乘法指令"><a href="#乘法指令" class="headerlink" title="乘法指令"></a>乘法指令</h3><h4 id="1-mul（无符号乘法）"><a href="#1-mul（无符号乘法）" class="headerlink" title="1. mul（无符号乘法）"></a>1. mul（无符号乘法）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">mul</span> reg/mem</div></pre></td></tr></table></figure>
+<p>作用：1）当操作数为8位时，乘数默认保存在 <code>al</code> 中，结果保存在 <code>ax</code> 中，<code>ax</code> = <code>al</code> <em> <code>src</code>。2）当操作数为16位时，乘数默认保存在 <code>ax</code> 中，结果的高16位保存在 <code>dx</code> 中，低16位保存在 <code>dx</code> 中，<code>dx</code>:<code>ax</code> = <code>ax</code> </em> <code>src</code>。</p>
+<h4 id="2-imul（带符号乘法）"><a href="#2-imul（带符号乘法）" class="headerlink" title="2. imul（带符号乘法）"></a>2. imul（带符号乘法）</h4><p>同 <code>mul</code>。</p>
+<h3 id="除法指令"><a href="#除法指令" class="headerlink" title="除法指令"></a>除法指令</h3><h4 id="1-div（无符号除法）"><a href="#1-div（无符号除法）" class="headerlink" title="1. div（无符号除法）"></a>1. div（无符号除法）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">div</span> reg/mem</div></pre></td></tr></table></figure>
+<p>作用：1）当操作数为8位时，被除数默认保存在 <code>ax</code> 中，结果商保存在 <code>al</code> 中，余数保存在 <code>ah</code> 中。2）当操作数为16位时，被除数默认高16位保存在 <code>dx</code> 中，低16位保存在 <code>ax</code> 中，结果商保存在 <code>ax</code> 中，余数保存在 <code>dx</code> 中。</p>
+<h4 id="2-idiv（带符号除法）"><a href="#2-idiv（带符号除法）" class="headerlink" title="2. idiv（带符号除法）"></a>2. idiv（带符号除法）</h4><p>同 <code>div</code>。<br><strong>注意：除法指令可能会发生溢出，产生0号中断。</strong></p>
+<h2 id="逻辑指令"><a href="#逻辑指令" class="headerlink" title="逻辑指令"></a>逻辑指令</h2><h3 id="逻辑运行指令"><a href="#逻辑运行指令" class="headerlink" title="逻辑运行指令"></a>逻辑运行指令</h3><h4 id="1-and（与）-or（或）-not（非）-xor（异或）"><a href="#1-and（与）-or（或）-not（非）-xor（异或）" class="headerlink" title="1. and（与）/ or（或）/ not（非）/ xor（异或）"></a>1. and（与）/ or（或）/ not（非）/ xor（异或）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">and</span> reg/mem, reg/mem/idata</div><div class="line"><span class="keyword">or</span>  reg/mem, reg/mem/idata</div><div class="line"><span class="keyword">not</span> reg/mem</div><div class="line"><span class="keyword">xor</span> reg/mem, reg/mem/idata</div></pre></td></tr></table></figure>
+<p><strong>注意：1） 两个操作数类型要匹配。 2）操作数不能同为内存单元。</strong></p>
+<h4 id="2-test（测试）"><a href="#2-test（测试）" class="headerlink" title="2. test（测试）"></a>2. test（测试）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">test</span> reg/mem, reg/mem/idata</div></pre></td></tr></table></figure>
+<p>作用：将两个操作数相与（<code>and</code>）后的结果去影响标志位，若结果不为0，则<code>zf</code>=1，否则<code>zf</code>=0。<br><strong>注意：1） 两个操作数类型要匹配。 2）操作数不能同为内存单元。</strong><br>常用用法：检查某位是否为1，e.g.:</p>
+<ul>
+<li><p>检验<code>ax</code>是否为负数</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">test</span> <span class="built_in">ax</span>, <span class="number">8000h</span></div><div class="line"><span class="keyword">jne</span> l  <span class="comment">; 不是负数则跳转</span></div><div class="line"><span class="string">```</span> </div><div class="line">  * 检验<span class="string">`ax`</span>是否为奇数</div><div class="line"><span class="string">```</span>x86asm</div><div class="line"><span class="keyword">test</span> <span class="built_in">ax</span>, <span class="number">1</span></div><div class="line"><span class="keyword">jne</span> l  <span class="comment">; 不是奇数则跳转</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>判断大小写</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">test</span> <span class="built_in">ax</span>, <span class="number">00100000b</span></div><div class="line"><span class="symbol">jz  label</span>1  <span class="comment">; 大写则跳转</span></div><div class="line"><span class="keyword">jmp</span> lable2  <span class="comment">; 小写则跳转</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="移位指令"><a href="#移位指令" class="headerlink" title="移位指令"></a>移位指令</h3><h4 id="shl（逻辑左移）-shr（逻辑右移）-sal（算术左移）-sar（算术右移）"><a href="#shl（逻辑左移）-shr（逻辑右移）-sal（算术左移）-sar（算术右移）" class="headerlink" title="shl（逻辑左移）/ shr（逻辑右移）/ sal（算术左移）/ sar（算术右移）"></a>shl（逻辑左移）/ shr（逻辑右移）/ sal（算术左移）/ sar（算术右移）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">shl</span> reg/mem, <span class="number">1</span>/<span class="built_in">cl</span></div><div class="line"><span class="keyword">shr</span> reg/mem, <span class="number">1</span>/<span class="built_in">cl</span></div><div class="line"><span class="keyword">sal</span> reg/mem, <span class="number">1</span>/<span class="built_in">cl</span></div><div class="line"><span class="keyword">sar</span> reg/mem, <span class="number">1</span>/<span class="built_in">cl</span></div></pre></td></tr></table></figure>
+<p>作用：将操作数各个二进制位向左（右）移动1（<code>cl</code>）位，最高（低）位移出到 <code>cf</code>，最低（高）位补0（<code>sf</code>）。<br><strong>注意：1）若移位数为1，可以直接写1，否则必须将移位数放入<code>cl</code>中并调用。2）无论移动多少次，<code>cf</code>等于最后移出位的值。</strong><br><strong>逻辑移位跟算术移位的区别</strong>：算术移位是将数据看成是有正有负的补码数的运算，逻辑移位是将数据看成是无符号数。左移时，算术移位和逻辑移位最右端都是用0补充，操作相同，所以指令等价。右移时，算术右移最右端补<code>sf</code>（符号标志位），逻辑右移补0，所以指令不同。</p>
+<h3 id="循环移位指令"><a href="#循环移位指令" class="headerlink" title="循环移位指令"></a>循环移位指令</h3><h4 id="rol（循环左移）-ror（循环右移）-rcl（带进位循环左移）-rcr（带进位循环右移）"><a href="#rol（循环左移）-ror（循环右移）-rcl（带进位循环左移）-rcr（带进位循环右移）" class="headerlink" title="rol（循环左移）/ ror（循环右移）/ rcl（带进位循环左移）/ rcr（带进位循环右移）"></a>rol（循环左移）/ ror（循环右移）/ rcl（带进位循环左移）/ rcr（带进位循环右移）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">rol</span> reg/mem, <span class="number">1</span>/<span class="built_in">cl</span></div><div class="line"><span class="keyword">ror</span> reg/mem, <span class="number">1</span>/<span class="built_in">cl</span></div><div class="line"><span class="keyword">rcl</span> reg/mem, <span class="number">1</span>/<span class="built_in">cl</span></div><div class="line"><span class="keyword">rcr</span> reg/mem, <span class="number">1</span>/<span class="built_in">cl</span></div></pre></td></tr></table></figure>
+<p>作用：循环移位时，将操作数各个二进制位向左（右）移动1（<code>cl</code>）位，最高（低）位同时移入<code>cf</code>和最低（高）位。带进位循环移位时，将操作数各个二进制位向左（右）移动1（cl）位，最高（低）位移入<code>cf</code>，原<code>cf</code>移入最低（高）位。<br><strong>注意：同移位指令。</strong></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;8086汇编常用的指令，从功能上分，一般分为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据传送指令&lt;/li&gt;
+&lt;li&gt;算术指令&lt;/li&gt;
+&lt;li&gt;逻辑指令&lt;/li&gt;
+&lt;li&gt;串处理指令&lt;/li&gt;
+&lt;li&gt;控制转移指令&lt;/li&gt;
+&lt;li&gt;处理控制与杂项指令&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这
+    
+    </summary>
+    
+      <category term="汇编" scheme="http://alinshans.github.io/categories/%E6%B1%87%E7%BC%96/"/>
+    
+    
+      <category term="汇编" scheme="http://alinshans.github.io/tags/%E6%B1%87%E7%BC%96/"/>
+    
+  </entry>
   
   <entry>
     <title>8086汇编：寄存器与寻址方式概述</title>
