@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://alinshans.github.io/"/>
-  <updated>2017-05-31T07:10:14.141Z</updated>
+  <updated>2017-05-31T12:26:53.625Z</updated>
   <id>http://alinshans.github.io/</id>
   
   <author>
@@ -14,6 +14,133 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>8086汇编：组织程序</title>
+    <link href="http://alinshans.github.io/2017/05/31/p1705312/"/>
+    <id>http://alinshans.github.io/2017/05/31/p1705312/</id>
+    <published>2017-05-31T08:32:29.000Z</published>
+    <updated>2017-05-31T12:26:53.625Z</updated>
+    
+    <content type="html"><![CDATA[<p>前面我们介绍了8086汇编中一些常用的、基本的、重要的概念，现在我们就要把这些东西组装起来。</p>
+<h3 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h3><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var_name <span class="built_in">db</span>/<span class="built_in">dw</span>/<span class="built_in">dd</span> expression</div></pre></td></tr></table></figure>
+<p>其中的 <code>var_name</code> 就是一个变量，<code>db</code>/<code>dw</code>/<code>dd</code>是伪指令助记符，用于指定字节/字/双字，表达式可以为一个常量，一个字符串等。<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">data <span class="meta">segment</span></div><div class="line">    num <span class="built_in">dw</span> <span class="number">0</span></div><div class="line">    msg <span class="built_in">db</span> <span class="string">'please input a num'</span></div><div class="line">    len <span class="built_in">db</span> $-msg1</div><div class="line">data ends</div></pre></td></tr></table></figure></p>
+<p>操作数<code>&#39;?&#39;</code>用于保留储存空间，但不存入数据。<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">adc</span> <span class="built_in">db</span> <span class="number">0</span>, <span class="number">1</span>, ?, ?, ?</div><div class="line">len <span class="built_in">db</span> ?</div></pre></td></tr></table></figure></p>
+<p>操作数字段还可以利用复制操作符 <code>dup</code> 来复制重复元素。<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">abc <span class="built_in">db</span> <span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span> dup (?)</div><div class="line">ssr <span class="built_in">db</span> <span class="number">5</span> dup (<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>)</div></pre></td></tr></table></figure></p>
+<h3 id="程序的开始与结束"><a href="#程序的开始与结束" class="headerlink" title="程序的开始与结束"></a>程序的开始与结束</h3><h4 id="1-end-伪指令"><a href="#1-end-伪指令" class="headerlink" title="1. end 伪指令"></a>1. <code>end</code> 伪指令</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">end label</span></div></pre></td></tr></table></figure>
+<p><code>end</code> 伪指令标识着整个程序的结束，<code>end</code> 后面的操作数指定程序执行的起始地址。所以，一般主程序模板必须 <code>end</code> 后面指定操作数，然后在操作数放到代码段的开头，如：<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">assume</span> <span class="built_in">cs</span>:code, <span class="built_in">ds</span>:data</div><div class="line"></div><div class="line">data segments</div><div class="line">    <span class="comment">; ... </span></div><div class="line">data ends</div><div class="line"></div><div class="line">code segments</div><div class="line"><span class="symbol">start:</span>     <span class="comment">; 程序执行的起始地址</span></div><div class="line">    <span class="comment">; ...</span></div><div class="line">code ends </div><div class="line">end start  <span class="comment">; 表明 start 为程序执行的起始地址</span></div></pre></td></tr></table></figure></p>
+<h4 id="2-assume-伪指令"><a href="#2-assume-伪指令" class="headerlink" title="2. assume 伪指令"></a>2. <code>assume</code> 伪指令</h4><p>8086存储器是分段的，分了段之后，就必须指明段和段寄存器之间的关系，这由假设语句 <code>assume</code> 实现。<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">assume</span> segment_reg : segment_name [,...]</div></pre></td></tr></table></figure></p>
+<p>其中，<code>segment_reg</code> 必须是 <code>cs</code>, <code>ds</code>, <code>ss</code>, <code>es</code> 中的一个，<code>segment_name</code> 则是定义的段名。</p>
+<p><strong>注意：<code>assume</code> 伪指令只是指定了某个段分配给某个段寄存器，但它并没有将段地址装入段寄存器，所以在代码段中，还要将段地址装入段寄存器。</strong></p>
+<h4 id="3-定义段"><a href="#3-定义段" class="headerlink" title="3. 定义段"></a>3. 定义段</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">segment_name <span class="meta">segment</span> [align_type] [combine_type] [use_type] [<span class="string">'class'</span>]</div><div class="line">...</div><div class="line">segment_name ends</div></pre></td></tr></table></figure>
+<p>其中，<code>[]</code>代表是可选的，可以缺省的，但各项顺序不能错，<strong>一般不需要我们指定</strong>。</p>
+<h4 id="4-定义过程"><a href="#4-定义过程" class="headerlink" title="4. 定义过程"></a>4. 定义过程</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">process_name proc [<span class="built_in">near</span>/<span class="built_in">far</span>]</div><div class="line">.</div><div class="line">.</div><div class="line">.</div><div class="line">process_name endp</div></pre></td></tr></table></figure>
+<p>在 <code>proc</code> 后面可以指定 <code>near</code>（默认）—— 在段内被调用，<code>far</code>—— 可以被段外调用。</p>
+<p>在 <code>masm</code> 中，过程含义跟子程序一样，可以通过 <code>call</code> 来调用，过程返回自动调用 <code>ret</code>。</p>
+<h3 id="子程序"><a href="#子程序" class="headerlink" title="子程序"></a>子程序</h3><p>子程序跟过程段类似，通过 <code>call</code> 调用，<code>ret</code> 来返回，重点要注意<strong>现场保护</strong>，<strong>参数传递</strong>等问题。<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">name:</span></div><div class="line">    <span class="comment">; 要用到的寄存器压栈</span></div><div class="line">    <span class="keyword">push</span> <span class="built_in">ax</span></div><div class="line">    <span class="keyword">push</span> <span class="built_in">bx</span></div><div class="line">    <span class="comment">; ...</span></div><div class="line"></div><div class="line">    <span class="comment">; 子程序过程...</span></div><div class="line"></div><div class="line">    <span class="comment">; 恢复寄存器</span></div><div class="line">    <span class="keyword">pop</span> <span class="built_in">bx</span></div><div class="line">    <span class="keyword">pop</span> <span class="built_in">ax</span></div><div class="line">    <span class="keyword">ret</span></div></pre></td></tr></table></figure></p>
+<h3 id="简化段"><a href="#简化段" class="headerlink" title="简化段"></a>简化段</h3><p>简化段首先要定义程序的存储模型：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">存储模型</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">适用系统</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">tiny（微型）</td>
+<td style="text-align:center">所有数据和代码都放在一个段内，其访问都为NEAR型，整个程序≤64K，并会产生.COM文件</td>
+<td style="text-align:center">MS-DOS</td>
+</tr>
+<tr>
+<td style="text-align:center">small（小型）</td>
+<td style="text-align:center">所有代码在一个64KB的段内，所有数据在另一个64KB的段内（包括数据段,堆栈段和附加段）</td>
+<td style="text-align:center">MS-DOS<br>Windows</td>
+</tr>
+<tr>
+<td style="text-align:center">medium（中型）</td>
+<td style="text-align:center">所有代码＞64K时可放在多个代码段中，转移或调用可为FAR型。所有数据限在一个段内，DS可保持不变</td>
+<td style="text-align:center">MS-DOS<br>Windows</td>
+</tr>
+<tr>
+<td style="text-align:center">compact（紧凑型）</td>
+<td style="text-align:center">所有代码限在一个段内，转移或调用可为NEAR型。数据＞64K时，可放在多个段中</td>
+<td style="text-align:center">MS-DOS<br>Windows</td>
+</tr>
+<tr>
+<td style="text-align:center">large（大型）</td>
+<td style="text-align:center">允许代码段和数据段都可超过64K，被放置在有多个段内，所以数据和代码都是远访问</td>
+<td style="text-align:center">MS-DOS<br>Windows</td>
+</tr>
+<tr>
+<td style="text-align:center">huge（巨型）</td>
+<td style="text-align:center">单个数据项可以超过64K，其它同<code>large</code>模型</td>
+<td style="text-align:center">MS-DOS<br>Windows</td>
+</tr>
+</tbody>
+</table>
+<p>说明：<code>small</code> 模型是一般应用程序最常用的一种模型，因为只有一个代码段和一个数据段，所以数据和代码都是近访问的。<strong>所以一般将 <code>.model</code> 指定为 <code>small</code> 就可以了。</strong></p>
+<p>简化段伪指令：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">伪指令</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">.code [段名]</td>
+<td style="text-align:center">创建一个代码段</td>
+<td style="text-align:center">隐含段名为 <code>@code</code></td>
+</tr>
+<tr>
+<td style="text-align:center">.data</td>
+<td style="text-align:center">创建一个数据段</td>
+<td style="text-align:center">隐含段名为 <code>@data</code></td>
+</tr>
+<tr>
+<td style="text-align:center">.stack [大小]</td>
+<td style="text-align:center">创建一个堆栈段并指定大小</td>
+<td style="text-align:center">隐含段名为 <code>@stack</code>，并形成<code>ss</code>和<code>sp</code>的初值</td>
+</tr>
+</tbody>
+</table>
+<p>例：<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">.model</span> small</div><div class="line"><span class="meta">.stack</span> <span class="number">100h</span></div><div class="line"><span class="meta">.data</span>  <span class="comment">; 定义数据段</span></div><div class="line">    <span class="comment">;...</span></div><div class="line"><span class="meta"></span></div><div class="line">.code  <span class="comment">; 定义代码段</span></div><div class="line"><span class="symbol">main:</span></div><div class="line">    <span class="keyword">mov</span> <span class="built_in">ax</span>, @data <span class="comment">; 数据段地址</span></div><div class="line">    <span class="keyword">mov</span> <span class="built_in">ds</span>, <span class="built_in">ax</span></div><div class="line">    <span class="comment">; ...</span></div><div class="line">    <span class="keyword">mov</span> <span class="built_in">ax</span>, <span class="number">4c00h</span></div><div class="line">    <span class="keyword">int</span> <span class="number">21h</span></div><div class="line">end main</div></pre></td></tr></table></figure></p>
+<h3 id="其他伪操作"><a href="#其他伪操作" class="headerlink" title="其他伪操作"></a>其他伪操作</h3><h4 id="1-基数控制"><a href="#1-基数控制" class="headerlink" title="1. 基数控制"></a>1. 基数控制</h4><p>汇编程序默认的数为十进制数，还可以由以下方式指定基数：</p>
+<ol>
+<li>二进制： 01001000b</li>
+<li>八进制： 123q 或 123o</li>
+<li>十进制： 1234d</li>
+<li>十六进制： 1234h / 0ffffh （第一个为字母时前面加0）</li>
+</ol>
+<h4 id="2-39-39-地址计数器"><a href="#2-39-39-地址计数器" class="headerlink" title="2. &#39;$&#39; 地址计数器"></a>2. <code>&#39;$&#39;</code> 地址计数器</h4><p><code>&#39;$&#39;</code>保存了当前汇编指令的偏移地址。</p>
+<p>常用用途：</p>
+<ul>
+<li><p>计算字符串长度</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">data <span class="meta">segment</span></div><div class="line">    str1 <span class="built_in">db</span> <span class="string">'hello'</span></div><div class="line">    len1 <span class="built_in">db</span> $-str1  <span class="comment">; 5</span></div><div class="line">    str2 <span class="built_in">db</span> <span class="string">'world hahaha'</span></div><div class="line">    len2 <span class="built_in">db</span> $-str2  <span class="comment">; 12</span></div><div class="line">data ends</div></pre></td></tr></table></figure>
+</li>
+<li><p>跳转</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">jne</span> $+<span class="number">6</span>  <span class="comment">; 跳转到 jne 指令所在地址 + 6</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前面我们介绍了8086汇编中一些常用的、基本的、重要的概念，现在我们就要把这些东西组装起来。&lt;/p&gt;
+&lt;h3 id=&quot;定义变量&quot;&gt;&lt;a href=&quot;#定义变量&quot; class=&quot;headerlink&quot; title=&quot;定义变量&quot;&gt;&lt;/a&gt;定义变量&lt;/h3&gt;&lt;figure cla
+    
+    </summary>
+    
+      <category term="汇编" scheme="http://alinshans.github.io/categories/%E6%B1%87%E7%BC%96/"/>
+    
+    
+      <category term="汇编" scheme="http://alinshans.github.io/tags/%E6%B1%87%E7%BC%96/"/>
+    
+  </entry>
   
   <entry>
     <title>8086汇编：指令系统（下）</title>
@@ -248,7 +375,7 @@
     <link href="http://alinshans.github.io/2017/05/30/p1705301/"/>
     <id>http://alinshans.github.io/2017/05/30/p1705301/</id>
     <published>2017-05-30T09:40:04.000Z</published>
-    <updated>2017-05-31T03:40:36.609Z</updated>
+    <updated>2017-05-31T07:26:25.094Z</updated>
     
     <content type="html"><![CDATA[<p>8086汇编常用的指令，从功能上分，一般分为：</p>
 <ul>
@@ -326,7 +453,7 @@
 <h4 id="2-imul（带符号乘法）"><a href="#2-imul（带符号乘法）" class="headerlink" title="2. imul（带符号乘法）"></a>2. imul（带符号乘法）</h4><p>同 <code>mul</code>。</p>
 <h3 id="除法指令"><a href="#除法指令" class="headerlink" title="除法指令"></a>除法指令</h3><h4 id="1-div（无符号除法）"><a href="#1-div（无符号除法）" class="headerlink" title="1. div（无符号除法）"></a>1. div（无符号除法）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">div</span> reg/mem</div></pre></td></tr></table></figure>
 <p>作用：1）当操作数为8位时，被除数默认保存在 <code>ax</code> 中，结果商保存在 <code>al</code> 中，余数保存在 <code>ah</code> 中。2）当操作数为16位时，被除数默认高16位保存在 <code>dx</code> 中，低16位保存在 <code>ax</code> 中，结果商保存在 <code>ax</code> 中，余数保存在 <code>dx</code> 中。</p>
-<h4 id="2-idiv（带符号除法）"><a href="#2-idiv（带符号除法）" class="headerlink" title="2. idiv（带符号除法）"></a>2. idiv（带符号除法）</h4><p>同 <code>div</code>。<br><strong>注意：除法指令可能会发生溢出，产生0号中断。</strong></p>
+<h4 id="2-idiv（带符号除法）"><a href="#2-idiv（带符号除法）" class="headerlink" title="2. idiv（带符号除法）"></a>2. idiv（带符号除法）</h4><p>同 <code>div</code>。<br><strong>注意：除法指令可能会发生溢出，产生0号中断。可参考 <a href="http://www.doc88.com/p-5836860600548.html" target="_blank" rel="external">http://www.doc88.com/p-5836860600548.html</a> 。</strong></p>
 <h2 id="逻辑指令"><a href="#逻辑指令" class="headerlink" title="逻辑指令"></a>逻辑指令</h2><h3 id="逻辑运行指令"><a href="#逻辑运行指令" class="headerlink" title="逻辑运行指令"></a>逻辑运行指令</h3><h4 id="1-and（与）-or（或）-not（非）-xor（异或）"><a href="#1-and（与）-or（或）-not（非）-xor（异或）" class="headerlink" title="1. and（与）/ or（或）/ not（非）/ xor（异或）"></a>1. and（与）/ or（或）/ not（非）/ xor（异或）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">and</span> reg/mem, reg/mem/idata</div><div class="line"><span class="keyword">or</span>  reg/mem, reg/mem/idata</div><div class="line"><span class="keyword">not</span> reg/mem</div><div class="line"><span class="keyword">xor</span> reg/mem, reg/mem/idata</div></pre></td></tr></table></figure>
 <p><strong>注意：1） 两个操作数类型要匹配。 2）操作数不能同为内存单元。</strong></p>
 <h4 id="2-test（测试）"><a href="#2-test（测试）" class="headerlink" title="2. test（测试）"></a>2. test（测试）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">test</span> reg/mem, reg/mem/idata</div></pre></td></tr></table></figure>

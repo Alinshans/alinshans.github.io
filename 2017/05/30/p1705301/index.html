@@ -110,7 +110,7 @@
 <meta property="og:site_name" content="Alinshans&#39;s world">
 <meta property="og:description" content="8086汇编常用的指令，从功能上分，一般分为：  数据传送指令 算术指令 逻辑指令 控制转移指令 标志处理指令 串处理指令  这些指令书上网上都有很多介绍，我就不会全部详细介绍，只挑一些常用的、需要注意的重点说明。 数据传送指令1. mov（传送）1mov dst, src 有以下需要注意的地方：  dst 和 src 类型必须匹配，无法确定类型时要显式指定类型。 123456mov ax, 1">
 <meta property="og:image" content="http://i4.buimg.com/594413/b0fb64f5450412e0.png">
-<meta property="og:updated_time" content="2017-05-31T03:40:36.609Z">
+<meta property="og:updated_time" content="2017-05-31T07:26:25.094Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="8086汇编：指令系统（上）">
 <meta name="twitter:description" content="8086汇编常用的指令，从功能上分，一般分为：  数据传送指令 算术指令 逻辑指令 控制转移指令 标志处理指令 串处理指令  这些指令书上网上都有很多介绍，我就不会全部详细介绍，只挑一些常用的、需要注意的重点说明。 数据传送指令1. mov（传送）1mov dst, src 有以下需要注意的地方：  dst 和 src 类型必须匹配，无法确定类型时要显式指定类型。 123456mov ax, 1">
@@ -518,7 +518,7 @@
 <h4 id="2-imul（带符号乘法）"><a href="#2-imul（带符号乘法）" class="headerlink" title="2. imul（带符号乘法）"></a>2. imul（带符号乘法）</h4><p>同 <code>mul</code>。</p>
 <h3 id="除法指令"><a href="#除法指令" class="headerlink" title="除法指令"></a>除法指令</h3><h4 id="1-div（无符号除法）"><a href="#1-div（无符号除法）" class="headerlink" title="1. div（无符号除法）"></a>1. div（无符号除法）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">div</span> reg/mem</div></pre></td></tr></table></figure>
 <p>作用：1）当操作数为8位时，被除数默认保存在 <code>ax</code> 中，结果商保存在 <code>al</code> 中，余数保存在 <code>ah</code> 中。2）当操作数为16位时，被除数默认高16位保存在 <code>dx</code> 中，低16位保存在 <code>ax</code> 中，结果商保存在 <code>ax</code> 中，余数保存在 <code>dx</code> 中。</p>
-<h4 id="2-idiv（带符号除法）"><a href="#2-idiv（带符号除法）" class="headerlink" title="2. idiv（带符号除法）"></a>2. idiv（带符号除法）</h4><p>同 <code>div</code>。<br><strong>注意：除法指令可能会发生溢出，产生0号中断。</strong></p>
+<h4 id="2-idiv（带符号除法）"><a href="#2-idiv（带符号除法）" class="headerlink" title="2. idiv（带符号除法）"></a>2. idiv（带符号除法）</h4><p>同 <code>div</code>。<br><strong>注意：除法指令可能会发生溢出，产生0号中断。可参考 <a href="http://www.doc88.com/p-5836860600548.html" target="_blank" rel="external">http://www.doc88.com/p-5836860600548.html</a> 。</strong></p>
 <h2 id="逻辑指令"><a href="#逻辑指令" class="headerlink" title="逻辑指令"></a>逻辑指令</h2><h3 id="逻辑运行指令"><a href="#逻辑运行指令" class="headerlink" title="逻辑运行指令"></a>逻辑运行指令</h3><h4 id="1-and（与）-or（或）-not（非）-xor（异或）"><a href="#1-and（与）-or（或）-not（非）-xor（异或）" class="headerlink" title="1. and（与）/ or（或）/ not（非）/ xor（异或）"></a>1. and（与）/ or（或）/ not（非）/ xor（异或）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">and</span> reg/mem, reg/mem/idata</div><div class="line"><span class="keyword">or</span>  reg/mem, reg/mem/idata</div><div class="line"><span class="keyword">not</span> reg/mem</div><div class="line"><span class="keyword">xor</span> reg/mem, reg/mem/idata</div></pre></td></tr></table></figure>
 <p><strong>注意：1） 两个操作数类型要匹配。 2）操作数不能同为内存单元。</strong></p>
 <h4 id="2-test（测试）"><a href="#2-test（测试）" class="headerlink" title="2. test（测试）"></a>2. test（测试）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">test</span> reg/mem, reg/mem/idata</div></pre></td></tr></table></figure>
@@ -737,7 +737,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

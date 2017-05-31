@@ -84,7 +84,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hello world" />
+  <meta name="keywords" content="汇编," />
 
 
 
@@ -102,15 +102,17 @@
 
 
 
-<meta name="description" content="为爱的人，创造Ta爱的世界">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Alinshans&#39;s world">
-<meta property="og:url" content="http://alinshans.github.io/tags/汇编/index.html">
+<meta name="description" content="前面我们介绍了8086汇编中一些常用的、基本的、重要的概念，现在我们就要把这些东西组装起来。 定义变量1var_name db/dw/dd expression 其中的 var_name 就是一个变量，db/dw/dd是伪指令助记符，用于指定字节/字/双字，表达式可以为一个常量，一个字符串等。12345data segment    num dw 0    msg db &apos;please input">
+<meta name="keywords" content="汇编">
+<meta property="og:type" content="article">
+<meta property="og:title" content="8086汇编：组织程序">
+<meta property="og:url" content="http://alinshans.github.io/2017/05/31/p1705312/index.html">
 <meta property="og:site_name" content="Alinshans&#39;s world">
-<meta property="og:description" content="为爱的人，创造Ta爱的世界">
+<meta property="og:description" content="前面我们介绍了8086汇编中一些常用的、基本的、重要的概念，现在我们就要把这些东西组装起来。 定义变量1var_name db/dw/dd expression 其中的 var_name 就是一个变量，db/dw/dd是伪指令助记符，用于指定字节/字/双字，表达式可以为一个常量，一个字符串等。12345data segment    num dw 0    msg db &apos;please input">
+<meta property="og:updated_time" content="2017-05-31T12:26:53.625Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Alinshans&#39;s world">
-<meta name="twitter:description" content="为爱的人，创造Ta爱的世界">
+<meta name="twitter:title" content="8086汇编：组织程序">
+<meta name="twitter:description" content="前面我们介绍了8086汇编中一些常用的、基本的、重要的概念，现在我们就要把这些东西组装起来。 定义变量1var_name db/dw/dd expression 其中的 var_name 就是一个变量，db/dw/dd是伪指令助记符，用于指定字节/字/双字，表达式可以为一个常量，一个字符串等。12345data segment    num dw 0    msg db &apos;please input">
 
 
 
@@ -138,13 +140,13 @@
 
 
 
-  <link rel="canonical" href="http://alinshans.github.io/tags/汇编/"/>
+  <link rel="canonical" href="http://alinshans.github.io/2017/05/31/p1705312/"/>
 
 
 
 
 
-  <title>标签: 汇编 | Alinshans's world</title>
+  <title>8086汇编：组织程序 | Alinshans's world</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -170,7 +172,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
 <a href="https://github.com/Alinshans"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
@@ -320,156 +322,364 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h1>汇编<small>标签</small>
-      </h1>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/31/p1705312/" itemprop="url">
-              
-                <span itemprop="name">8086汇编：组织程序</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-31T16:32:29+08:00"
-              content="2017-05-31" >
-          05-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/31/p1705311/" itemprop="url">
-              
-                <span itemprop="name">8086汇编：指令系统（下）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-31T10:15:47+08:00"
-              content="2017-05-31" >
-          05-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/30/p1705301/" itemprop="url">
-              
-                <span itemprop="name">8086汇编：指令系统（上）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-30T17:40:04+08:00"
-              content="2017-05-30" >
-          05-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/29/p1705292/" itemprop="url">
-              
-                <span itemprop="name">8086汇编：寄存器与寻址方式概述</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-29T14:14:53+08:00"
-              content="2017-05-29" >
-          05-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/29/p1705291/" itemprop="url">
-              
-                <span itemprop="name">8086汇编：前言</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-29T12:23:13+08:00"
-              content="2017-05-29" >
-          05-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://alinshans.github.io/2017/05/31/p1705312/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="刘俊延">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alinshans's world">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">8086汇编：组织程序</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-31T16:32:29+08:00">
+                2017-05-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/汇编/" itemprop="url" rel="index">
+                    <span itemprop="name">汇编</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/31/p1705312/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/05/31/p1705312/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/05/31/p1705312/" class="leancloud_visitors" data-flag-title="8086汇编：组织程序">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前面我们介绍了8086汇编中一些常用的、基本的、重要的概念，现在我们就要把这些东西组装起来。</p>
+<h3 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h3><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var_name <span class="built_in">db</span>/<span class="built_in">dw</span>/<span class="built_in">dd</span> expression</div></pre></td></tr></table></figure>
+<p>其中的 <code>var_name</code> 就是一个变量，<code>db</code>/<code>dw</code>/<code>dd</code>是伪指令助记符，用于指定字节/字/双字，表达式可以为一个常量，一个字符串等。<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">data <span class="meta">segment</span></div><div class="line">    num <span class="built_in">dw</span> <span class="number">0</span></div><div class="line">    msg <span class="built_in">db</span> <span class="string">'please input a num'</span></div><div class="line">    len <span class="built_in">db</span> $-msg1</div><div class="line">data ends</div></pre></td></tr></table></figure></p>
+<p>操作数<code>&#39;?&#39;</code>用于保留储存空间，但不存入数据。<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">adc</span> <span class="built_in">db</span> <span class="number">0</span>, <span class="number">1</span>, ?, ?, ?</div><div class="line">len <span class="built_in">db</span> ?</div></pre></td></tr></table></figure></p>
+<p>操作数字段还可以利用复制操作符 <code>dup</code> 来复制重复元素。<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">abc <span class="built_in">db</span> <span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span> dup (?)</div><div class="line">ssr <span class="built_in">db</span> <span class="number">5</span> dup (<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>)</div></pre></td></tr></table></figure></p>
+<h3 id="程序的开始与结束"><a href="#程序的开始与结束" class="headerlink" title="程序的开始与结束"></a>程序的开始与结束</h3><h4 id="1-end-伪指令"><a href="#1-end-伪指令" class="headerlink" title="1. end 伪指令"></a>1. <code>end</code> 伪指令</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">end label</span></div></pre></td></tr></table></figure>
+<p><code>end</code> 伪指令标识着整个程序的结束，<code>end</code> 后面的操作数指定程序执行的起始地址。所以，一般主程序模板必须 <code>end</code> 后面指定操作数，然后在操作数放到代码段的开头，如：<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">assume</span> <span class="built_in">cs</span>:code, <span class="built_in">ds</span>:data</div><div class="line"></div><div class="line">data segments</div><div class="line">    <span class="comment">; ... </span></div><div class="line">data ends</div><div class="line"></div><div class="line">code segments</div><div class="line"><span class="symbol">start:</span>     <span class="comment">; 程序执行的起始地址</span></div><div class="line">    <span class="comment">; ...</span></div><div class="line">code ends </div><div class="line">end start  <span class="comment">; 表明 start 为程序执行的起始地址</span></div></pre></td></tr></table></figure></p>
+<h4 id="2-assume-伪指令"><a href="#2-assume-伪指令" class="headerlink" title="2. assume 伪指令"></a>2. <code>assume</code> 伪指令</h4><p>8086存储器是分段的，分了段之后，就必须指明段和段寄存器之间的关系，这由假设语句 <code>assume</code> 实现。<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">assume</span> segment_reg : segment_name [,...]</div></pre></td></tr></table></figure></p>
+<p>其中，<code>segment_reg</code> 必须是 <code>cs</code>, <code>ds</code>, <code>ss</code>, <code>es</code> 中的一个，<code>segment_name</code> 则是定义的段名。</p>
+<p><strong>注意：<code>assume</code> 伪指令只是指定了某个段分配给某个段寄存器，但它并没有将段地址装入段寄存器，所以在代码段中，还要将段地址装入段寄存器。</strong></p>
+<h4 id="3-定义段"><a href="#3-定义段" class="headerlink" title="3. 定义段"></a>3. 定义段</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">segment_name <span class="meta">segment</span> [align_type] [combine_type] [use_type] [<span class="string">'class'</span>]</div><div class="line">...</div><div class="line">segment_name ends</div></pre></td></tr></table></figure>
+<p>其中，<code>[]</code>代表是可选的，可以缺省的，但各项顺序不能错，<strong>一般不需要我们指定</strong>。</p>
+<h4 id="4-定义过程"><a href="#4-定义过程" class="headerlink" title="4. 定义过程"></a>4. 定义过程</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">process_name proc [<span class="built_in">near</span>/<span class="built_in">far</span>]</div><div class="line">.</div><div class="line">.</div><div class="line">.</div><div class="line">process_name endp</div></pre></td></tr></table></figure>
+<p>在 <code>proc</code> 后面可以指定 <code>near</code>（默认）—— 在段内被调用，<code>far</code>—— 可以被段外调用。</p>
+<p>在 <code>masm</code> 中，过程含义跟子程序一样，可以通过 <code>call</code> 来调用，过程返回自动调用 <code>ret</code>。</p>
+<h3 id="子程序"><a href="#子程序" class="headerlink" title="子程序"></a>子程序</h3><p>子程序跟过程段类似，通过 <code>call</code> 调用，<code>ret</code> 来返回，重点要注意<strong>现场保护</strong>，<strong>参数传递</strong>等问题。<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">name:</span></div><div class="line">    <span class="comment">; 要用到的寄存器压栈</span></div><div class="line">    <span class="keyword">push</span> <span class="built_in">ax</span></div><div class="line">    <span class="keyword">push</span> <span class="built_in">bx</span></div><div class="line">    <span class="comment">; ...</span></div><div class="line"></div><div class="line">    <span class="comment">; 子程序过程...</span></div><div class="line"></div><div class="line">    <span class="comment">; 恢复寄存器</span></div><div class="line">    <span class="keyword">pop</span> <span class="built_in">bx</span></div><div class="line">    <span class="keyword">pop</span> <span class="built_in">ax</span></div><div class="line">    <span class="keyword">ret</span></div></pre></td></tr></table></figure></p>
+<h3 id="简化段"><a href="#简化段" class="headerlink" title="简化段"></a>简化段</h3><p>简化段首先要定义程序的存储模型：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">存储模型</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">适用系统</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">tiny（微型）</td>
+<td style="text-align:center">所有数据和代码都放在一个段内，其访问都为NEAR型，整个程序≤64K，并会产生.COM文件</td>
+<td style="text-align:center">MS-DOS</td>
+</tr>
+<tr>
+<td style="text-align:center">small（小型）</td>
+<td style="text-align:center">所有代码在一个64KB的段内，所有数据在另一个64KB的段内（包括数据段,堆栈段和附加段）</td>
+<td style="text-align:center">MS-DOS<br>Windows</td>
+</tr>
+<tr>
+<td style="text-align:center">medium（中型）</td>
+<td style="text-align:center">所有代码＞64K时可放在多个代码段中，转移或调用可为FAR型。所有数据限在一个段内，DS可保持不变</td>
+<td style="text-align:center">MS-DOS<br>Windows</td>
+</tr>
+<tr>
+<td style="text-align:center">compact（紧凑型）</td>
+<td style="text-align:center">所有代码限在一个段内，转移或调用可为NEAR型。数据＞64K时，可放在多个段中</td>
+<td style="text-align:center">MS-DOS<br>Windows</td>
+</tr>
+<tr>
+<td style="text-align:center">large（大型）</td>
+<td style="text-align:center">允许代码段和数据段都可超过64K，被放置在有多个段内，所以数据和代码都是远访问</td>
+<td style="text-align:center">MS-DOS<br>Windows</td>
+</tr>
+<tr>
+<td style="text-align:center">huge（巨型）</td>
+<td style="text-align:center">单个数据项可以超过64K，其它同<code>large</code>模型</td>
+<td style="text-align:center">MS-DOS<br>Windows</td>
+</tr>
+</tbody>
+</table>
+<p>说明：<code>small</code> 模型是一般应用程序最常用的一种模型，因为只有一个代码段和一个数据段，所以数据和代码都是近访问的。<strong>所以一般将 <code>.model</code> 指定为 <code>small</code> 就可以了。</strong></p>
+<p>简化段伪指令：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">伪指令</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">.code [段名]</td>
+<td style="text-align:center">创建一个代码段</td>
+<td style="text-align:center">隐含段名为 <code>@code</code></td>
+</tr>
+<tr>
+<td style="text-align:center">.data</td>
+<td style="text-align:center">创建一个数据段</td>
+<td style="text-align:center">隐含段名为 <code>@data</code></td>
+</tr>
+<tr>
+<td style="text-align:center">.stack [大小]</td>
+<td style="text-align:center">创建一个堆栈段并指定大小</td>
+<td style="text-align:center">隐含段名为 <code>@stack</code>，并形成<code>ss</code>和<code>sp</code>的初值</td>
+</tr>
+</tbody>
+</table>
+<p>例：<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">.model</span> small</div><div class="line"><span class="meta">.stack</span> <span class="number">100h</span></div><div class="line"><span class="meta">.data</span>  <span class="comment">; 定义数据段</span></div><div class="line">    <span class="comment">;...</span></div><div class="line"><span class="meta"></span></div><div class="line">.code  <span class="comment">; 定义代码段</span></div><div class="line"><span class="symbol">main:</span></div><div class="line">    <span class="keyword">mov</span> <span class="built_in">ax</span>, @data <span class="comment">; 数据段地址</span></div><div class="line">    <span class="keyword">mov</span> <span class="built_in">ds</span>, <span class="built_in">ax</span></div><div class="line">    <span class="comment">; ...</span></div><div class="line">    <span class="keyword">mov</span> <span class="built_in">ax</span>, <span class="number">4c00h</span></div><div class="line">    <span class="keyword">int</span> <span class="number">21h</span></div><div class="line">end main</div></pre></td></tr></table></figure></p>
+<h3 id="其他伪操作"><a href="#其他伪操作" class="headerlink" title="其他伪操作"></a>其他伪操作</h3><h4 id="1-基数控制"><a href="#1-基数控制" class="headerlink" title="1. 基数控制"></a>1. 基数控制</h4><p>汇编程序默认的数为十进制数，还可以由以下方式指定基数：</p>
+<ol>
+<li>二进制： 01001000b</li>
+<li>八进制： 123q 或 123o</li>
+<li>十进制： 1234d</li>
+<li>十六进制： 1234h / 0ffffh （第一个为字母时前面加0）</li>
+</ol>
+<h4 id="2-39-39-地址计数器"><a href="#2-39-39-地址计数器" class="headerlink" title="2. &#39;$&#39; 地址计数器"></a>2. <code>&#39;$&#39;</code> 地址计数器</h4><p><code>&#39;$&#39;</code>保存了当前汇编指令的偏移地址。</p>
+<p>常用用途：</p>
+<ul>
+<li><p>计算字符串长度</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">data <span class="meta">segment</span></div><div class="line">    str1 <span class="built_in">db</span> <span class="string">'hello'</span></div><div class="line">    len1 <span class="built_in">db</span> $-str1  <span class="comment">; 5</span></div><div class="line">    str2 <span class="built_in">db</span> <span class="string">'world hahaha'</span></div><div class="line">    len2 <span class="built_in">db</span> $-str2  <span class="comment">; 12</span></div><div class="line">data ends</div></pre></td></tr></table></figure>
+</li>
+<li><p>跳转</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">jne</span> $+<span class="number">6</span>  <span class="comment">; 跳转到 jne 指令所在地址 + 6</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:16px;">-------------------------------- 全文完 <i class="fa fa-paw"></i> 感谢您的阅读 --------------------------------</div>
+    
+</div>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>「写的那么辛苦，连一块钱都不打赏吗/(ㄒoㄒ)/~~」</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat_pay.jpg" alt="刘俊延 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/ali_pay.jpg" alt="刘俊延 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      刘俊延
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://alinshans.github.io/2017/05/31/p1705312/" title="8086汇编：组织程序">http://alinshans.github.io/2017/05/31/p1705312/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc/4.0/" rel="external nofollow" target="_blank">CC BY-NC 4.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/汇编/" rel="tag"><i class="fa fa-tag"></i> 汇编</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/31/p1705311/" rel="next" title="8086汇编：指令系统（下）">
+                <i class="fa fa-chevron-left"></i> 8086汇编：指令系统（下）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -477,6 +687,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -496,8 +717,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -603,6 +833,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义变量"><span class="nav-number">1.</span> <span class="nav-text">定义变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序的开始与结束"><span class="nav-number">2.</span> <span class="nav-text">程序的开始与结束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-end-伪指令"><span class="nav-number">2.1.</span> <span class="nav-text">1. end 伪指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-assume-伪指令"><span class="nav-number">2.2.</span> <span class="nav-text">2. assume 伪指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-定义段"><span class="nav-number">2.3.</span> <span class="nav-text">3. 定义段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-定义过程"><span class="nav-number">2.4.</span> <span class="nav-text">4. 定义过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子程序"><span class="nav-number">3.</span> <span class="nav-text">子程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简化段"><span class="nav-number">4.</span> <span class="nav-text">简化段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他伪操作"><span class="nav-number">5.</span> <span class="nav-text">其他伪操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-基数控制"><span class="nav-number">5.1.</span> <span class="nav-text">1. 基数控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-39-39-地址计数器"><span class="nav-number">5.2.</span> <span class="nav-text">2. '$' 地址计数器</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -704,6 +950,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
 
   
 
@@ -721,6 +971,18 @@
       <script id="dsq-count-scr" src="https://alinshans.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://alinshans.github.io/2017/05/31/p1705312/';
+          this.page.identifier = '2017/05/31/p1705312/';
+          this.page.title = '8086汇编：组织程序';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://alinshans.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
