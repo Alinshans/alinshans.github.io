@@ -375,7 +375,7 @@
     <link href="http://www.alinshans.com/2017/05/30/p1705301/"/>
     <id>http://www.alinshans.com/2017/05/30/p1705301/</id>
     <published>2017-05-30T09:40:04.000Z</published>
-    <updated>2017-06-01T14:41:56.726Z</updated>
+    <updated>2017-06-01T14:46:26.759Z</updated>
     
     <content type="html"><![CDATA[<p>8086汇编常用的指令，从功能上分，一般分为：</p>
 <ul>
@@ -460,7 +460,10 @@
 <p>作用：将两个操作数相与（<code>and</code>）后的结果去影响标志位，若结果为0，则<code>zf</code>=1，否则<code>zf</code>=0。<br><strong>注意：1） 两个操作数类型要匹配。 2）操作数不能同为内存单元。</strong><br>常用用法：检查某位是否为1，e.g.:</p>
 <ul>
 <li><p>检验<code>ax</code>是否为负数</p>
-<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">test</span> <span class="built_in">ax</span>, <span class="number">8000h</span></div><div class="line"><span class="keyword">jne</span> l  <span class="comment">; 不是负数则跳转</span></div><div class="line"><span class="string">```</span> </div><div class="line"></div><div class="line">  * 检验<span class="string">`ax`</span>是否为奇数</div><div class="line"><span class="string">```</span>x86asm</div><div class="line"><span class="keyword">test</span> <span class="built_in">ax</span>, <span class="number">1</span></div><div class="line"><span class="keyword">jne</span> l  <span class="comment">; 不是奇数则跳转</span></div></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">test</span> <span class="built_in">ax</span>, <span class="number">8000h</span></div><div class="line"><span class="keyword">jne</span> l  <span class="comment">; 不是负数则跳转</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>检验<code>ax</code>是否为奇数</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">test</span> <span class="built_in">ax</span>, <span class="number">1</span></div><div class="line"><span class="keyword">jne</span> l  <span class="comment">; 不是奇数则跳转</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>判断大小写</p>
 <figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">test</span> <span class="built_in">ax</span>, <span class="number">00100000b</span></div><div class="line"><span class="symbol">jz  label</span>1  <span class="comment">; 大写则跳转</span></div><div class="line"><span class="keyword">jmp</span> lable2  <span class="comment">; 小写则跳转</span></div></pre></td></tr></table></figure>
