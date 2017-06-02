@@ -110,7 +110,7 @@
 <meta property="og:site_name" content="Alinshans&#39;s world">
 <meta property="og:description" content="8086汇编常用的指令，从功能上分，一般分为：  数据传送指令 算术指令 逻辑指令 控制转移指令 标志处理指令 串处理指令  这些指令书上网上都有很多介绍，我就不会全部详细介绍，只挑一些常用的、需要注意的重点说明。 数据传送指令1. mov（传送）1mov dst, src 有以下需要注意的地方：  dst 和 src 类型必须匹配，无法确定类型时要显式指定类型。 123456mov ax, 1">
 <meta property="og:image" content="http://i4.buimg.com/594413/b0fb64f5450412e0.png">
-<meta property="og:updated_time" content="2017-06-01T14:46:26.759Z">
+<meta property="og:updated_time" content="2017-06-02T01:51:36.400Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="8086汇编：指令系统（上）">
 <meta name="twitter:description" content="8086汇编常用的指令，从功能上分，一般分为：  数据传送指令 算术指令 逻辑指令 控制转移指令 标志处理指令 串处理指令  这些指令书上网上都有很多介绍，我就不会全部详细介绍，只挑一些常用的、需要注意的重点说明。 数据传送指令1. mov（传送）1mov dst, src 有以下需要注意的地方：  dst 和 src 类型必须匹配，无法确定类型时要显式指定类型。 123456mov ax, 1">
@@ -369,7 +369,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-02T09:51:36+08:00">
+                2017-06-02
+              </time>
             
           </span>
 
@@ -508,7 +520,7 @@
 <h4 id="5-cmp（比较）"><a href="#5-cmp（比较）" class="headerlink" title="5. cmp（比较）"></a>5. cmp（比较）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cmp</span> reg/mem, reg/mem/idata</div></pre></td></tr></table></figure>
 <p>作用：根据 <code>dst</code> - <code>src</code> 的结果去影响标志位。<br><strong>注意：同 <code>add</code>。</strong></p>
 <h3 id="乘法指令"><a href="#乘法指令" class="headerlink" title="乘法指令"></a>乘法指令</h3><h4 id="1-mul（无符号乘法）"><a href="#1-mul（无符号乘法）" class="headerlink" title="1. mul（无符号乘法）"></a>1. mul（无符号乘法）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">mul</span> reg/mem</div></pre></td></tr></table></figure>
-<p>作用：1）当操作数为8位时，乘数默认保存在 <code>al</code> 中，结果保存在 <code>ax</code> 中，<code>ax</code> = <code>al</code> <em> <code>src</code>。2）当操作数为16位时，乘数默认保存在 <code>ax</code> 中，结果的高16位保存在 <code>dx</code> 中，低16位保存在 <code>dx</code> 中，<code>dx</code>:<code>ax</code> = <code>ax</code> </em> <code>src</code>。</p>
+<p>作用：1）当操作数为8位时，乘数默认保存在 <code>al</code> 中，结果保存在 <code>ax</code> 中，<code>ax</code> = <code>al</code> × <code>src</code>。2）当操作数为16位时，乘数默认保存在 <code>ax</code> 中，结果的高16位保存在 <code>dx</code> 中，低16位保存在 <code>dx</code> 中，<code>dx</code> : <code>ax</code> = <code>ax</code> × <code>src</code>。</p>
 <h4 id="2-imul（带符号乘法）"><a href="#2-imul（带符号乘法）" class="headerlink" title="2. imul（带符号乘法）"></a>2. imul（带符号乘法）</h4><p>同 <code>mul</code>。</p>
 <h3 id="除法指令"><a href="#除法指令" class="headerlink" title="除法指令"></a>除法指令</h3><h4 id="1-div（无符号除法）"><a href="#1-div（无符号除法）" class="headerlink" title="1. div（无符号除法）"></a>1. div（无符号除法）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">div</span> reg/mem</div></pre></td></tr></table></figure>
 <p>作用：1）当操作数为8位时，被除数默认保存在 <code>ax</code> 中，结果商保存在 <code>al</code> 中，余数保存在 <code>ah</code> 中。2）当操作数为16位时，被除数默认高16位保存在 <code>dx</code> 中，低16位保存在 <code>ax</code> 中，结果商保存在 <code>ax</code> 中，余数保存在 <code>dx</code> 中。</p>

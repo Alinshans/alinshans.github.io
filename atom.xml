@@ -375,7 +375,7 @@
     <link href="http://www.alinshans.com/2017/05/30/p1705301/"/>
     <id>http://www.alinshans.com/2017/05/30/p1705301/</id>
     <published>2017-05-30T09:40:04.000Z</published>
-    <updated>2017-06-01T14:46:26.759Z</updated>
+    <updated>2017-06-02T01:51:36.400Z</updated>
     
     <content type="html"><![CDATA[<p>8086汇编常用的指令，从功能上分，一般分为：</p>
 <ul>
@@ -449,7 +449,7 @@
 <h4 id="5-cmp（比较）"><a href="#5-cmp（比较）" class="headerlink" title="5. cmp（比较）"></a>5. cmp（比较）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cmp</span> reg/mem, reg/mem/idata</div></pre></td></tr></table></figure>
 <p>作用：根据 <code>dst</code> - <code>src</code> 的结果去影响标志位。<br><strong>注意：同 <code>add</code>。</strong></p>
 <h3 id="乘法指令"><a href="#乘法指令" class="headerlink" title="乘法指令"></a>乘法指令</h3><h4 id="1-mul（无符号乘法）"><a href="#1-mul（无符号乘法）" class="headerlink" title="1. mul（无符号乘法）"></a>1. mul（无符号乘法）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">mul</span> reg/mem</div></pre></td></tr></table></figure>
-<p>作用：1）当操作数为8位时，乘数默认保存在 <code>al</code> 中，结果保存在 <code>ax</code> 中，<code>ax</code> = <code>al</code> <em> <code>src</code>。2）当操作数为16位时，乘数默认保存在 <code>ax</code> 中，结果的高16位保存在 <code>dx</code> 中，低16位保存在 <code>dx</code> 中，<code>dx</code>:<code>ax</code> = <code>ax</code> </em> <code>src</code>。</p>
+<p>作用：1）当操作数为8位时，乘数默认保存在 <code>al</code> 中，结果保存在 <code>ax</code> 中，<code>ax</code> = <code>al</code> × <code>src</code>。2）当操作数为16位时，乘数默认保存在 <code>ax</code> 中，结果的高16位保存在 <code>dx</code> 中，低16位保存在 <code>dx</code> 中，<code>dx</code> : <code>ax</code> = <code>ax</code> × <code>src</code>。</p>
 <h4 id="2-imul（带符号乘法）"><a href="#2-imul（带符号乘法）" class="headerlink" title="2. imul（带符号乘法）"></a>2. imul（带符号乘法）</h4><p>同 <code>mul</code>。</p>
 <h3 id="除法指令"><a href="#除法指令" class="headerlink" title="除法指令"></a>除法指令</h3><h4 id="1-div（无符号除法）"><a href="#1-div（无符号除法）" class="headerlink" title="1. div（无符号除法）"></a>1. div（无符号除法）</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">div</span> reg/mem</div></pre></td></tr></table></figure>
 <p>作用：1）当操作数为8位时，被除数默认保存在 <code>ax</code> 中，结果商保存在 <code>al</code> 中，余数保存在 <code>ah</code> 中。2）当操作数为16位时，被除数默认高16位保存在 <code>dx</code> 中，低16位保存在 <code>ax</code> 中，结果商保存在 <code>ax</code> 中，余数保存在 <code>dx</code> 中。</p>
