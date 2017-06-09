@@ -110,7 +110,7 @@
 <meta property="og:site_name" content="Alinshans&#39;s world">
 <meta property="og:description" content="8086汇编常用的指令，从功能上分，一般分为：  数据传送指令 算术指令 逻辑指令 控制转移指令 标志处理指令 串处理指令  这些指令书上网上都有很多介绍，我就不会全部详细介绍，只挑一些常用的、需要注意的重点说明。 数据传送指令1. mov（传送）1mov dst, src 有以下需要注意的地方：  dst 和 src 类型必须匹配，无法确定类型时要显式指定类型。 123456mov ax, 1">
 <meta property="og:image" content="http://i4.buimg.com/594413/b0fb64f5450412e0.png">
-<meta property="og:updated_time" content="2017-06-02T01:51:36.400Z">
+<meta property="og:updated_time" content="2017-06-09T14:02:01.829Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="8086汇编：指令系统（上）">
 <meta name="twitter:description" content="8086汇编常用的指令，从功能上分，一般分为：  数据传送指令 算术指令 逻辑指令 控制转移指令 标志处理指令 串处理指令  这些指令书上网上都有很多介绍，我就不会全部详细介绍，只挑一些常用的、需要注意的重点说明。 数据传送指令1. mov（传送）1mov dst, src 有以下需要注意的地方：  dst 和 src 类型必须匹配，无法确定类型时要显式指定类型。 123456mov ax, 1">
@@ -379,8 +379,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-06-02T09:51:36+08:00">
-                2017-06-02
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-09T22:02:01+08:00">
+                2017-06-09
               </time>
             
           </span>
@@ -531,10 +531,10 @@
 <p>作用：将两个操作数相与（<code>and</code>）后的结果去影响标志位，若结果为0，则<code>zf</code>=1，否则<code>zf</code>=0。<br><strong>注意：1） 两个操作数类型要匹配。 2）操作数不能同为内存单元。</strong><br>常用用法：检查某位是否为1，e.g.:</p>
 <ul>
 <li><p>检验<code>ax</code>是否为负数</p>
-<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">test</span> <span class="built_in">ax</span>, <span class="number">8000h</span></div><div class="line"><span class="keyword">jne</span> l  <span class="comment">; 不是负数则跳转</span></div></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">test</span> <span class="built_in">ax</span>, <span class="number">8000h</span></div><div class="line"><span class="keyword">jnz</span> l  <span class="comment">; 是负数则跳转</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>检验<code>ax</code>是否为奇数</p>
-<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">test</span> <span class="built_in">ax</span>, <span class="number">1</span></div><div class="line"><span class="keyword">jne</span> l  <span class="comment">; 不是奇数则跳转</span></div></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">test</span> <span class="built_in">ax</span>, <span class="number">1</span></div><div class="line"><span class="keyword">jnz</span> l  <span class="comment">; 是奇数则跳转</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>判断大小写</p>
 <figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">test</span> <span class="built_in">ax</span>, <span class="number">00100000b</span></div><div class="line"><span class="symbol">jz  label</span>1  <span class="comment">; 大写则跳转</span></div><div class="line"><span class="keyword">jmp</span> lable2  <span class="comment">; 小写则跳转</span></div></pre></td></tr></table></figure>
