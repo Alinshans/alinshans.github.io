@@ -102,21 +102,21 @@
 
 
 
-<meta name="description" content="事情起因昨天在花了一些时间给我的 MyTinySTL 重新弄了一套构建方案，主要是写了一个 CMakeLists.txt（原来是写了一个简单的 Makefile）。现在呢，在 linux/osx 下，就通过 cmake 来构建生成对应的 Makefile，然后 make；在 Windows 下，就直接使用 vs 的 .sln 配置文件啦。具体可以看项目说明。 问题浮现然后修改完持续集成的脚本配置之">
+<meta name="description" content="事情起因昨天花了一些时间给我的 MyTinySTL 重新弄了一套构建方案，主要是写了一个 CMakeLists.txt（原来是写了一个简单的 Makefile）。现在呢，在 linux/osx 下，就通过 cmake 来构建生成对应的 Makefile，然后再 make；在 Windows 下，就直接使用 vs 的 .sln 配置文件。具体可以看项目说明。 问题浮现然后修改完持续集成的脚本配置之后">
 <meta name="keywords" content="C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++之那些年踩过的坑(四)">
 <meta property="og:url" content="http://www.alinshans.com/2017/06/10/p1706101/index.html">
 <meta property="og:site_name" content="Alinshans&#39;s world">
-<meta property="og:description" content="事情起因昨天在花了一些时间给我的 MyTinySTL 重新弄了一套构建方案，主要是写了一个 CMakeLists.txt（原来是写了一个简单的 Makefile）。现在呢，在 linux/osx 下，就通过 cmake 来构建生成对应的 Makefile，然后 make；在 Windows 下，就直接使用 vs 的 .sln 配置文件啦。具体可以看项目说明。 问题浮现然后修改完持续集成的脚本配置之">
+<meta property="og:description" content="事情起因昨天花了一些时间给我的 MyTinySTL 重新弄了一套构建方案，主要是写了一个 CMakeLists.txt（原来是写了一个简单的 Makefile）。现在呢，在 linux/osx 下，就通过 cmake 来构建生成对应的 Makefile，然后再 make；在 Windows 下，就直接使用 vs 的 .sln 配置文件。具体可以看项目说明。 问题浮现然后修改完持续集成的脚本配置之后">
 <meta property="og:image" content="http://i2.muimg.com/594413/04c6fcad6f5a5b6bs.png">
 <meta property="og:image" content="http://i2.muimg.com/594413/ce1871e70d13334fs.png">
 <meta property="og:image" content="http://i2.muimg.com/594413/e20d3654bb3bee12s.png">
 <meta property="og:image" content="http://i2.muimg.com/594413/2d06f684a59f5cdes.png">
-<meta property="og:updated_time" content="2017-06-10T14:46:16.328Z">
+<meta property="og:updated_time" content="2017-06-10T15:16:34.742Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++之那些年踩过的坑(四)">
-<meta name="twitter:description" content="事情起因昨天在花了一些时间给我的 MyTinySTL 重新弄了一套构建方案，主要是写了一个 CMakeLists.txt（原来是写了一个简单的 Makefile）。现在呢，在 linux/osx 下，就通过 cmake 来构建生成对应的 Makefile，然后 make；在 Windows 下，就直接使用 vs 的 .sln 配置文件啦。具体可以看项目说明。 问题浮现然后修改完持续集成的脚本配置之">
+<meta name="twitter:description" content="事情起因昨天花了一些时间给我的 MyTinySTL 重新弄了一套构建方案，主要是写了一个 CMakeLists.txt（原来是写了一个简单的 Makefile）。现在呢，在 linux/osx 下，就通过 cmake 来构建生成对应的 Makefile，然后再 make；在 Windows 下，就直接使用 vs 的 .sln 配置文件。具体可以看项目说明。 问题浮现然后修改完持续集成的脚本配置之后">
 <meta name="twitter:image" content="http://i2.muimg.com/594413/04c6fcad6f5a5b6bs.png">
 
 
@@ -382,7 +382,7 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-06-10T22:46:16+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-10T23:16:34+08:00">
                 2017-06-10
               </time>
             
@@ -451,8 +451,8 @@
       
 
       
-        <h3 id="事情起因"><a href="#事情起因" class="headerlink" title="事情起因"></a>事情起因</h3><p>昨天在花了一些时间给我的 <a href="https://github.com/Alinshans/MyTinySTL" target="_blank" rel="external">MyTinySTL</a> 重新弄了一套构建方案，主要是写了一个 <code>CMakeLists.txt</code>（原来是写了一个简单的 <code>Makefile</code>）。现在呢，在 linux/osx 下，就通过 <code>cmake</code> 来构建生成对应的 <code>Makefile</code>，然后 <code>make</code>；在 Windows 下，就直接使用 <code>vs</code> 的 <code>.sln</code> 配置文件啦。具体可以看项目说明。</p>
-<h3 id="问题浮现"><a href="#问题浮现" class="headerlink" title="问题浮现"></a>问题浮现</h3><p>然后修改完持续集成的脚本配置之后，却发现了一个奇怪的问题：<strong>在 linux 下的构建全部失败了！</strong><br><img src="http://i2.muimg.com/594413/04c6fcad6f5a5b6bs.png" alt="build message"><br>打开查看信息，基本都是这样的错误提示：<br>gcc的：<br><img src="http://i2.muimg.com/594413/ce1871e70d13334fs.png" alt="build message"><br>clang的：<br><img src="http://i2.muimg.com/594413/e20d3654bb3bee12s.png" alt="build message"><br>都是在 <code>&lt;cstring&gt;</code> 这个文件出错了，可这是标准库文件，怎么会出错呢？而且错误信息也很奇怪。我又去代码去查找有没有什么可能出错的地方，很久也没找到。然后跟别人请教了一下，某大神直击要害地问我：<strong>“你是不是有一个 string.h 文件？”</strong></p>
+        <h3 id="事情起因"><a href="#事情起因" class="headerlink" title="事情起因"></a>事情起因</h3><p>昨天花了一些时间给我的 <a href="https://github.com/Alinshans/MyTinySTL" target="_blank" rel="external">MyTinySTL</a> 重新弄了一套构建方案，主要是写了一个 <code>CMakeLists.txt</code>（原来是写了一个简单的 <code>Makefile</code>）。现在呢，在 linux/osx 下，就通过 <code>cmake</code> 来构建生成对应的 <code>Makefile</code>，然后再 <code>make</code>；在 Windows 下，就直接使用 <code>vs</code> 的 <code>.sln</code> 配置文件。具体可以看项目说明。</p>
+<h3 id="问题浮现"><a href="#问题浮现" class="headerlink" title="问题浮现"></a>问题浮现</h3><p>然后修改完持续集成的脚本配置之后，却出现了一个奇怪的问题：<strong>在 linux 下的构建全部失败了！</strong><br><img src="http://i2.muimg.com/594413/04c6fcad6f5a5b6bs.png" alt="build message"><br>打开查看里面的信息，基本都是这样的错误提示：<br>gcc提示是这样的：<br><img src="http://i2.muimg.com/594413/ce1871e70d13334fs.png" alt="build message"><br>clang提示是这样的：<br><img src="http://i2.muimg.com/594413/e20d3654bb3bee12s.png" alt="build message"><br>都是在 <code>&lt;cstring&gt;</code> 这个文件出错了，可这是标准库文件，怎么会出错呢？而且错误信息也很奇怪。我又去找代码查找有没有什么可能出错的地方，很久也没找到。然后跟别人请教了一下，某大神直击要害地问我：<strong>“你是不是有一个 string.h 文件？”</strong></p>
 <h3 id="找到缘由"><a href="#找到缘由" class="headerlink" title="找到缘由"></a>找到缘由</h3><p><a href="http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1570.pdf" target="_blank" rel="external"><code>c11</code></a> 中有这样一段话：<br><img src="http://i2.muimg.com/594413/2d06f684a59f5cdes.png" alt="c11 standard headers"><br>注意框出来的地方：</p>
 <blockquote>
 <p>If a ﬁle with the same name as one of the above &lt; and &gt; delimited sequences, not provided as part of the implementation, is placed in any of the standard places that are searched for included source ﬁles, the behavior is undeﬁned.</p>
