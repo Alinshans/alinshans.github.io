@@ -84,7 +84,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hello world" />
+  <meta name="keywords" content="opencv,c++,visual studio," />
 
 
 
@@ -102,16 +102,24 @@
 
 
 
-<meta name="description" content="为爱的人，创造Ta爱的世界">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://www.alinshans.com/categories/index.html">
+<meta name="description" content="OpenCV 是一个计算机视觉库，它提供了很多图像处理、机器学习等通用的算法，而且提供了 C++, Python, Ruby 等语言的接口。我们可以在 官网 上查看你想知道的信息。现在最新版本为 3.2.0，用过之后才感觉 OpenCV 的强大啊。 环境搭建很多人想用 OpenCV，但或许就栽到了环境搭建这第一步了，但我觉得现在这个版本搭建起来还是挺方便的，在官网上有各种系统和编译器的搭建指导（点">
+<meta name="keywords" content="opencv,c++,visual studio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenCV 笔记（零）：启程">
+<meta property="og:url" content="http://www.alinshans.com/2017/07/06/p1707061/index.html">
 <meta property="og:site_name" content="Alinshans&#39;s world">
-<meta property="og:description" content="为爱的人，创造Ta爱的世界">
-<meta property="og:updated_time" content="2017-05-23T09:46:03.471Z">
+<meta property="og:description" content="OpenCV 是一个计算机视觉库，它提供了很多图像处理、机器学习等通用的算法，而且提供了 C++, Python, Ruby 等语言的接口。我们可以在 官网 上查看你想知道的信息。现在最新版本为 3.2.0，用过之后才感觉 OpenCV 的强大啊。 环境搭建很多人想用 OpenCV，但或许就栽到了环境搭建这第一步了，但我觉得现在这个版本搭建起来还是挺方便的，在官网上有各种系统和编译器的搭建指导（点">
+<meta property="og:image" content="http://i2.kiimg.com/594413/8b09c6dc35e0f733.png">
+<meta property="og:image" content="http://i2.kiimg.com/594413/1412277f4c795399.png">
+<meta property="og:image" content="http://i1.buimg.com/594413/9604e10c289bc72f.png">
+<meta property="og:image" content="http://i1.buimg.com/594413/135dcd48a87d3ed6.png">
+<meta property="og:image" content="http://i1.buimg.com/594413/6cff22e25822ec5a.png">
+<meta property="og:image" content="http://i4.piimg.com/594413/7cdc138c2e1d8c48.png">
+<meta property="og:updated_time" content="2017-07-06T07:01:29.551Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
-<meta name="twitter:description" content="为爱的人，创造Ta爱的世界">
+<meta name="twitter:title" content="OpenCV 笔记（零）：启程">
+<meta name="twitter:description" content="OpenCV 是一个计算机视觉库，它提供了很多图像处理、机器学习等通用的算法，而且提供了 C++, Python, Ruby 等语言的接口。我们可以在 官网 上查看你想知道的信息。现在最新版本为 3.2.0，用过之后才感觉 OpenCV 的强大啊。 环境搭建很多人想用 OpenCV，但或许就栽到了环境搭建这第一步了，但我觉得现在这个版本搭建起来还是挺方便的，在官网上有各种系统和编译器的搭建指导（点">
+<meta name="twitter:image" content="http://i2.kiimg.com/594413/8b09c6dc35e0f733.png">
 
 
 
@@ -139,13 +147,13 @@
 
 
 
-  <link rel="canonical" href="http://www.alinshans.com/categories/"/>
+  <link rel="canonical" href="http://www.alinshans.com/2017/07/06/p1707061/"/>
 
 
 
 
 
-  <title>分类 | Alinshans's world</title>
+  <title>OpenCV 笔记（零）：启程 | Alinshans's world</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -171,7 +179,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
 <a href="https://github.com/Alinshans"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
@@ -322,25 +330,296 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline">分类</h1>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.alinshans.com/2017/07/06/p1707061/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="刘俊延">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alinshans's world">
+    </span>
 
     
-    
-      <div class="category-all-page">
-        <div class="category-all-title">
-            目前共计 4 个分类
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">OpenCV 笔记（零）：启程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-06T00:15:07+08:00">
+                2017-07-06
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-07-06T15:01:29+08:00">
+                2017-07-06
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/opencv/" itemprop="url" rel="index">
+                    <span itemprop="name">opencv</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/06/p1707061/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/07/06/p1707061/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
         </div>
-        <div class="category-all">
-          <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-之那些年踩过的坑/">C++之那些年踩过的坑</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/opencv/">opencv</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/汇编/">汇编</a><span class="category-list-count">5</span></li></ul>
-        </div>
-      </div>
+      </header>
     
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><code>OpenCV</code> 是一个计算机视觉库，它提供了很多图像处理、机器学习等通用的算法，而且提供了 <code>C++</code>, <code>Python</code>, <code>Ruby</code> 等语言的接口。我们可以在 <a href="http://opencv.org/" target="_blank" rel="external">官网</a> 上查看你想知道的信息。现在最新版本为 3.2.0，用过之后才感觉 <code>OpenCV</code> 的强大啊。</p>
+<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><p>很多人想用 <code>OpenCV</code>，但或许就栽到了环境搭建这第一步了，但我觉得现在这个版本搭建起来还是挺方便的，在官网上有各种系统和编译器的搭建指导（<a href="http://docs.opencv.org/master/df/d65/tutorial_table_of_content_introduction.html" target="_blank" rel="external">点这里</a>）。我使用的是 Windows + VS2017，主要参考了 <a href="http://docs.opencv.org/master/d3/d52/tutorial_windows_install.html" target="_blank" rel="external">这篇教程</a> 和 <a href="http://docs.opencv.org/master/d6/d8a/tutorial_windows_visual_studio_Opencv.html" target="_blank" rel="external">这篇教程</a>。</p>
+<p>首先我们可以在 <a href="http://opencv.org/releases.html" target="_blank" rel="external">RELEASES</a> 页面下载最新的版本，我下载的是 <a href="https://sourceforge.net/projects/opencvlibrary/files/opencv-win/3.2.0/opencv-3.2.0-vc14.exe/download" target="_blank" rel="external">Win pack</a>。下载完成后，我们打开它解压到一个目录:<br><img src="http://i2.kiimg.com/594413/8b09c6dc35e0f733.png" alt="opencv_extract"></p>
+<p>比如我解压到 <code>H:\</code> ,那么在 <code>H:\</code> 目录下就会有个 <code>opencv</code> 文件夹，我们打开它可以看到里面有一个 <code>build</code> 文件夹，里面是已经构建好的各种东西。<code>build</code> 文件夹里面的 <code>include\opencv2</code> 就是 <code>OpenCV</code> 的各种头文件。还有个 <code>x64\vc14</code>，这是给 <code>vs2015</code>（或以上）在 <code>x64</code> 平台上使用的各种东西（<code>.dll</code>,<code>.lib</code>文件等），我们会注意到，有一些文件非常相似，就是结尾有没有 <code>d</code> 的差别，如 <code>opencv_world320.lib</code> 和 <code>opencv_world320d.lib</code>，要注意，以 <code>d</code> 结尾的，是给 <code>Debug</code> 模式使用的，没有 <code>d</code> 结尾的则是给 <code>Release</code> 模式使用的，要注意这个区别，下面会用到。</p>
+<p>接下来就是配置环境变量，可以参考 <a href="http://docs.opencv.org/master/d3/d52/tutorial_windows_install.html#tutorial_windows_install_path" target="_blank" rel="external">这个部分</a> 和 <a href="http://docs.opencv.org/master/d6/d8a/tutorial_windows_visual_studio_Opencv.html" target="_blank" rel="external">这个部分</a>，当然如果你不想看，我可以简单的告诉你要做的事情：</p>
+<ol>
+<li><p>先添加一个环境变量指定到 <code>OpenCV</code> 的目录<br>这里不一定要按上面教程上的来，例如我是添加了一个 <code>OpencvDir</code> 变量，值为 <code>H:\opencv\build</code>，为什么要加这个环境变量呢？其实也可以用绝对路径，添加这个环境变量的目的是当你 <code>opencv</code> 这个目录路径变化时，不用全部与之相关的东西都要改，只需要改这个环境变量的值就可以了。<br><img src="http://i2.kiimg.com/594413/1412277f4c795399.png" alt="environment variable"></p>
+</li>
+<li><p>把 <code>opencv\build\bin</code> 路径加入到系统的 <code>Path</code> 中<br>这是因为要使用到里面的动态库（<code>.dll</code>文件）</p>
+</li>
+<li><p>配置 <code>vs</code> 项目属性<br>打开 <code>vs</code>，新建一个项目，我们先把解决方案配置为 <code>Debug|x64</code>。要使用 <code>opencv</code>，简单来说就是要解决两件事：</p>
+</li>
+</ol>
+<ul>
+<li>告诉编译器在哪里找到 <code>opencv</code> 库</li>
+<li>告诉链接器在哪里找到 <code>opencv</code> 库里面各种函数与数据结构的原型<br>具体要做的有三件事：<br>打开项目属性，在 <code>C/C++</code> -&gt; <code>常规(General)</code> 选项卡中，编辑 <code>附加包含目录(Additional Include Directories)</code>，加入 <code>opencv\build\include</code> 这个目录，对应我自己的环境变量，我就加入 <code>$(OpencvDir)\include</code> 。<br><img src="http://i1.buimg.com/594413/9604e10c289bc72f.png" alt="Additional Include Directories"><br>打开 <code>链接器(Linker)</code> -&gt; <code>常规(General)</code> 选项卡，编辑 <code>附加库目录(Additional Library Directories）</code>，加入 <code>opencv\build\x64\vc14\lib</code> 这个目录，对应我自己的环境变量，我加入的是 <code>$(OpencvDir)\x64\vc14\lib</code> 。<br><img src="http://i1.buimg.com/594413/135dcd48a87d3ed6.png" alt="Additional Library Directories"><br>打开 <code>链接器(Linker)</code> -&gt; <code>输入(Input)</code> 选项卡，编辑 <code>附加依赖项(Additional Dependencies)</code>，然后把 <code>x64\vc14\lib</code> 里面的 <code>opencv_world320d.lib</code> 这个文件加入进去，因为我们配置的是 <code>Debug</code> 模式，就加入对应的这个 <code>.lib</code> 文件。<br><img src="http://i1.buimg.com/594413/6cff22e25822ec5a.png" alt="Additional Dependencies"></li>
+</ul>
+<p>至此，<code>OpenCV</code> 在 <code>vs</code> 上的环境算是搭建好啦！有一些需要注意的点：<br><strong>※ 如果在打开 <code>vs</code> 的时候去修改了环境变量，<code>vs</code> 不会自动更新，需要重启 <code>vs</code>。</strong></p>
+<h3 id="使用-OpenCV"><a href="#使用-OpenCV" class="headerlink" title="使用 OpenCV"></a>使用 <code>OpenCV</code></h3><p>我们马上来运行一个简单的例子吧：显示图片。<br>首先，找一张图片放到跟 <code>main()</code> 函数同级的目录下，然后输入以下这段代码：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/opencv.hpp&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cv;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// 把下面的 1.jpg 改成自己的图片的名称</span></div><div class="line">    Mat img = imread(<span class="string">"1.jpg"</span>);</div><div class="line">    imshow(<span class="string">"图片"</span>, img);</div><div class="line">    waitKey();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>按下 Ctrl + F5 运行，成功后你就能看到这样的画面啦！<br><img src="http://i4.piimg.com/594413/7cdc138c2e1d8c48.png" alt="Demo"></p>
+<h3 id="学习-OpenCV"><a href="#学习-OpenCV" class="headerlink" title="学习 OpenCV"></a>学习 <code>OpenCV</code></h3><p>刚搭建好环境，我就把 <a href="http://docs.opencv.org/master/d9/df8/tutorial_root.html" target="_blank" rel="external">Tutorials</a> 里的 <a href="http://docs.opencv.org/master/d7/da8/tutorial_table_of_content_imgproc.html" target="_blank" rel="external">Image Processing</a> 部分基本都跑了遍，包括平滑处理、形态变换、二值化、加边框等等，还是挺好玩，也挺好奇的。</p>
+<p>耐心探索，<code>OpenCV</code> 还有非常多强大的功能，我主要会通过以下三个网站学习：</p>
+<ul>
+<li>官方网站：<a href="http://opencv.org/" target="_blank" rel="external">http://opencv.org/</a></li>
+<li><code>OpenCV</code> 中文网：<a href="http://www.opencv.org.cn/" target="_blank" rel="external">http://www.opencv.org.cn/</a></li>
+<li><code>CSDN</code> <code>OpenCV</code> 知识库：<a href="http://lib.csdn.net/base/opencv" target="_blank" rel="external">http://lib.csdn.net/base/opencv</a></li>
+</ul>
+<p>可以开始尽情的玩耍啦 o(<em>￣▽￣</em>)ブ</p>
+
+      
+    </div>
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:16px;">-------------------------------- 全文完 <i class="fa fa-paw"></i> 感谢您的阅读 --------------------------------</div>
+    
+</div>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>「写的那么辛苦，连一块钱都不打赏吗/(ㄒoㄒ)/~~」</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat_pay.jpg" alt="刘俊延 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/ali_pay.jpg" alt="刘俊延 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      刘俊延
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://www.alinshans.com/2017/07/06/p1707061/" title="OpenCV 笔记（零）：启程">http://www.alinshans.com/2017/07/06/p1707061/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc/4.0/" rel="external nofollow" target="_blank">CC BY-NC 4.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/opencv/" rel="tag"><i class="fa fa-tag"></i> opencv</a>
+          
+            <a href="/tags/c/" rel="tag"><i class="fa fa-tag"></i> c++</a>
+          
+            <a href="/tags/visual-studio/" rel="tag"><i class="fa fa-tag"></i> visual studio</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/10/p1706101/" rel="next" title="C++之那些年踩过的坑(四)">
+                <i class="fa fa-chevron-left"></i> C++之那些年踩过的坑(四)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
   </div>
 
 
@@ -349,6 +628,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -368,8 +658,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -474,6 +773,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境搭建"><span class="nav-number">1.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-OpenCV"><span class="nav-number">2.</span> <span class="nav-text">使用 OpenCV</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习-OpenCV"><span class="nav-number">3.</span> <span class="nav-text">学习 OpenCV</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -596,6 +911,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
 
   
 
@@ -613,6 +932,18 @@
       <script id="dsq-count-scr" src="https://alinshans.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.alinshans.com/2017/07/06/p1707061/';
+          this.page.identifier = '2017/07/06/p1707061/';
+          this.page.title = 'OpenCV 笔记（零）：启程';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://alinshans.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
