@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.alinshans.com/"/>
-  <updated>2017-07-06T07:01:29.551Z</updated>
+  <updated>2017-07-06T07:06:03.027Z</updated>
   <id>http://www.alinshans.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.alinshans.com/2017/07/06/p1707061/"/>
     <id>http://www.alinshans.com/2017/07/06/p1707061/</id>
     <published>2017-07-05T16:15:07.000Z</published>
-    <updated>2017-07-06T07:01:29.551Z</updated>
+    <updated>2017-07-06T07:06:03.027Z</updated>
     
     <content type="html"><![CDATA[<p><code>OpenCV</code> 是一个计算机视觉库，它提供了很多图像处理、机器学习等通用的算法，而且提供了 <code>C++</code>, <code>Python</code>, <code>Ruby</code> 等语言的接口。我们可以在 <a href="http://opencv.org/" target="_blank" rel="external">官网</a> 上查看你想知道的信息。现在最新版本为 3.2.0，用过之后才感觉 <code>OpenCV</code> 的强大啊。</p>
 <h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><p>很多人想用 <code>OpenCV</code>，但或许就栽到了环境搭建这第一步了，但我觉得现在这个版本搭建起来还是挺方便的，在官网上有各种系统和编译器的搭建指导（<a href="http://docs.opencv.org/master/df/d65/tutorial_table_of_content_introduction.html" target="_blank" rel="external">点这里</a>）。我使用的是 Windows + VS2017，主要参考了 <a href="http://docs.opencv.org/master/d3/d52/tutorial_windows_install.html" target="_blank" rel="external">这篇教程</a> 和 <a href="http://docs.opencv.org/master/d6/d8a/tutorial_windows_visual_studio_Opencv.html" target="_blank" rel="external">这篇教程</a>。</p>
@@ -61,9 +61,9 @@
       <category term="opencv" scheme="http://www.alinshans.com/categories/opencv/"/>
     
     
-      <category term="opencv" scheme="http://www.alinshans.com/tags/opencv/"/>
+      <category term="C++" scheme="http://www.alinshans.com/tags/C/"/>
     
-      <category term="c++" scheme="http://www.alinshans.com/tags/c/"/>
+      <category term="opencv" scheme="http://www.alinshans.com/tags/opencv/"/>
     
       <category term="visual studio" scheme="http://www.alinshans.com/tags/visual-studio/"/>
     
