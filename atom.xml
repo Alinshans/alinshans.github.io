@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.alinshans.com/"/>
-  <updated>2017-07-10T08:33:16.572Z</updated>
+  <updated>2017-07-28T17:03:41.723Z</updated>
   <id>http://www.alinshans.com/</id>
   
   <author>
@@ -14,6 +14,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++之那些年踩过的坑（五）</title>
+    <link href="http://www.alinshans.com/2017/07/28/p1707281/"/>
+    <id>http://www.alinshans.com/2017/07/28/p1707281/</id>
+    <published>2017-07-28T10:56:34.000Z</published>
+    <updated>2017-07-28T17:03:41.723Z</updated>
+    
+    <content type="html"><![CDATA[<p>很久没有更新了。因为最近还在重构 <a href="https://github.com/Alinshans/MyTinySTL" target="_blank" rel="external">MyTinySTL</a>，过程还是挺艰辛的 =.= 重构了一遍 <a href="https://github.com/Alinshans/MyTinySTL/blob/master/MyTinySTL/rb_tree.h" target="_blank" rel="external">rb_tree</a>，整整看了几天代码，各种博客和 paper 才开始下得了手。结果好不容易把 <a href="https://github.com/Alinshans/MyTinySTL/blob/master/MyTinySTL/rb_tree.h" target="_blank" rel="external">rb_tree</a> 给重构完，又发现了 <a href="https://github.com/Alinshans/MyTinySTL/blob/master/MyTinySTL/deque.h" target="_blank" rel="external">deque</a> 出了内存管理的问题…又重构了一遍。</p>
+<p>看到以前写的代码，想推翻重来是很正常的。要么就是以前写得实在是太好了，不需要重构，代码清清楚楚，性能完全压榨。要么就是以前水平太低，现在看不下去。但前者的情况还是比较少的嘛。本来我写这个 <a href="https://github.com/Alinshans/MyTinySTL" target="_blank" rel="external">MyTinySTL</a>，只是拿来玩玩的，结果被喷不少，结果就是现在越来越接近标准库。。</p>
+<p>当然前面讲的这些都不是重点，而是我一直有一个错误的做法，而且还一直没发现。就是看我以前写的东西，会有很多函数，前面有两个下划线 <code>__</code>，比如私有成员函数、辅助函数等，比如以下一张选自曾经的 <code>deque</code>：<br><img src="http://i2.tiimg.com/594413/1c83b889bd53e9ac.png" alt="Code"><br>然后偶然间，被某大神看到，喷了一顿。因为<strong>这不是合法的行为</strong>，见 <a href="www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4659.pdf">n4659</a> 5.10.3 节：</p>
+<blockquote>
+<p>3 In addition, some identiﬁers are reserved for use by C++ implementations and shall not be used otherwise; no diagnostic is required.<br>(3.1) – Each identiﬁer that contains a double underscore __ or begins with an underscore followed by an uppercase letter is reserved to the implementation for any use.<br>(3.2) – Each identiﬁer that begins with an underscore is reserved to the implementation for use as a name in the global namespace. </p>
+</blockquote>
+<p><strong><code>__</code> 开头的，或者 <code>_</code>加一个大写字母为开头的，都是为编译器实现作保留的</strong>，反正我们这些凡人，要是不是做编译器的，那老老实实别用，否则后果自负。<br>其实我也是受了某本书的影响，所以才这么用的。现在慢慢长大了，就一点一点要把以前的东西改过来。要是有机会，再慢慢记录一下这个过程吧！<br>还要继续写 <strong>bug</strong>，早日挖出一个巨坑。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;很久没有更新了。因为最近还在重构 &lt;a href=&quot;https://github.com/Alinshans/MyTinySTL&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MyTinySTL&lt;/a&gt;，过程还是挺艰辛的 =.= 重构了一遍 &lt;a href
+    
+    </summary>
+    
+      <category term="C++之那些年踩过的坑" scheme="http://www.alinshans.com/categories/C-%E4%B9%8B%E9%82%A3%E4%BA%9B%E5%B9%B4%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/"/>
+    
+    
+      <category term="C++" scheme="http://www.alinshans.com/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>OpenCV 笔记（三）：验证码生成</title>
@@ -360,11 +389,11 @@
   </entry>
   
   <entry>
-    <title>C++之那些年踩过的坑(四)</title>
+    <title>C++之那些年踩过的坑（四）</title>
     <link href="http://www.alinshans.com/2017/06/10/p1706101/"/>
     <id>http://www.alinshans.com/2017/06/10/p1706101/</id>
     <published>2017-06-10T13:57:56.000Z</published>
-    <updated>2017-06-10T15:16:34.742Z</updated>
+    <updated>2017-07-28T17:03:34.155Z</updated>
     
     <content type="html"><![CDATA[<h3 id="事情起因"><a href="#事情起因" class="headerlink" title="事情起因"></a>事情起因</h3><p>昨天花了一些时间给我的 <a href="https://github.com/Alinshans/MyTinySTL" target="_blank" rel="external">MyTinySTL</a> 重新弄了一套构建方案，主要是写了一个 <code>CMakeLists.txt</code>（原来是写了一个简单的 <code>Makefile</code>）。现在呢，在 linux/osx 下，就通过 <code>cmake</code> 来构建生成对应的 <code>Makefile</code>，然后再 <code>make</code>；在 Windows 下，就直接使用 <code>vs</code> 的 <code>.sln</code> 配置文件。具体可以看项目说明。</p>
 <h3 id="问题浮现"><a href="#问题浮现" class="headerlink" title="问题浮现"></a>问题浮现</h3><p>然后修改完持续集成的脚本配置之后，却出现了一个奇怪的问题：<strong>在 linux 下的构建全部失败了！</strong><br><img src="http://i2.muimg.com/594413/04c6fcad6f5a5b6bs.png" alt="build message"><br>打开查看里面的信息，基本都是这样的错误提示：<br>gcc提示是这样的：<br><img src="http://i2.muimg.com/594413/ce1871e70d13334fs.png" alt="build message"><br>clang提示是这样的：<br><img src="http://i2.muimg.com/594413/e20d3654bb3bee12s.png" alt="build message"><br>都是在 <code>&lt;cstring&gt;</code> 这个文件出错了，可这是标准库文件，怎么会出错呢？而且错误信息也很奇怪。我又去找代码查找有没有什么可能出错的地方，很久也没找到。然后跟别人请教了一下，某大神直击要害地问我：<strong>“你是不是有一个 string.h 文件？”</strong></p>
@@ -1157,11 +1186,11 @@
   </entry>
   
   <entry>
-    <title>C++之那些年踩过的坑(二)</title>
+    <title>C++之那些年踩过的坑（二）</title>
     <link href="http://www.alinshans.com/2017/05/23/p1705231/"/>
     <id>http://www.alinshans.com/2017/05/23/p1705231/</id>
     <published>2017-05-23T02:31:42.000Z</published>
-    <updated>2017-05-28T03:37:34.609Z</updated>
+    <updated>2017-07-28T17:03:15.094Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p><em>注：本文来自于我的一篇博客 <a href="http://www.cnblogs.com/GodA/p/6554591.html" target="_blank" rel="external">http://www.cnblogs.com/GodA/p/6554591.html</a> ，修改而成。</em></p>
@@ -1281,11 +1310,11 @@
   </entry>
   
   <entry>
-    <title>C++之那些年踩过的坑(一)</title>
+    <title>C++之那些年踩过的坑（一）</title>
     <link href="http://www.alinshans.com/2017/05/22/p1705221/"/>
     <id>http://www.alinshans.com/2017/05/22/p1705221/</id>
     <published>2017-05-22T01:53:51.000Z</published>
-    <updated>2017-07-06T12:23:57.152Z</updated>
+    <updated>2017-07-28T17:03:07.529Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p><em>注：本文来自于我的一篇博客 <a href="http://www.cnblogs.com/GodA/p/6501505.html" target="_blank" rel="external">http://www.cnblogs.com/GodA/p/6501505.html</a> ，修改而成。</em></p>

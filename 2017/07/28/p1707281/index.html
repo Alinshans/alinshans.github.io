@@ -84,7 +84,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hello world" />
+  <meta name="keywords" content="C++," />
 
 
 
@@ -102,15 +102,19 @@
 
 
 
-<meta name="description" content="为爱的人，创造Ta爱的世界">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Alinshans&#39;s world">
-<meta property="og:url" content="http://www.alinshans.com/tags/opencv/index.html">
+<meta name="description" content="很久没有更新了。因为最近还在重构 MyTinySTL，过程还是挺艰辛的 =.= 重构了一遍 rb_tree，整整看了几天代码，各种博客和 paper 才开始下得了手。结果好不容易把 rb_tree 给重构完，又发现了 deque 出了内存管理的问题…又重构了一遍。 看到以前写的代码，想推翻重来是很正常的。要么就是以前写得实在是太好了，不需要重构，代码清清楚楚，性能完全压榨。要么就是以前水平太低，现">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++之那些年踩过的坑（五）">
+<meta property="og:url" content="http://www.alinshans.com/2017/07/28/p1707281/index.html">
 <meta property="og:site_name" content="Alinshans&#39;s world">
-<meta property="og:description" content="为爱的人，创造Ta爱的世界">
+<meta property="og:description" content="很久没有更新了。因为最近还在重构 MyTinySTL，过程还是挺艰辛的 =.= 重构了一遍 rb_tree，整整看了几天代码，各种博客和 paper 才开始下得了手。结果好不容易把 rb_tree 给重构完，又发现了 deque 出了内存管理的问题…又重构了一遍。 看到以前写的代码，想推翻重来是很正常的。要么就是以前写得实在是太好了，不需要重构，代码清清楚楚，性能完全压榨。要么就是以前水平太低，现">
+<meta property="og:image" content="http://i2.tiimg.com/594413/1c83b889bd53e9ac.png">
+<meta property="og:updated_time" content="2017-07-28T17:03:41.723Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Alinshans&#39;s world">
-<meta name="twitter:description" content="为爱的人，创造Ta爱的世界">
+<meta name="twitter:title" content="C++之那些年踩过的坑（五）">
+<meta name="twitter:description" content="很久没有更新了。因为最近还在重构 MyTinySTL，过程还是挺艰辛的 =.= 重构了一遍 rb_tree，整整看了几天代码，各种博客和 paper 才开始下得了手。结果好不容易把 rb_tree 给重构完，又发现了 deque 出了内存管理的问题…又重构了一遍。 看到以前写的代码，想推翻重来是很正常的。要么就是以前写得实在是太好了，不需要重构，代码清清楚楚，性能完全压榨。要么就是以前水平太低，现">
+<meta name="twitter:image" content="http://i2.tiimg.com/594413/1c83b889bd53e9ac.png">
 
 
 
@@ -138,13 +142,13 @@
 
 
 
-  <link rel="canonical" href="http://www.alinshans.com/tags/opencv/"/>
+  <link rel="canonical" href="http://www.alinshans.com/2017/07/28/p1707281/"/>
 
 
 
 
 
-  <title>标签: opencv | Alinshans's world</title>
+  <title>C++之那些年踩过的坑（五） | Alinshans's world</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -170,7 +174,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
 <a href="https://github.com/Alinshans"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
@@ -320,128 +324,273 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h1>opencv<small>标签</small>
-      </h1>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/07/10/p1707101/" itemprop="url">
-              
-                <span itemprop="name">OpenCV 笔记（三）：验证码生成</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-10T14:03:06+08:00"
-              content="2017-07-10" >
-          07-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/07/09/p1707091/" itemprop="url">
-              
-                <span itemprop="name">OpenCV 笔记（二）：Mat 类初探</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-09T11:08:55+08:00"
-              content="2017-07-09" >
-          07-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/07/06/p1707062/" itemprop="url">
-              
-                <span itemprop="name">OpenCV 笔记（一）：图像与视频的输入输出</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-06T17:19:48+08:00"
-              content="2017-07-06" >
-          07-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/07/06/p1707061/" itemprop="url">
-              
-                <span itemprop="name">OpenCV 笔记（零）：启程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-07-06T00:15:07+08:00"
-              content="2017-07-06" >
-          07-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.alinshans.com/2017/07/28/p1707281/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="刘俊延">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alinshans's world">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++之那些年踩过的坑（五）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-28T18:56:34+08:00">
+                2017-07-28
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-07-29T01:03:41+08:00">
+                2017-07-29
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-之那些年踩过的坑/" itemprop="url" rel="index">
+                    <span itemprop="name">C++之那些年踩过的坑</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/28/p1707281/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/07/28/p1707281/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>很久没有更新了。因为最近还在重构 <a href="https://github.com/Alinshans/MyTinySTL" target="_blank" rel="external">MyTinySTL</a>，过程还是挺艰辛的 =.= 重构了一遍 <a href="https://github.com/Alinshans/MyTinySTL/blob/master/MyTinySTL/rb_tree.h" target="_blank" rel="external">rb_tree</a>，整整看了几天代码，各种博客和 paper 才开始下得了手。结果好不容易把 <a href="https://github.com/Alinshans/MyTinySTL/blob/master/MyTinySTL/rb_tree.h" target="_blank" rel="external">rb_tree</a> 给重构完，又发现了 <a href="https://github.com/Alinshans/MyTinySTL/blob/master/MyTinySTL/deque.h" target="_blank" rel="external">deque</a> 出了内存管理的问题…又重构了一遍。</p>
+<p>看到以前写的代码，想推翻重来是很正常的。要么就是以前写得实在是太好了，不需要重构，代码清清楚楚，性能完全压榨。要么就是以前水平太低，现在看不下去。但前者的情况还是比较少的嘛。本来我写这个 <a href="https://github.com/Alinshans/MyTinySTL" target="_blank" rel="external">MyTinySTL</a>，只是拿来玩玩的，结果被喷不少，结果就是现在越来越接近标准库。。</p>
+<p>当然前面讲的这些都不是重点，而是我一直有一个错误的做法，而且还一直没发现。就是看我以前写的东西，会有很多函数，前面有两个下划线 <code>__</code>，比如私有成员函数、辅助函数等，比如以下一张选自曾经的 <code>deque</code>：<br><img src="http://i2.tiimg.com/594413/1c83b889bd53e9ac.png" alt="Code"><br>然后偶然间，被某大神看到，喷了一顿。因为<strong>这不是合法的行为</strong>，见 <a href="www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4659.pdf">n4659</a> 5.10.3 节：</p>
+<blockquote>
+<p>3 In addition, some identiﬁers are reserved for use by C++ implementations and shall not be used otherwise; no diagnostic is required.<br>(3.1) – Each identiﬁer that contains a double underscore __ or begins with an underscore followed by an uppercase letter is reserved to the implementation for any use.<br>(3.2) – Each identiﬁer that begins with an underscore is reserved to the implementation for use as a name in the global namespace. </p>
+</blockquote>
+<p><strong><code>__</code> 开头的，或者 <code>_</code>加一个大写字母为开头的，都是为编译器实现作保留的</strong>，反正我们这些凡人，要是不是做编译器的，那老老实实别用，否则后果自负。<br>其实我也是受了某本书的影响，所以才这么用的。现在慢慢长大了，就一点一点要把以前的东西改过来。要是有机会，再慢慢记录一下这个过程吧！<br>还要继续写 <strong>bug</strong>，早日挖出一个巨坑。</p>
+
+      
+    </div>
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:16px;">-------------------------------- 全文完 <i class="fa fa-paw"></i> 感谢您的阅读 --------------------------------</div>
+    
+</div>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>「写的那么辛苦，连一块钱都不打赏吗/(ㄒoㄒ)/~~」</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat_pay.jpg" alt="刘俊延 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/ali_pay.jpg" alt="刘俊延 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      刘俊延
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://www.alinshans.com/2017/07/28/p1707281/" title="C++之那些年踩过的坑（五）">http://www.alinshans.com/2017/07/28/p1707281/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc/4.0/" rel="external nofollow" target="_blank">CC BY-NC 4.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/10/p1707101/" rel="next" title="OpenCV 笔记（三）：验证码生成">
+                <i class="fa fa-chevron-left"></i> OpenCV 笔记（三）：验证码生成
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -449,6 +598,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -696,6 +856,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
 
   
 
@@ -713,6 +877,18 @@
       <script id="dsq-count-scr" src="https://alinshans.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.alinshans.com/2017/07/28/p1707281/';
+          this.page.identifier = '2017/07/28/p1707281/';
+          this.page.title = 'C++之那些年踩过的坑（五）';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://alinshans.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
