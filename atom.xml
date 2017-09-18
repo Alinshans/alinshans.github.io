@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.alinshans.com/"/>
-  <updated>2017-08-20T13:21:49.748Z</updated>
+  <updated>2017-09-18T15:55:27.049Z</updated>
   <id>http://www.alinshans.com/</id>
   
   <author>
@@ -14,6 +14,82 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何自己写一个STL(下)</title>
+    <link href="http://www.alinshans.com/2017/09/18/p1709181/"/>
+    <id>http://www.alinshans.com/2017/09/18/p1709181/</id>
+    <published>2017-09-18T12:38:46.000Z</published>
+    <updated>2017-09-18T15:55:27.049Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近有点忙，忙里抽点空出来把这个系列给补完吧！</p>
+<h3 id="前置要求"><a href="#前置要求" class="headerlink" title="前置要求"></a>前置要求</h3><p>首先，我再强调一遍，你至少要达到以下的要求：</p>
+<ul>
+<li>了解 STL，使用过 STL</li>
+<li>了解模板</li>
+<li>了解常用数据结构的原理</li>
+<li>C++基础知识（Effective系列丛书）</li>
+</ul>
+<p>并且我推荐在动手之前至少有了解过 C++ 的代码规范，不然以后大量重构的时候就很难受了。</p>
+<h3 id="如何开始"><a href="#如何开始" class="headerlink" title="如何开始"></a>如何开始</h3><p>具备以上要求之后，就要开始定 Scope 了。首先要明白，标准中并没有 <code>STL</code> 的说法，这里我说的 <code>STL</code> 主要指标准中容器库及算法库的部分，还包括一些内存管理、函数对象等。可以看看在 <a href="https://www.zhihu.com/question/53085291" target="_blank" rel="external">这个问题</a> 下 @陈硕 的回答。然后想想自己要做到什么程度。</p>
+<h3 id="实现顺序"><a href="#实现顺序" class="headerlink" title="实现顺序"></a>实现顺序</h3><p>然后我个人建议是按照这样的顺序来写，当然不排除有不按套路出牌的。</p>
+<h4 id="Allocator"><a href="#Allocator" class="headerlink" title="Allocator"></a>Allocator</h4><p>我们先实现一个空间配置器，用于管理内存的分配回收，对象的构造析构。毕竟你要数据，就要给内存它放。有些童鞋可能会看到 SGI STL 中的实现，用的是内存池，什么自由链表，什么管理内存碎片……哦嚯听起来好x啊！我一开始也是这么做的，直到非常后来才发现这样<strong>并无卵用</strong>啊！！具体原因不在这里详细谈，只简单的讲一讲。因为用内存池很容易不释放内存还给系统，你会说不是大于xxxx bytes就调用 malloc/free 的吗？这个是这样的没错，但是还有很多是基于 node type 的容器，比如 <code>list</code> / <code>set</code> / <code>map</code> / <code>unordered_*</code> 等，而它们的 node 的大小并不是都一样的，所以不能完全复用，于是还是会分配一大堆的小内存，然后释放不了，全部都堆在池子里面。所以我原来测试的时候内存动不动就上几个G，后来实在是忍受不了内存池的破事了，于是弃用了。直接 new / delete，结果发现，性能反而好了不少……而且，现代的C++标准实现全部都是这样做的，你也不需要有什么疑虑了。因此这个部分，应该很快就可以完成。</p>
+<h4 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h4><p>做完了 Allocator，我推荐先把迭代器的几种类型，以及迭代器的类型萃取呀，和 <code>advance</code>, <code>distance</code> 等常用函数。因为迭代器是算法与容器之间的“粘合剂”，无论是我们的算法还是容器，都是基于迭代器的。所以要先把迭代器的概念做出来。这里就用到了 STL 中常用的 tag 技巧，声明一些空类型，这些类型可以利用模板类型推导，来帮助我们识别我们想要的东西。标准的要求可以看 <a href="http://en.cppreference.com/w/cpp/iterator" target="_blank" rel="external">这里</a>，具体实现可以参考一下 <a href="https://github.com/llvm-mirror/libcxx/blob/master/include/iterator#L441" target="_blank" rel="external">这里</a> 的技巧。</p>
+<h4 id="基础函数"><a href="#基础函数" class="headerlink" title="基础函数"></a>基础函数</h4><p>然后我推荐先实现一部分基础函数，因为这一部分的函数的使用频率非常的高，要实现容器也是离不开它们的，所以如何实现好这一部分基础函数是非常关键的。主要的我列出来一些：</p>
+<p>修改未初始化的空间：</p>
+<ul>
+<li>uninitialized_copy</li>
+<li>uninitialized_copy_n</li>
+<li>uninitialized_fill</li>
+<li>uninitialized_fill_n</li>
+<li>uninitialized_move</li>
+<li>uninitialized_move_n</li>
+</ul>
+<p>修改已初始化的空间：</p>
+<ul>
+<li>copy</li>
+<li>copy_backward</li>
+<li>move</li>
+<li>move_backward</li>
+<li>fill</li>
+<li>fill_n</li>
+</ul>
+<p>其它常用的：</p>
+<ul>
+<li>swap</li>
+<li>min</li>
+<li>max</li>
+</ul>
+<p>能先把这些实现出来就差不多了，还有一些在容器中也会用到的比如 <code>reverse</code>, <code>make_heap</code>, <code>sort_heap</code> 等，可以用到的时候再去实现。</p>
+<p>然后你可以先尝试自己先按照自己的理解实现一遍，比如 uninitialized_copy，刚开始，思路会比较单纯，就是给 [first, last) 构造一个值，可能会写成这样（当然你可以写得更好）：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> InputIterator, <span class="keyword">typename</span> ForwardIterator&gt;</div><div class="line"><span class="function">InputIterator</span></div><div class="line"><span class="title">uninitialized_copy</span><span class="params">(InputIterator first, InputIterator last, ForwardIterator result)</span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">for</span> (; first != last; ++first, ++result)</div><div class="line">		construct(*result, *first);</div><div class="line">	<span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然而你去看看主流标准库的实现，会发现跟你的差别非常巨大！比如看 <a href="https://github.com/llvm-mirror/libcxx/blob/master/include/memory#L3120" target="_blank" rel="external">libcxx</a> 的：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> _<span class="title">InputIterator</span>, <span class="title">class</span> _<span class="title">ForwardIterator</span>&gt;</span></div><div class="line">_<span class="title">ForwardIterator</span></div><div class="line"><span class="title">uninitialized_copy</span>(_<span class="title">InputIterator</span> __<span class="title">f</span>, _<span class="title">InputIterator</span> __<span class="title">l</span>, _<span class="title">ForwardIterator</span> __<span class="title">r</span>)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">typedef</span> <span class="keyword">typename</span> iterator_traits&lt;_ForwardIterator&gt;::value_type value_type;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _LIBCPP_NO_EXCEPTIONS</span></div><div class="line">    _ForwardIterator __s = __r;</div><div class="line">    <span class="keyword">try</span></div><div class="line">    &#123;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">        <span class="keyword">for</span> (; __f != __l; ++__f, (<span class="keyword">void</span>) ++__r)</div><div class="line">            ::<span class="keyword">new</span> (<span class="keyword">static_cast</span>&lt;<span class="keyword">void</span>*&gt;(_VSTD::addressof(*__r))) value_type(*__f);</div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _LIBCPP_NO_EXCEPTIONS</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">catch</span> (...)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">for</span> (; __s != __r; ++__s)</div><div class="line">            __s-&gt;~value_type();</div><div class="line">        <span class="keyword">throw</span>;</div><div class="line">    &#125;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">    <span class="keyword">return</span> __r;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这个 new 是什么用法？为什么要用 <code>addressof</code>？for 循环里面 <code>++__r</code> 前面为什么要有 <code>(void)</code> ？以及异常的使用。你才会发现，原来需要考虑的地方还真多。你别说，这些问题还真的是有原因的，贴两个连接：</p>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/32680208/is-there-any-advantage-of-using-stdaddressof-function-template-instead-of-us" target="_blank" rel="external">https://stackoverflow.com/questions/32680208/is-there-any-advantage-of-using-stdaddressof-function-template-instead-of-us</a><br><a href="https://github.com/Alinshans/LCPP/blob/master/Note/other.md" target="_blank" rel="external">https://github.com/Alinshans/LCPP/blob/master/Note/other.md</a></p>
+</blockquote>
+<p>所以啊，遇到什么问题，首先应该自己去搜索，学会搜索是很重要的。尤其是掌握 <a href="https://stackoverflow.com" target="_blank" rel="external">stack overflow</a> 和 <a href="google.com">google</a> 的使用。</p>
+<p>以上我列出来的那些函数，实现都不简单，但是你去看了某个的实现，其它的都可以照猫画瓢。</p>
+<h4 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h4><p>真的是万事开头难，若不是有经验，第一次都是无从下手，或者写的很糟糕的。我们已经把一些基础的东西写好了，接下来可以实现一些容器了！</p>
+<p>（未完明天更……）</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近有点忙，忙里抽点空出来把这个系列给补完吧！&lt;/p&gt;
+&lt;h3 id=&quot;前置要求&quot;&gt;&lt;a href=&quot;#前置要求&quot; class=&quot;headerlink&quot; title=&quot;前置要求&quot;&gt;&lt;/a&gt;前置要求&lt;/h3&gt;&lt;p&gt;首先，我再强调一遍，你至少要达到以下的要求：&lt;/p&gt;
+&lt;ul&gt;
+    
+    </summary>
+    
+      <category term="自己实现STL" scheme="http://www.alinshans.com/categories/%E8%87%AA%E5%B7%B1%E5%AE%9E%E7%8E%B0STL/"/>
+    
+    
+      <category term="C++" scheme="http://www.alinshans.com/tags/C/"/>
+    
+      <category term="STL" scheme="http://www.alinshans.com/tags/STL/"/>
+    
+  </entry>
   
   <entry>
     <title>如何自己写一个STL(上)</title>
