@@ -1,0 +1,38 @@
+html {
+	font-family: "Lucida Grande","Calibri","Arial","Verdana","Geneva",sans-serif;
+	background-image: url("resume.jpg");
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-clip: border-box;
+	background-attachment: fixed;
+}
+body {
+	background-color:rgba(255,255,255,0.90);
+	width: 960px;
+	margin: 5px auto;
+	border-width: 3px;
+	border-style: groove;
+	border-radius: 20px;
+	border-color: rgba(100,105,180,0.50);
+}
+#container {
+	margin: 1em 1em 1em 1em;
+}
+a:link {
+	color: rgb(60,211,230);
+	text-decoration: none;
+}
+a:visited {
+	color: rgb(35,52,118);
+	text-decoration: none;
+}
+a:hover {
+	color: rgb(124,142,216);
+	text-decoration: underline;
+}
+a:active {
+	color: rgb(35,52,118);
+	background-color: rgba(176,176,176,0.80);
+	text-decoration: underline;
+}
