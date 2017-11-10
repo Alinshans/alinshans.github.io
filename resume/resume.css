@@ -8,31 +8,61 @@ html {
 	background-attachment: fixed;
 }
 body {
-	background-color:rgba(255,255,255,0.90);
-	width: 960px;
-	margin: 5px auto;
-	border-width: 3px;
-	border-style: groove;
-	border-radius: 20px;
-	border-color: rgba(100,105,180,0.50);
+	background-color:rgba(225,231,235,0.96);
+	width: 935px;
+	margin: 3px auto;
+	border-width: 5px;
+	border-style: outset;
+	border-radius: 15px;
+	border-color: rgba(77,88,99,0.75);
 }
+
 #container {
 	margin: 1em 1em 1em 1em;
 }
+
 a:link {
-	color: rgb(60,211,230);
-	text-decoration: none;
+	text-decoration: underline;
+	color: 	#3A5FCD;
+	font-weight: bold;
 }
+
 a:visited {
-	color: rgb(35,52,118);
-	text-decoration: none;
+	text-decoration: underline;
+	color: #1E90FF;
+	font-weight: bold;
 }
+
 a:hover {
-	color: rgb(124,142,216);
 	text-decoration: underline;
+	color: #EE2C2C;
+	font-weight: bold;
 }
+
 a:active {
-	color: rgb(35,52,118);
-	background-color: rgba(176,176,176,0.80);
 	text-decoration: underline;
+	color: #CD2626;
+	font-weight: bold;
+}
+
+#footer a	{
+	color: #000000;
+}
+
+#footer a:visited{
+	color: #458B00;
+}
+
+#footer a:hover	{
+	color: #EE2C2C;
+}
+
+#footer	.credits {
+	margin: 20px 0px 10px 10px;
+	font-size: 15px;
+	text-align: center;
+}
+
+#footer	.credits a	{
+	font-weight: normal;
 }
