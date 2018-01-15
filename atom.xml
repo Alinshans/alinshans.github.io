@@ -124,14 +124,14 @@
     <link href="http://www.alinshans.com/2017/08/20/p1708201/"/>
     <id>http://www.alinshans.com/2017/08/20/p1708201/</id>
     <published>2017-08-20T08:09:12.000Z</published>
-    <updated>2017-11-10T14:53:23.642Z</updated>
+    <updated>2018-01-15T15:07:54.511Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p><strong>提前说明</strong>：整个C++中，其实并没有STL的概念，这个概念纯属是来自某本书的影响，而我在这也先限定一下：这里所讨论的”STL”主要指的是标准库中的迭代器库、容器库以及算法库的内容。</p>
 </blockquote>
 <p>昨天，我的一个小项目 <a href="https://github.com/Alinshans/MyTinySTL" target="_blank" rel="external">MyTinySTL</a> 发布了 <code>v2.0.0</code> 版本，宣布这个项目告一段落。这个项目从去年暑假开始动工，至今已经过了一年多了，期间完成过多次重构，这一次算是第三次重构，进行了非常多的修改。可以看到，提交数已经超过 1000，当然我没有特地凑这个数字，而是我最后一次 merge 之后，刚好就是一千了！而代码量，现存下来的不是很多，2W 余行，但是期间 debug 过的代码量，远远超过这个数字。所以我也不会去求 star，但是能给就最好了！(〃’▽’〃)</p>
-<p><img src="http://i4.bvimg.com/594413/bd9ba95504a190fd.jpg" alt="MyTinySTL"></p>
-<p><img src="http://i4.bvimg.com/594413/af4dd627a3514c3c.jpg" alt="MyTinySTL"></p>
+<p><img src="https://i.loli.net/2018/01/15/5a5cc1b38ff15.jpg" alt="bd9ba95504a190fds.jpg"></p>
+<p><img src="https://i.loli.net/2018/01/15/5a5cc1b370efd.jpg" alt="af4dd627a3514c3c.jpg"></p>
 <p>其实这期间，有人向我反馈过，我有没有一些笔记什么的。然而一直没有什么时间做。我很高兴能够有人看一眼我的拙作（其实我收到的反馈也只有两个人），但更重要的是我自己的收获。所以现在，我基本也可以弃掉这个坑，去学习其它的东西了，就来说一些自己实现一个 tinystl 的感想吧！</p>
 <h3 id="为什么要自己实现一个-STL"><a href="#为什么要自己实现一个-STL" class="headerlink" title="为什么要自己实现一个 STL"></a>为什么要自己实现一个 STL</h3><p>这个问题在不同时候、不同的人身上，会有不同的意义。对于我个人而言，当初我的想法是什么呢？其实我很早之前就已经接触过和自学过 C++ 了，但那毕竟是太小的时候，以至于很多东西都不懂，所以也可以说根本不会。但也不是完全没有帮助，对我的帮助就是没有 “如何入门C++” 这一说。因为基本的语法之类的我也知道，只是不明白为什么这样写。所以等我到了大学，我只花了两天时间把几年前的一本 C++ 入门书翻一翻，就大概复习了一遍 C++ 的基本语法了。当然，书是 09 年买的，所以那个时候还没有 C++11，我也不会模板。所以自然跟很多初学者会产生同样的疑问：<strong>C++ 能做什么？</strong></p>
 <p>然后大一的时候，练习过一些竞赛题，用 C++ 写。那时候就只知道，C++ 有个东西，叫 STL。<code>#include &lt;algorithm&gt;</code> 后你可以直接用 <code>sort</code>，不用自己写；<code>#include &lt;vector&gt;</code> 后你可以用 <code>vector</code>，还不需要管它的长度；<code>#include &lt;map&gt;</code> 之后可以用 <code>map</code>，相当于自己用两个 raw array 来模拟……但是，为什么就可以用呢？为什么要写成 <code>vector&lt;int&gt;</code> 呢？这个<code>&lt;int&gt;</code>有什么用呢？……那时候我还真不懂，连模板都没听过。</p>
@@ -171,11 +171,13 @@
     <link href="http://www.alinshans.com/2017/07/28/p1707281/"/>
     <id>http://www.alinshans.com/2017/07/28/p1707281/</id>
     <published>2017-07-28T10:56:34.000Z</published>
-    <updated>2017-11-28T13:03:33.168Z</updated>
+    <updated>2018-01-15T15:08:25.461Z</updated>
     
     <content type="html"><![CDATA[<p>很久没有更新了。因为最近还在重构 <a href="https://github.com/Alinshans/MyTinySTL" target="_blank" rel="external">MyTinySTL</a>，过程还是挺艰辛的 =.= 重构了一遍 <a href="https://github.com/Alinshans/MyTinySTL/blob/master/MyTinySTL/rb_tree.h" target="_blank" rel="external">rb_tree</a>，整整看了几天代码，各种博客和 paper 才开始下得了手。结果好不容易把 <a href="https://github.com/Alinshans/MyTinySTL/blob/master/MyTinySTL/rb_tree.h" target="_blank" rel="external">rb_tree</a> 给重构完，又发现了 <a href="https://github.com/Alinshans/MyTinySTL/blob/master/MyTinySTL/deque.h" target="_blank" rel="external">deque</a> 出了内存管理的问题…又重构了一遍。</p>
 <p>看到以前写的代码，想推翻重来是很正常的。要么就是以前写得实在是太好了，不需要重构，代码清清楚楚，性能完全压榨。要么就是以前水平太低，现在看不下去。但前者的情况还是比较少的嘛。本来我写这个 <a href="https://github.com/Alinshans/MyTinySTL" target="_blank" rel="external">MyTinySTL</a>，只是拿来玩玩的，结果被喷不少，结果就是现在越来越接近标准库。。</p>
-<p>当然前面讲的这些都不是重点，而是我一直有一个错误的做法，而且还一直没发现。就是看我以前写的东西，会有很多函数，前面有两个下划线 <code>__</code>，比如私有成员函数、辅助函数等，比如以下一张选自曾经的 <code>deque</code>：<br><img src="http://i2.tiimg.com/594413/1c83b889bd53e9ac.png" alt="Code"><br>然后偶然间，被某大神看到，喷了一顿。因为<strong>这不是合法的行为</strong>，见 <a href="www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4659.pdf">n4659</a> 5.10.3 节：</p>
+<p>当然前面讲的这些都不是重点，而是我一直有一个错误的做法，而且还一直没发现。就是看我以前写的东西，会有很多函数，前面有两个下划线 <code>__</code>，比如私有成员函数、辅助函数等，比如以下一张选自曾经的 <code>deque</code>：</p>
+<p><img src="https://i.loli.net/2018/01/15/5a5cc1b393b14.png" alt="1c83b889bd53e9acs.png"></p>
+<p>然后偶然间，被某大神看到，喷了一顿。因为<strong>这不是合法的行为</strong>，见 <a href="www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4659.pdf">n4659</a> 5.10.3 节：</p>
 <blockquote>
 <p>3 In addition, some identiﬁers are reserved for use by C++ implementations and shall not be used otherwise; no diagnostic is required.<br>(3.1) – Each identiﬁer that contains a double underscore __ or begins with an underscore followed by an uppercase letter is reserved to the implementation for any use.<br>(3.2) – Each identiﬁer that begins with an underscore is reserved to the implementation for use as a name in the global namespace. </p>
 </blockquote>

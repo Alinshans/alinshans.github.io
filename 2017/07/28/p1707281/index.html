@@ -109,12 +109,12 @@
 <meta property="og:url" content="http://www.alinshans.com/2017/07/28/p1707281/index.html">
 <meta property="og:site_name" content="Alinshans&#39;s world">
 <meta property="og:description" content="很久没有更新了。因为最近还在重构 MyTinySTL，过程还是挺艰辛的 =.= 重构了一遍 rb_tree，整整看了几天代码，各种博客和 paper 才开始下得了手。结果好不容易把 rb_tree 给重构完，又发现了 deque 出了内存管理的问题…又重构了一遍。 看到以前写的代码，想推翻重来是很正常的。要么就是以前写得实在是太好了，不需要重构，代码清清楚楚，性能完全压榨。要么就是以前水平太低，现">
-<meta property="og:image" content="http://i2.tiimg.com/594413/1c83b889bd53e9ac.png">
-<meta property="og:updated_time" content="2017-11-28T13:03:33.168Z">
+<meta property="og:image" content="https://i.loli.net/2018/01/15/5a5cc1b393b14.png">
+<meta property="og:updated_time" content="2018-01-15T15:08:25.461Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++之那些年踩过的坑（五）">
 <meta name="twitter:description" content="很久没有更新了。因为最近还在重构 MyTinySTL，过程还是挺艰辛的 =.= 重构了一遍 rb_tree，整整看了几天代码，各种博客和 paper 才开始下得了手。结果好不容易把 rb_tree 给重构完，又发现了 deque 出了内存管理的问题…又重构了一遍。 看到以前写的代码，想推翻重来是很正常的。要么就是以前写得实在是太好了，不需要重构，代码清清楚楚，性能完全压榨。要么就是以前水平太低，现">
-<meta name="twitter:image" content="http://i2.tiimg.com/594413/1c83b889bd53e9ac.png">
+<meta name="twitter:image" content="https://i.loli.net/2018/01/15/5a5cc1b393b14.png">
 
 
 
@@ -379,8 +379,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-11-28T21:03:33+08:00">
-                2017-11-28
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-15T23:08:25+08:00">
+                2018-01-15
               </time>
             
           </span>
@@ -450,7 +450,9 @@
       
         <p>很久没有更新了。因为最近还在重构 <a href="https://github.com/Alinshans/MyTinySTL" target="_blank" rel="external">MyTinySTL</a>，过程还是挺艰辛的 =.= 重构了一遍 <a href="https://github.com/Alinshans/MyTinySTL/blob/master/MyTinySTL/rb_tree.h" target="_blank" rel="external">rb_tree</a>，整整看了几天代码，各种博客和 paper 才开始下得了手。结果好不容易把 <a href="https://github.com/Alinshans/MyTinySTL/blob/master/MyTinySTL/rb_tree.h" target="_blank" rel="external">rb_tree</a> 给重构完，又发现了 <a href="https://github.com/Alinshans/MyTinySTL/blob/master/MyTinySTL/deque.h" target="_blank" rel="external">deque</a> 出了内存管理的问题…又重构了一遍。</p>
 <p>看到以前写的代码，想推翻重来是很正常的。要么就是以前写得实在是太好了，不需要重构，代码清清楚楚，性能完全压榨。要么就是以前水平太低，现在看不下去。但前者的情况还是比较少的嘛。本来我写这个 <a href="https://github.com/Alinshans/MyTinySTL" target="_blank" rel="external">MyTinySTL</a>，只是拿来玩玩的，结果被喷不少，结果就是现在越来越接近标准库。。</p>
-<p>当然前面讲的这些都不是重点，而是我一直有一个错误的做法，而且还一直没发现。就是看我以前写的东西，会有很多函数，前面有两个下划线 <code>__</code>，比如私有成员函数、辅助函数等，比如以下一张选自曾经的 <code>deque</code>：<br><img src="http://i2.tiimg.com/594413/1c83b889bd53e9ac.png" alt="Code"><br>然后偶然间，被某大神看到，喷了一顿。因为<strong>这不是合法的行为</strong>，见 <a href="www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4659.pdf">n4659</a> 5.10.3 节：</p>
+<p>当然前面讲的这些都不是重点，而是我一直有一个错误的做法，而且还一直没发现。就是看我以前写的东西，会有很多函数，前面有两个下划线 <code>__</code>，比如私有成员函数、辅助函数等，比如以下一张选自曾经的 <code>deque</code>：</p>
+<p><img src="https://i.loli.net/2018/01/15/5a5cc1b393b14.png" alt="1c83b889bd53e9acs.png"></p>
+<p>然后偶然间，被某大神看到，喷了一顿。因为<strong>这不是合法的行为</strong>，见 <a href="www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4659.pdf">n4659</a> 5.10.3 节：</p>
 <blockquote>
 <p>3 In addition, some identiﬁers are reserved for use by C++ implementations and shall not be used otherwise; no diagnostic is required.<br>(3.1) – Each identiﬁer that contains a double underscore __ or begins with an underscore followed by an uppercase letter is reserved to the implementation for any use.<br>(3.2) – Each identiﬁer that begins with an underscore is reserved to the implementation for use as a name in the global namespace. </p>
 </blockquote>
@@ -759,8 +761,8 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-edit"></i>
   </span>
