@@ -102,17 +102,17 @@
 
 
 
-<meta name="description" content="注：本文来自于我的一篇博客 http://www.cnblogs.com/GodA/p/6501505.html ，修改而成。  这一篇聊聊关于C++中的名称空间（namespace）。 一、避免在全局范围内使用 using namespace xxx注意这个标题中的限定词，避免在全局范围内使用。什么意思呢？比如在头文件中，直接使用 using namespace std 之类的声明，这样是不好">
+<meta name="description" content="这一篇聊聊关于C++中的名称空间（namespace）。 一、避免在全局范围内使用 using namespace xxx注意这个标题中的限定词，避免在全局范围内使用。什么意思呢？比如在头文件中，直接使用 using namespace std 之类的声明，这样是不好的。除非除非，你是最终代码用户，写一个小练习，小测试，否则都不要这么做。之前很喜欢写代码开头就写上 using namespace">
 <meta name="keywords" content="C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++之那些年踩过的坑（一）">
 <meta property="og:url" content="http://www.alinshans.com/2017/05/22/p1705221/index.html">
 <meta property="og:site_name" content="Alinshans&#39;s world">
-<meta property="og:description" content="注：本文来自于我的一篇博客 http://www.cnblogs.com/GodA/p/6501505.html ，修改而成。  这一篇聊聊关于C++中的名称空间（namespace）。 一、避免在全局范围内使用 using namespace xxx注意这个标题中的限定词，避免在全局范围内使用。什么意思呢？比如在头文件中，直接使用 using namespace std 之类的声明，这样是不好">
-<meta property="og:updated_time" content="2017-07-28T17:03:07.529Z">
+<meta property="og:description" content="这一篇聊聊关于C++中的名称空间（namespace）。 一、避免在全局范围内使用 using namespace xxx注意这个标题中的限定词，避免在全局范围内使用。什么意思呢？比如在头文件中，直接使用 using namespace std 之类的声明，这样是不好的。除非除非，你是最终代码用户，写一个小练习，小测试，否则都不要这么做。之前很喜欢写代码开头就写上 using namespace">
+<meta property="og:updated_time" content="2018-01-19T04:52:16.320Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++之那些年踩过的坑（一）">
-<meta name="twitter:description" content="注：本文来自于我的一篇博客 http://www.cnblogs.com/GodA/p/6501505.html ，修改而成。  这一篇聊聊关于C++中的名称空间（namespace）。 一、避免在全局范围内使用 using namespace xxx注意这个标题中的限定词，避免在全局范围内使用。什么意思呢？比如在头文件中，直接使用 using namespace std 之类的声明，这样是不好">
+<meta name="twitter:description" content="这一篇聊聊关于C++中的名称空间（namespace）。 一、避免在全局范围内使用 using namespace xxx注意这个标题中的限定词，避免在全局范围内使用。什么意思呢？比如在头文件中，直接使用 using namespace std 之类的声明，这样是不好的。除非除非，你是最终代码用户，写一个小练习，小测试，否则都不要这么做。之前很喜欢写代码开头就写上 using namespace">
 
 
 
@@ -377,8 +377,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-07-29T01:03:07+08:00">
-                2017-07-29
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-19T12:52:16+08:00">
+                2018-01-19
               </time>
             
           </span>
@@ -446,10 +446,7 @@
       
 
       
-        <blockquote>
-<p><em>注：本文来自于我的一篇博客 <a href="http://www.cnblogs.com/GodA/p/6501505.html" target="_blank" rel="external">http://www.cnblogs.com/GodA/p/6501505.html</a> ，修改而成。</em></p>
-</blockquote>
-<p>这一篇聊聊关于C++中的名称空间（namespace）。</p>
+        <p>这一篇聊聊关于C++中的名称空间（namespace）。</p>
 <h3 id="一、避免在全局范围内使用-using-namespace-xxx"><a href="#一、避免在全局范围内使用-using-namespace-xxx" class="headerlink" title="一、避免在全局范围内使用 using namespace xxx"></a>一、避免在全局范围内使用 using namespace xxx</h3><p>注意这个标题中的限定词，<strong>避免</strong>在<strong>全局范围内</strong>使用。什么意思呢？比如在头文件中，直接使用 <code>using namespace std</code> 之类的声明，这样是不好的。除非除非，你是最终代码用户，写一个小练习，小测试，否则都不要这么做。之前很喜欢写代码开头就写上 <code>using namespace std</code>，因为可以省很多事，比写什么 <code>cout</code>，<code>endl</code> 方便多了。后来我在写 <a href="https://github.com/Alinshans/MyTinySTL" target="_blank" rel="external">MyTinySTL</a> 这个项目时，最后写测试，为了方便，就用了 <code>using namespace std</code>，写的时候是挺爽的，一运行就炸了。错误长的惨不忍睹，一大堆的名称冲突。当你使用了 <code>using namespace std</code> 的时候，就把 <code>std</code> 这个名称空间内的内容直接引用到了当前空间，如果跟当前空间的函数、类等重名了，那么编译就不通过了，这个就叫<code>名称污染</code>。比如：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> your</div><div class="line">&#123;</div><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">vector</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">  <span class="built_in">vector</span>() = <span class="keyword">default</span>;</div><div class="line">  ~<span class="built_in">vector</span>() = <span class="keyword">default</span>;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">  T* data;</div><div class="line">&#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> your;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">  <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>你编译它，就会得到类似不明确的符号 vector 啊，may be <code>std::vector</code> or <code>your::vector</code> 啊之类的。当然了，这太明显了，谁都会看出来。问题就在于，我们不能把问题是否发生，寄托于我们是否能够看出来。当代码多了，文件多了，几十个几百个，上万行十万行，你确定你还记得你在哪个头文件 using 了什么东西？然后在一层一层 include 的情况下，莫名其妙的就炸掉了。所以，还是从根源上杜绝问题比较好。</p>
 <p>刚刚说的是 namespace std，但对于其它的 namespace 而言，也是一样的。如果是你自己写的，你都尚未能保证你能避开所有重复的命名，除非你自己写个玩具中的 demo，如果是别人写的，那就更加不可控了。</p>
