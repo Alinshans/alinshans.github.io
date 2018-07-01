@@ -171,7 +171,7 @@
     <link href="http://www.alinshans.com/2017/07/28/p1707281/"/>
     <id>http://www.alinshans.com/2017/07/28/p1707281/</id>
     <published>2017-07-28T10:56:34.000Z</published>
-    <updated>2018-01-15T15:08:25.461Z</updated>
+    <updated>2018-01-15T15:08:25.462Z</updated>
     
     <content type="html"><![CDATA[<p>很久没有更新了。因为最近还在重构 <a href="https://github.com/Alinshans/MyTinySTL" target="_blank" rel="external">MyTinySTL</a>，过程还是挺艰辛的 =.= 重构了一遍 <a href="https://github.com/Alinshans/MyTinySTL/blob/master/MyTinySTL/rb_tree.h" target="_blank" rel="external">rb_tree</a>，整整看了几天代码，各种博客和 paper 才开始下得了手。结果好不容易把 <a href="https://github.com/Alinshans/MyTinySTL/blob/master/MyTinySTL/rb_tree.h" target="_blank" rel="external">rb_tree</a> 给重构完，又发现了 <a href="https://github.com/Alinshans/MyTinySTL/blob/master/MyTinySTL/deque.h" target="_blank" rel="external">deque</a> 出了内存管理的问题…又重构了一遍。</p>
 <p>看到以前写的代码，想推翻重来是很正常的。要么就是以前写得实在是太好了，不需要重构，代码清清楚楚，性能完全压榨。要么就是以前水平太低，现在看不下去。但前者的情况还是比较少的嘛。本来我写这个 <a href="https://github.com/Alinshans/MyTinySTL" target="_blank" rel="external">MyTinySTL</a>，只是拿来玩玩的，结果被喷不少，结果就是现在越来越接近标准库。。</p>
@@ -496,7 +496,7 @@
     <link href="http://www.alinshans.com/2017/07/06/p1707061/"/>
     <id>http://www.alinshans.com/2017/07/06/p1707061/</id>
     <published>2017-07-05T16:15:07.000Z</published>
-    <updated>2017-07-09T15:18:52.802Z</updated>
+    <updated>2017-07-09T15:18:52.803Z</updated>
     
     <content type="html"><![CDATA[<p><code>OpenCV</code> 是一个计算机视觉库，它提供了很多图像处理、机器学习等通用的算法，而且提供了 <code>C++</code>, <code>Python</code>, <code>Ruby</code> 等语言的接口。我们可以在 <a href="http://opencv.org/" target="_blank" rel="external">官网</a> 上查看你想知道的信息。现在最新版本为 3.2.0，用过之后才感觉 <code>OpenCV</code> 的强大啊。</p>
 <h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><p>很多人想用 <code>OpenCV</code>，但或许就栽到了环境搭建这第一步了，但我觉得现在这个版本搭建起来还是挺方便的，在官网上有各种系统和编译器的搭建指导（<a href="http://docs.opencv.org/master/df/d65/tutorial_table_of_content_introduction.html" target="_blank" rel="external">点这里</a>）。我使用的是 Windows + VS2017，所以在接下来的系列文章中，没有特殊说明，我使用的都是 <code>C++</code> 接口。环境搭建主要参考了 <a href="http://docs.opencv.org/master/d3/d52/tutorial_windows_install.html" target="_blank" rel="external">这篇教程</a> 和 <a href="http://docs.opencv.org/master/d6/d8a/tutorial_windows_visual_studio_Opencv.html" target="_blank" rel="external">这篇教程</a>。</p>
@@ -550,7 +550,7 @@
     <link href="http://www.alinshans.com/2017/06/10/p1706101/"/>
     <id>http://www.alinshans.com/2017/06/10/p1706101/</id>
     <published>2017-06-10T13:57:56.000Z</published>
-    <updated>2017-07-28T17:03:34.155Z</updated>
+    <updated>2017-07-28T17:03:34.156Z</updated>
     
     <content type="html"><![CDATA[<h3 id="事情起因"><a href="#事情起因" class="headerlink" title="事情起因"></a>事情起因</h3><p>昨天花了一些时间给我的 <a href="https://github.com/Alinshans/MyTinySTL" target="_blank" rel="external">MyTinySTL</a> 重新弄了一套构建方案，主要是写了一个 <code>CMakeLists.txt</code>（原来是写了一个简单的 <code>Makefile</code>）。现在呢，在 linux/osx 下，就通过 <code>cmake</code> 来构建生成对应的 <code>Makefile</code>，然后再 <code>make</code>；在 Windows 下，就直接使用 <code>vs</code> 的 <code>.sln</code> 配置文件。具体可以看项目说明。</p>
 <h3 id="问题浮现"><a href="#问题浮现" class="headerlink" title="问题浮现"></a>问题浮现</h3><p>然后修改完持续集成的脚本配置之后，却出现了一个奇怪的问题：<strong>在 linux 下的构建全部失败了！</strong><br><img src="http://i2.muimg.com/594413/04c6fcad6f5a5b6bs.png" alt="build message"><br>打开查看里面的信息，基本都是这样的错误提示：<br>gcc提示是这样的：<br><img src="http://i2.muimg.com/594413/ce1871e70d13334fs.png" alt="build message"><br>clang提示是这样的：<br><img src="http://i2.muimg.com/594413/e20d3654bb3bee12s.png" alt="build message"><br>都是在 <code>&lt;cstring&gt;</code> 这个文件出错了，可这是标准库文件，怎么会出错呢？而且错误信息也很奇怪。我又去找代码查找有没有什么可能出错的地方，很久也没找到。然后跟别人请教了一下，某大神直击要害地问我：<strong>“你是不是有一个 string.h 文件？”</strong></p>
@@ -579,7 +579,7 @@
     <link href="http://www.alinshans.com/2017/05/31/p1705312/"/>
     <id>http://www.alinshans.com/2017/05/31/p1705312/</id>
     <published>2017-05-31T08:32:29.000Z</published>
-    <updated>2017-05-31T12:26:53.625Z</updated>
+    <updated>2017-05-31T12:26:53.626Z</updated>
     
     <content type="html"><![CDATA[<p>前面我们介绍了8086汇编中一些常用的、基本的、重要的概念，现在我们就要把这些东西组装起来。</p>
 <h3 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h3><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var_name <span class="built_in">db</span>/<span class="built_in">dw</span>/<span class="built_in">dd</span> expression</div></pre></td></tr></table></figure>
@@ -1243,7 +1243,7 @@
     <link href="http://www.alinshans.com/2017/05/28/p1705282/"/>
     <id>http://www.alinshans.com/2017/05/28/p1705282/</id>
     <published>2017-05-28T02:53:04.000Z</published>
-    <updated>2018-01-19T04:52:45.194Z</updated>
+    <updated>2018-01-19T04:52:45.195Z</updated>
     
     <content type="html"><![CDATA[<p>这篇内容呀，其实是接<a href="http://www.cnblogs.com/GodA/p/6569254.html" target="_blank" rel="external">上一篇</a>的结尾提出的一个小问题而写的，如果你还没有看过那么你可以先看一下。</p>
 <h2 id="真相"><a href="#真相" class="headerlink" title="真相"></a>真相</h2><p>在上一篇的最后，我提到一个问题：代码优化。并留下了一个小小的测试：无符号数和有符号数的性能比较。不知道有没有童鞋去实验一下呢？那我们一起来做一个简单的实验：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">  <span class="comment">/*unsigned */</span><span class="keyword">int</span> a = <span class="number">123456789</span>;</div><div class="line">  <span class="keyword">auto</span> t1 = <span class="built_in">std</span>::chrono::system_clock::now();</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; ++i)</div><div class="line">  &#123;</div><div class="line">    a += <span class="number">3</span>;</div><div class="line">    a -= <span class="number">5</span>;</div><div class="line">    a *= <span class="number">11</span>;</div><div class="line">    a /= <span class="number">7</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">auto</span> t2 = <span class="built_in">std</span>::chrono::system_clock::now();</div><div class="line">  <span class="keyword">auto</span> runtime = <span class="built_in">std</span>::chrono::duration_cast&lt;<span class="built_in">std</span>::chrono::nanoseconds&gt;(t2 - t1);</div><div class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"a = "</span> &lt;&lt; a &lt;&lt; <span class="string">"\n"</span>;</div><div class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; runtime.count() &lt;&lt; <span class="string">"ns"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
